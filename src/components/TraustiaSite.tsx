@@ -492,7 +492,7 @@ function FounderCard({ founder }: { founder: Founder }) {
       </div>
       <div className="founder-content">
         <p className="founder-role">{founder.role}</p>
-        <h3>{founder.name}</h3>
+        <h3>{founder.displayName}</h3>
         <p className="founder-discipline">{founder.discipline}</p>
         <a className="founder-email" href={`mailto:${founder.email}`}>
           {founder.email}<span aria-hidden="true">↗</span>

@@ -17,6 +17,7 @@ export type ResearchProject = {
 export type Founder = {
   initials: string;
   name: string;
+  displayName: string;
   email: string;
   role: string;
   discipline: string;
@@ -165,6 +166,7 @@ export const siteConfig = {
     {
       initials: "IY",
       name: "Iris Yang",
+      displayName: "Iris Y.",
       email: contactEmails.iris,
       role: "Co-Founder",
       discipline: "Quantitative Methodology & Biomedical Data Science",
@@ -185,6 +187,7 @@ export const siteConfig = {
     {
       initials: "PT",
       name: "Paul Tan",
+      displayName: "Paul T.",
       email: contactEmails.paul,
       role: "Co-Founder",
       discipline: "Data Science, Research Software & Biomedical Informatics",
