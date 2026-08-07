@@ -1900,6 +1900,26 @@ em {
   font-weight: 650;
 }
 
+.founder-email {
+  width: fit-content;
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  margin: -8px 0 24px;
+  padding-bottom: 4px;
+  border-bottom: 1px solid rgba(53,197,180,.48);
+  color: #267e74;
+  font-family: var(--font-mono);
+  font-size: 9px;
+  letter-spacing: .035em;
+  transition: color 180ms ease, border-color 180ms ease;
+}
+
+.founder-email:hover {
+  color: var(--ink);
+  border-color: var(--ink);
+}
+
 .founder-content > p:not(.founder-role):not(.founder-discipline) {
   color: var(--slate-dark);
   font-size: 13px;
@@ -2068,6 +2088,67 @@ em {
   justify-content: center;
   flex-wrap: wrap;
   gap: 12px;
+}
+
+.contact-directory {
+  max-width: 820px;
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 12px;
+  margin: 0 auto 28px;
+  text-align: left;
+}
+
+.contact-directory a {
+  position: relative;
+  min-width: 0;
+  display: grid;
+  gap: 5px;
+  padding: 20px 54px 20px 22px;
+  border: 1px solid var(--border-dark);
+  background: rgba(13,29,41,.68);
+  transition: transform 180ms ease, border-color 180ms ease, background 180ms ease;
+}
+
+.contact-directory a:hover {
+  transform: translateY(-3px);
+  border-color: rgba(53,197,180,.52);
+  background: rgba(17,38,52,.9);
+}
+
+.contact-directory span {
+  color: var(--teal);
+  font-family: var(--font-mono);
+  font-size: 7px;
+  letter-spacing: .1em;
+}
+
+.contact-directory strong {
+  color: var(--white);
+  font-size: 16px;
+  font-weight: 570;
+}
+
+.contact-directory small {
+  overflow-wrap: anywhere;
+  color: rgba(246,248,245,.58);
+  font-family: var(--font-mono);
+  font-size: 9px;
+}
+
+.contact-directory i {
+  position: absolute;
+  right: 20px;
+  top: 50%;
+  color: rgba(246,248,245,.32);
+  font-style: normal;
+  transform: translateY(-50%);
+  transition: color 180ms ease, transform 180ms ease;
+}
+
+.contact-directory a:hover i {
+  color: var(--teal);
+  transform: translate(2px, calc(-50% - 2px));
 }
 
 .contact-pending {
@@ -2346,6 +2427,7 @@ em {
   .about-quote { grid-template-columns: 1fr; gap: 10px; padding: 38px 28px; }
   .contact h2 { font-size: clamp(50px, 15vw, 70px); }
   .contact-inner > p:not(.section-label) { font-size: 16px; }
+  .contact-directory { grid-template-columns: 1fr; }
   .footer-top { flex-direction: column; }
   .footer-top nav { grid-template-columns: repeat(2, auto); justify-content: start; }
   .footer-bottom { flex-direction: column; line-height: 1.8; }

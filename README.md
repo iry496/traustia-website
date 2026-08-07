@@ -39,13 +39,7 @@ This file contains the contact email, social links, navigation, capabilities, re
 
 ### Configure contact details
 
-In `src/config/siteData.ts`, replace:
-
-```ts
-contactEmail: "YOUR_CONTACT_EMAIL_HERE"
-```
-
-with the company email address. Until it is replaced, the public site displays “Contact information coming soon.” The configured address automatically powers the collaboration links.
+Founder addresses are centralized in `contactEmails` inside `src/config/siteData.ts`. The primary `contactEmail`, founder cards, contact directory, and collaboration links all read from that configuration.
 
 Add the future LinkedIn and GitHub URLs in `socialLinks` when those profiles are ready.
 

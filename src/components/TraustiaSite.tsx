@@ -494,6 +494,9 @@ function FounderCard({ founder }: { founder: Founder }) {
         <p className="founder-role">{founder.role}</p>
         <h3>{founder.name}</h3>
         <p className="founder-discipline">{founder.discipline}</p>
+        <a className="founder-email" href={`mailto:${founder.email}`}>
+          {founder.email}<span aria-hidden="true">↗</span>
+        </a>
         {founder.bio.map((paragraph) => <p key={paragraph}>{paragraph}</p>)}
         <ul>{founder.areas.map((area) => <li key={area}>{area}</li>)}</ul>
       </div>
@@ -550,7 +553,10 @@ function About() {
 }
 
 function Contact() {
-  const mailto = contactIsConfigured ? `mailto:${siteConfig.contactEmail}` : undefined;
+  const collaborationMailto = contactIsConfigured
+    ? `mailto:${siteConfig.contactEmail}?subject=Traustia%20research%20collaboration`
+    : undefined;
+  const validationMailto = `mailto:${siteConfig.founders[1].email}?subject=Traustia%20validation%20project`;
 
   return (
     <section className="contact section-dark" id="contact">
@@ -560,10 +566,22 @@ function Contact() {
         <h2>Let’s build<br /><em>stronger evidence.</em></h2>
         <p>We welcome conversations with biomedical scientists, clinician-researchers, academic laboratories, biotech teams, and organizations seeking rigorous quantitative collaboration or independent scientific validation.</p>
         {contactIsConfigured ? (
-          <div className="contact-actions">
-            <a className="button button-filled" href={mailto}>Start a Collaboration <span aria-hidden="true">↗</span></a>
-            <a className="button button-ghost" href={mailto}>Discuss a Validation Project</a>
-          </div>
+          <>
+            <div className="contact-directory" aria-label="Traustia contacts">
+              {siteConfig.founders.map((founder, index) => (
+                <a href={`mailto:${founder.email}`} key={founder.email}>
+                  <span>CONTACT / {String(index + 1).padStart(2, "0")}</span>
+                  <strong>{founder.name}</strong>
+                  <small>{founder.email}</small>
+                  <i aria-hidden="true">↗</i>
+                </a>
+              ))}
+            </div>
+            <div className="contact-actions">
+              <a className="button button-filled" href={collaborationMailto}>Start a Collaboration <span aria-hidden="true">↗</span></a>
+              <a className="button button-ghost" href={validationMailto}>Discuss a Validation Project</a>
+            </div>
+          </>
         ) : (
           <div className="contact-pending" role="status"><span /> Contact information coming soon.</div>
         )}

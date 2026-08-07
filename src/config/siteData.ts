@@ -17,6 +17,7 @@ export type ResearchProject = {
 export type Founder = {
   initials: string;
   name: string;
+  email: string;
   role: string;
   discipline: string;
   bio: string[];
@@ -24,10 +25,15 @@ export type Founder = {
   photo?: string;
 };
 
+export const contactEmails = {
+  iris: "irisyang@traustia.com",
+  paul: "paultan@traustia.com",
+} as const;
+
 export const siteConfig = {
   companyName: "Traustia",
   legalName: "Traustia",
-  contactEmail: "YOUR_CONTACT_EMAIL_HERE",
+  contactEmail: contactEmails.iris,
   futureDomain: "",
   socialLinks: {
     linkedin: "",
@@ -159,6 +165,7 @@ export const siteConfig = {
     {
       initials: "IY",
       name: "Iris Yang",
+      email: contactEmails.iris,
       role: "Co-Founder",
       discipline: "Quantitative Methodology & Biomedical Data Science",
       bio: [
@@ -178,6 +185,7 @@ export const siteConfig = {
     {
       initials: "PT",
       name: "Paul Tan",
+      email: contactEmails.paul,
       role: "Co-Founder",
       discipline: "Data Science, Research Software & Biomedical Informatics",
       bio: [
@@ -197,6 +205,4 @@ export const siteConfig = {
   ] satisfies Founder[],
 } as const;
 
-export const contactIsConfigured =
-  Boolean(siteConfig.contactEmail) &&
-  siteConfig.contactEmail !== "YOUR_CONTACT_EMAIL_HERE";
+export const contactIsConfigured = Boolean(siteConfig.contactEmail);
