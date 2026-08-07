@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useRef, useState, type FormEvent } from "react";
 import {
   contactIsConfigured,
   siteConfig,
@@ -558,6 +558,17 @@ function Contact() {
     : undefined;
   const validationMailto = `mailto:${siteConfig.founders[1].email}?subject=Traustia%20validation%20project`;
 
+  const composeContactEmail = (event: FormEvent<HTMLFormElement>) => {
+    event.preventDefault();
+    const form = new FormData(event.currentTarget);
+    const message = String(form.get("message") ?? "").trim();
+    if (!message) return;
+
+    const subject = encodeURIComponent("Traustia website inquiry");
+    const body = encodeURIComponent(message);
+    window.location.href = `mailto:${siteConfig.contactEmail}?subject=${subject}&body=${body}`;
+  };
+
   return (
     <section className="contact section-dark" id="contact">
       <div className="contact-grid-bg" aria-hidden="true" />
@@ -567,6 +578,26 @@ function Contact() {
         <p>We welcome conversations with biomedical scientists, clinician-researchers, academic laboratories, biotech teams, and organizations seeking rigorous quantitative collaboration or independent scientific validation.</p>
         {contactIsConfigured ? (
           <>
+            <form className="contact-message" onSubmit={composeContactEmail}>
+              <label htmlFor="contact-message">
+                <span>CONTACT US</span>
+                <strong>Tell us what you’re working on.</strong>
+              </label>
+              <textarea
+                id="contact-message"
+                name="message"
+                maxLength={2000}
+                placeholder="Share your research question, dataset, analytical challenge, or validation need…"
+                required
+                rows={6}
+              />
+              <div className="contact-message-footer">
+                <small>Your message is not stored. This opens your email application.</small>
+                <button className="button button-filled" type="submit">
+                  Compose Email <span aria-hidden="true">↗</span>
+                </button>
+              </div>
+            </form>
             <div className="contact-directory" aria-label="Traustia contacts">
               {siteConfig.founders.map((founder, index) => (
                 <a href={`mailto:${founder.email}`} key={founder.email}>

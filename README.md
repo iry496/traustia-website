@@ -41,6 +41,8 @@ This file contains the contact email, social links, navigation, capabilities, re
 
 Founder addresses are centralized in `contactEmails` inside `src/config/siteData.ts`. The primary `contactEmail`, founder cards, contact directory, and collaboration links all read from that configuration.
 
+The contact text box is intentionally backend-free: it composes a new message in the visitor’s email application and does not store or transmit form data through the website.
+
 Add the future LinkedIn and GitHub URLs in `socialLinks` when those profiles are ready.
 
 ### Add founder photos
