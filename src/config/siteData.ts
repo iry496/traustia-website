@@ -7,6 +7,7 @@ export type Capability = {
 
 export type ResearchProject = {
   number: string;
+  slug: string;
   integrity: string;
   title: string;
   focus: string;
@@ -15,6 +16,9 @@ export type ResearchProject = {
   methods: string[];
   evidenceState: string;
   output: string;
+  failureModes: string[];
+  validationPlan: string[];
+  limitations: string[];
 };
 
 export type Founder = {
@@ -137,6 +141,7 @@ export const siteConfig = {
   researchProjects: [
     {
       number: "01",
+      slug: "reproducible-omics-evidence-audit",
       integrity: "Model Integrity",
       title: "Reproducible Omics Evidence Audit",
       focus:
@@ -146,9 +151,13 @@ export const siteConfig = {
       methods: ["Leakage audit", "Nested validation", "Feature stability", "External testing"],
       evidenceState: "Model credibility under review",
       output: "Reproducible evidence audit and manuscript",
+      failureModes: ["Information leakage", "Selection-induced optimism", "Feature instability", "Cohort shift"],
+      validationPlan: ["Reconstruct the full analytical path", "Separate feature selection from evaluation", "Quantify stability across resamples", "Test transportability in an independent cohort"],
+      limitations: ["Illustrative framework - no client or patient data", "Final estimands depend on the supplied study design", "External validity cannot be inferred without an independent cohort"],
     },
     {
       number: "02",
+      slug: "pipeline-transition-reproducibility",
       integrity: "Pipeline Integrity",
       title: "Computational Pipeline Transition & Reproducibility",
       focus:
@@ -159,9 +168,13 @@ export const siteConfig = {
       methods: ["Operator comparison", "Calibration", "Pathway stability", "Pipeline provenance"],
       evidenceState: "Pipeline sensitivity mapped",
       output: "Transition validation framework",
+      failureModes: ["Operator-version drift", "Expression-scale disagreement", "Calibration shift", "Pathway instability"],
+      validationPlan: ["Lock source inputs and reference outputs", "Compare operators at every analytical stage", "Measure downstream prediction and calibration changes", "Document acceptable transition tolerances"],
+      limitations: ["Placeholder transition scenario", "Tolerance thresholds require scientific owner approval", "Equivalent runtime does not establish equivalent scientific output"],
     },
     {
       number: "03",
+      slug: "translational-evidence-transportability",
       integrity: "Translational Integrity",
       title: "Cross-Species and Cell-Type-Resolved Biomedical Evidence",
       focus:
@@ -172,6 +185,9 @@ export const siteConfig = {
       methods: ["Context mapping", "Cell-type resolution", "Cross-species review", "Claim boundaries"],
       evidenceState: "Transportability limits defined",
       output: "Structured translational evidence dossier",
+      failureModes: ["Species-context mismatch", "Exposure incompatibility", "Cell-type composition", "Mechanistic overreach"],
+      validationPlan: ["Map every claim to its experimental context", "Resolve evidence by species and cell type", "Compare pathway direction and exposure conditions", "Define the strongest defensible human-relevance statement"],
+      limitations: ["Illustrative evidence map", "Cross-species agreement does not establish clinical efficacy", "Unmeasured context can narrow transportability"],
     },
   ] satisfies ResearchProject[],
   founders: [

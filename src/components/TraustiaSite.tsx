@@ -533,6 +533,9 @@ function ResearchCard({ project, index }: { project: ResearchProject; index: num
         <span>EVIDENCE STATE</span><strong>{project.evidenceState}</strong>
         <span>PLANNED OUTPUT</span><strong>{project.output}</strong>
       </div>
+      <a className="dossier-open" href={`#/research/${project.slug}`}>
+        Open research dossier <span aria-hidden="true">→</span>
+      </a>
     </article>
   );
 }
@@ -549,11 +552,89 @@ function ResearchProgram() {
         <div className="research-grid">
           {siteConfig.researchProjects.map((project, index) => <ResearchCard key={project.number} project={project} index={index} />)}
         </div>
+        <aside className="sample-report reveal" aria-labelledby="sample-report-title">
+          <div className="sample-report-visual" aria-hidden="true">
+            {/* eslint-disable-next-line @next/next/no-img-element */}
+            <img src="evidence-dossier-v1.webp" alt="" loading="lazy" decoding="async" />
+            <span>ILLUSTRATIVE SAMPLE / 06 PAGES</span>
+          </div>
+          <div className="sample-report-copy">
+            <p className="integrity-label">SAMPLE DELIVERABLE</p>
+            <h3 id="sample-report-title">See how a Traustia Evidence Report is structured.</h3>
+            <p>A fictional, non-client example showing how provenance, analytical integrity, validation, uncertainty, and claim boundaries can be documented for review.</p>
+            <ul aria-label="Sample report contents">
+              <li>Executive evidence state</li><li>Provenance review</li><li>Analytical integrity</li><li>Validation and limitations</li>
+            </ul>
+            <a className="button button-filled" href="sample-traustia-evidence-report.pdf" target="_blank" rel="noreferrer">
+              View Sample Report <span aria-hidden="true">↗</span>
+            </a>
+          </div>
+        </aside>
         <div className="trust-line reveal" aria-label="Model trust. Pipeline trust. Translational trust.">
           <span>MODEL TRUST</span><i /><span>PIPELINE TRUST</span><i /><span>TRANSLATIONAL TRUST</span>
         </div>
       </div>
     </section>
+  );
+}
+
+function ResearchDetailPage({ project }: { project: ResearchProject }) {
+  return (
+    <main className="research-detail-page" id="research-detail">
+      <section className="research-detail-hero section-dark">
+        <div className="container">
+          <a className="detail-back" href="#research"><span aria-hidden="true">←</span> Back to research program</a>
+          <div className="research-detail-heading">
+            <div>
+              <p className="section-label"><span />RESEARCH DOSSIER / {project.number}</p>
+              <p className="detail-placeholder">ILLUSTRATIVE RESEARCH FRAMEWORK - NO CLIENT OR PATIENT DATA</p>
+              <h1>{project.title}</h1>
+            </div>
+            <p>{project.focus}</p>
+          </div>
+          <div className="research-detail-question">
+            <span>SCIENTIFIC QUESTION</span><strong>{project.question}</strong>
+          </div>
+          <div className="research-detail-media">
+            {/* eslint-disable-next-line @next/next/no-img-element */}
+            <img src="evidence-panorama-v1.webp" alt="Biomedical evidence moving from observation through validation." />
+            <div className="detail-evidence-state">
+              <span>STATUS</span><strong>{project.status}</strong>
+              <span>EVIDENCE STATE</span><strong>{project.evidenceState}</strong>
+              <span>PLANNED OUTPUT</span><strong>{project.output}</strong>
+            </div>
+          </div>
+        </div>
+      </section>
+      <section className="research-detail-body section-light">
+        <div className="container detail-framework-grid">
+          <article>
+            <p className="integrity-label">01 / REVIEW DIMENSIONS</p>
+            <h2>What the review examines.</h2>
+            <ul>{project.methods.map((item) => <li key={item}>{item}</li>)}</ul>
+          </article>
+          <article>
+            <p className="integrity-label">02 / FAILURE MODES</p>
+            <h2>What could change the conclusion.</h2>
+            <ul>{project.failureModes.map((item) => <li key={item}>{item}</li>)}</ul>
+          </article>
+          <article className="detail-plan">
+            <p className="integrity-label">03 / VALIDATION PLAN</p>
+            <h2>How the claim would be stress-tested.</h2>
+            <ol>{project.validationPlan.map((item, index) => <li key={item}><span>{String(index + 1).padStart(2, "0")}</span>{item}</li>)}</ol>
+          </article>
+          <article className="detail-limitations">
+            <p className="integrity-label">04 / CLAIM BOUNDARY</p>
+            <h2>What this placeholder does not claim.</h2>
+            <ul>{project.limitations.map((item) => <li key={item}>{item}</li>)}</ul>
+          </article>
+        </div>
+        <div className="container detail-report-cta">
+          <div><p className="integrity-label">SAMPLE OUTPUT</p><h2>Review the structure of a decision-ready evidence report.</h2></div>
+          <a className="button button-filled" href="sample-traustia-evidence-report.pdf" target="_blank" rel="noreferrer">View Sample Report <span aria-hidden="true">↗</span></a>
+        </div>
+      </section>
+    </main>
   );
 }
 
@@ -716,6 +797,7 @@ function Contact() {
     { id: "evidence-audit", label: "Evidence Audit", email: siteConfig.founders[1].email },
   ];
   const [inquiryType, setInquiryType] = useState(inquiryOptions[0].id);
+  const [contactStatus, setContactStatus] = useState<"idle" | "ready">("idle");
   const collaborationMailto = contactIsConfigured
     ? `mailto:${siteConfig.contactEmail}?subject=Traustia%20research%20collaboration`
     : undefined;
@@ -724,12 +806,25 @@ function Contact() {
   const composeContactEmail = (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault();
     const form = new FormData(event.currentTarget);
+    const honeypot = String(form.get("website") ?? "").trim();
+    if (honeypot) return;
+    const name = String(form.get("name") ?? "").trim();
+    const replyEmail = String(form.get("email") ?? "").trim();
+    const organization = String(form.get("organization") ?? "").trim();
     const message = String(form.get("message") ?? "").trim();
-    if (!message) return;
+    if (!name || !replyEmail || !message) return;
 
     const selectedInquiry = inquiryOptions.find((option) => option.id === inquiryType) ?? inquiryOptions[0];
     const subject = encodeURIComponent(`Traustia ${selectedInquiry.label} inquiry`);
-    const body = encodeURIComponent(`Area of interest: ${selectedInquiry.label}\n\n${message}`);
+    const body = encodeURIComponent([
+      `Name: ${name}`,
+      `Reply email: ${replyEmail}`,
+      `Organization: ${organization || "Not provided"}`,
+      `Area of interest: ${selectedInquiry.label}`,
+      "",
+      message,
+    ].join("\n"));
+    setContactStatus("ready");
     window.location.href = `mailto:${selectedInquiry.email}?subject=${subject}&body=${body}`;
   };
 
@@ -762,6 +857,12 @@ function Contact() {
                   </label>
                 ))}
               </fieldset>
+              <div className="contact-fields">
+                <label><span>Name</span><input name="name" autoComplete="name" required placeholder="Your name" /></label>
+                <label><span>Email</span><input name="email" type="email" autoComplete="email" required placeholder="you@organization.org" /></label>
+                <label><span>Organization</span><input name="organization" autoComplete="organization" placeholder="Optional" /></label>
+              </div>
+              <label className="contact-honeypot" aria-hidden="true">Website<input name="website" tabIndex={-1} autoComplete="off" /></label>
               <textarea
                 id="contact-message"
                 name="message"
@@ -770,12 +871,17 @@ function Contact() {
                 required
                 rows={6}
               />
+              <label className="contact-consent">
+                <input name="consent" type="checkbox" required />
+                <span>I understand this form prepares an email in my email application. Traustia does not store the message on this website.</span>
+              </label>
               <div className="contact-message-footer">
-                <small>Your message is not stored. This opens your email application.</small>
+                <small>Messages are routed by inquiry type. No website-side storage is used.</small>
                 <button className="button button-filled" type="submit">
                   Compose Inquiry <span aria-hidden="true">↗</span>
                 </button>
               </div>
+              {contactStatus === "ready" ? <p className="contact-status" role="status">Your inquiry has been prepared in your email application.</p> : null}
             </form>
             <div className="contact-directory" aria-label="Traustia contacts">
               {siteConfig.founders.map((founder, index) => (
@@ -846,6 +952,44 @@ function RevealObserver() {
 }
 
 export function TraustiaSite() {
+  const [researchSlug, setResearchSlug] = useState<string | null>(null);
+
+  useEffect(() => {
+    const syncResearchRoute = () => {
+      const match = window.location.hash.match(/^#\/research\/([^/]+)$/);
+      setResearchSlug(match ? decodeURIComponent(match[1]) : null);
+    };
+
+    syncResearchRoute();
+    window.addEventListener("hashchange", syncResearchRoute);
+    return () => window.removeEventListener("hashchange", syncResearchRoute);
+  }, []);
+
+  useEffect(() => {
+    if (researchSlug) {
+      window.scrollTo({ top: 0, behavior: "auto" });
+      return;
+    }
+    if (!window.location.hash || window.location.hash.startsWith("#/research/")) return;
+    const targetId = window.location.hash.slice(1);
+    window.setTimeout(() => document.getElementById(targetId)?.scrollIntoView(), 0);
+  }, [researchSlug]);
+
+  const selectedProject = researchSlug
+    ? siteConfig.researchProjects.find((project) => project.slug === researchSlug)
+    : undefined;
+
+  if (selectedProject) {
+    return (
+      <>
+        <a className="skip-link" href="#research-detail">Skip to research dossier</a>
+        <Header />
+        <ResearchDetailPage project={selectedProject} />
+        <Footer />
+      </>
+    );
+  }
+
   return (
     <>
       <a className="skip-link" href="#main-content">Skip to main content</a>
