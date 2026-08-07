@@ -12,6 +12,9 @@ export type ResearchProject = {
   focus: string;
   question: string;
   status: string;
+  methods: string[];
+  evidenceState: string;
+  output: string;
 };
 
 export type Founder = {
@@ -140,6 +143,9 @@ export const siteConfig = {
         "Data leakage, nested validation, feature stability, permutation controls, and external transportability in high-dimensional omics classification.",
       question: "Can the model’s reported performance actually be trusted?",
       status: "Research / manuscript work",
+      methods: ["Leakage audit", "Nested validation", "Feature stability", "External testing"],
+      evidenceState: "Model credibility under review",
+      output: "Reproducible evidence audit and manuscript",
     },
     {
       number: "02",
@@ -150,6 +156,9 @@ export const siteConfig = {
       question:
         "Does changing the computational pipeline change the scientific conclusion?",
       status: "Research in progress",
+      methods: ["Operator comparison", "Calibration", "Pathway stability", "Pipeline provenance"],
+      evidenceState: "Pipeline sensitivity mapped",
+      output: "Transition validation framework",
     },
     {
       number: "03",
@@ -160,6 +169,9 @@ export const siteConfig = {
       question:
         "When can biological evidence legitimately be transported from one context to another?",
       status: "Research in progress",
+      methods: ["Context mapping", "Cell-type resolution", "Cross-species review", "Claim boundaries"],
+      evidenceState: "Transportability limits defined",
+      output: "Structured translational evidence dossier",
     },
   ] satisfies ResearchProject[],
   founders: [

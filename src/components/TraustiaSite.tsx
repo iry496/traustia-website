@@ -374,15 +374,15 @@ function Capabilities() {
 }
 
 const evidenceSteps = [
-  "Scientific claim",
-  "Evidence intake",
-  "Data & provenance",
-  "Analytical integrity",
-  "Reproducibility",
-  "External validation",
-  "Translational context",
-  "Evidence dossier",
-  "Decision support",
+  { title: "Scientific claim", copy: "Define the claim, intended decision, and boundary of what the evidence must support." },
+  { title: "Evidence intake", copy: "Register datasets, prior analyses, protocols, models, and the provenance connecting them." },
+  { title: "Data & provenance", copy: "Trace origin, inclusion rules, transformations, missingness, and potential sources of bias." },
+  { title: "Analytical integrity", copy: "Inspect study design, estimands, model construction, leakage risk, and uncertainty." },
+  { title: "Reproducibility", copy: "Re-execute the computational path and test whether results survive independent repetition." },
+  { title: "External validation", copy: "Challenge performance and calibration against independent cohorts, contexts, or controls." },
+  { title: "Translational context", copy: "Establish where the finding can travel—and where biological or clinical context limits it." },
+  { title: "Evidence dossier", copy: "Assemble supporting findings, contradictions, uncertainty, and traceable analytical records." },
+  { title: "Decision support", copy: "Translate the evidence state into a defensible conclusion with explicit limitations." },
 ];
 
 const concepts = [
@@ -404,6 +404,28 @@ const concepts = [
 ];
 
 function EvidenceIntelligence() {
+  const [activeStep, setActiveStep] = useState(0);
+  const stepRefs = useRef<Array<HTMLElement | null>>([]);
+
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            const index = Number((entry.target as HTMLElement).dataset.step ?? 0);
+            setActiveStep(index);
+          }
+        });
+      },
+      { rootMargin: "-34% 0px -48%", threshold: 0.05 },
+    );
+
+    stepRefs.current.forEach((step) => step && observer.observe(step));
+    return () => observer.disconnect();
+  }, []);
+
+  const evidenceProgress = `${(activeStep / (evidenceSteps.length - 1)) * 100}%`;
+
   return (
     <section className="evidence-intelligence section-dark" id="evidence-intelligence">
       <div className="section-glow" aria-hidden="true" />
@@ -416,14 +438,45 @@ function EvidenceIntelligence() {
           />
           <span className="status-badge"><i /> IN DEVELOPMENT</span>
         </div>
-        <div className="evidence-architecture reveal">
-          <div className="architecture-title"><span>EVIDENCE INTELLIGENCE / SYSTEM ARCHITECTURE</span><span>R&amp;D CONCEPT</span></div>
-          <ol>
+        <div
+          className="evidence-story"
+          style={{ "--evidence-progress": evidenceProgress } as CSSProperties}
+        >
+          <div className="evidence-story-visual reveal" data-active-step={activeStep}>
+            <div className="evidence-story-image">
+              {/* Bespoke evidence-dossier visual generated for Traustia. */}
+              {/* eslint-disable-next-line @next/next/no-img-element */}
+              <img
+                src="evidence-dossier-v1.webp"
+                alt="Layered biomedical evidence, statistical analysis, and traceable research documentation."
+                loading="lazy"
+                decoding="async"
+              />
+              <span className="evidence-story-shade" aria-hidden="true" />
+              <span className="evidence-core-assembly" aria-hidden="true">
+                <i className="core-ring ring-a" /><i className="core-ring ring-b" />
+                <i className="core-signal signal-a" /><i className="core-signal signal-b" /><i className="core-signal signal-c" />
+                <b />
+              </span>
+              <span className="evidence-progress-line" aria-hidden="true"><i /></span>
+            </div>
+            <div className="evidence-story-readout" aria-live="polite">
+              <span>{String(activeStep + 1).padStart(2, "0")} / {String(evidenceSteps.length).padStart(2, "0")}</span>
+              <strong>{evidenceSteps[activeStep].title}</strong>
+              <small>EVIDENCE STATE / RESOLVING</small>
+            </div>
+          </div>
+          <ol className="evidence-story-steps">
             {evidenceSteps.map((step, index) => (
-              <li key={step} className={index === 0 || index === evidenceSteps.length - 1 ? "terminal-step" : ""}>
-                <span className="step-index">{String(index + 1).padStart(2, "0")}</span>
-                <span className="step-node" />
-                <strong>{step}</strong>
+              <li
+                className={index === activeStep ? "is-active" : ""}
+                data-step={index}
+                key={step.title}
+                ref={(element) => { stepRefs.current[index] = element; }}
+              >
+                <span>{String(index + 1).padStart(2, "0")}</span>
+                <div><h3>{step.title}</h3><p>{step.copy}</p></div>
+                <i aria-hidden="true" />
               </li>
             ))}
           </ol>
@@ -444,9 +497,22 @@ function EvidenceIntelligence() {
   );
 }
 
-function ResearchCard({ project }: { project: ResearchProject }) {
+function ResearchCard({ project, index }: { project: ResearchProject; index: number }) {
+  const imagePositions = ["38%", "55%", "72%"];
+
   return (
     <article className="research-card reveal">
+      <div className="research-card-visual" aria-hidden="true">
+        {/* eslint-disable-next-line @next/next/no-img-element */}
+        <img
+          src="evidence-dossier-v1.webp"
+          alt=""
+          loading="lazy"
+          decoding="async"
+          style={{ objectPosition: `center ${imagePositions[index]}` }}
+        />
+        <span>RESEARCH DOSSIER / {project.number}</span>
+      </div>
       <div className="research-card-head">
         <span>{project.number}</span>
         <span>{project.status}</span>
@@ -454,9 +520,18 @@ function ResearchCard({ project }: { project: ResearchProject }) {
       <p className="integrity-label">{project.integrity}</p>
       <h3>{project.title}</h3>
       <p>{project.focus}</p>
+      <div className="dossier-review-map" aria-label={`Review dimensions for ${project.title}`}>
+        {project.methods.map((method, methodIndex) => (
+          <span key={method}><i className={methodIndex < 3 ? "is-resolved" : ""} />{method}</span>
+        ))}
+      </div>
       <div className="research-question">
         <span>KEY QUESTION</span>
         <strong>{project.question}</strong>
+      </div>
+      <div className="research-output">
+        <span>EVIDENCE STATE</span><strong>{project.evidenceState}</strong>
+        <span>PLANNED OUTPUT</span><strong>{project.output}</strong>
       </div>
     </article>
   );
@@ -472,7 +547,7 @@ function ResearchProgram() {
           description="Traustia’s research program focuses on methodological failure modes that can change biomedical conclusions."
         />
         <div className="research-grid">
-          {siteConfig.researchProjects.map((project) => <ResearchCard key={project.number} project={project} />)}
+          {siteConfig.researchProjects.map((project, index) => <ResearchCard key={project.number} project={project} index={index} />)}
         </div>
         <div className="trust-line reveal" aria-label="Model trust. Pipeline trust. Translational trust.">
           <span>MODEL TRUST</span><i /><span>PIPELINE TRUST</span><i /><span>TRANSLATIONAL TRUST</span>
@@ -538,7 +613,7 @@ function AudienceBand() {
   );
 }
 
-function FounderCard({ founder }: { founder: Founder }) {
+function FounderCard({ founder, index }: { founder: Founder; index: number }) {
   return (
     <article className="founder-card reveal">
       <div className="founder-portrait">
@@ -547,8 +622,10 @@ function FounderCard({ founder }: { founder: Founder }) {
           // eslint-disable-next-line @next/next/no-img-element
           <img src={founder.photo} alt={`${founder.name}, ${founder.role}`} />
         ) : (
-          <div className="portrait-placeholder" aria-label={`Professional portrait placeholder for ${founder.name}`}>
-            <BrandMark /><span>{founder.initials}</span><small>PORTRAIT / PENDING</small>
+          <div className="portrait-placeholder" aria-label={`Traustia leadership identity mark for ${founder.name}`}>
+            <BrandMark /><span>{founder.initials}</span>
+            <i className="identity-orbit orbit-a" /><i className="identity-orbit orbit-b" />
+            <small>LEADERSHIP / {String(index + 1).padStart(2, "0")}</small>
           </div>
         )}
       </div>
@@ -559,7 +636,13 @@ function FounderCard({ founder }: { founder: Founder }) {
         <a className="founder-email" href={`mailto:${founder.email}`}>
           {founder.email}<span aria-hidden="true">↗</span>
         </a>
-        {founder.bio.map((paragraph) => <p key={paragraph}>{paragraph}</p>)}
+        <p>{founder.bio[0]}</p>
+        {founder.bio.length > 1 ? (
+          <details className="founder-profile">
+            <summary>View full profile <span aria-hidden="true">＋</span></summary>
+            {founder.bio.slice(1).map((paragraph) => <p key={paragraph}>{paragraph}</p>)}
+          </details>
+        ) : null}
         <ul>{founder.areas.map((area) => <li key={area}>{area}</li>)}</ul>
       </div>
     </article>
@@ -576,7 +659,7 @@ function Team() {
           description="Traustia was founded by two Harvard University alumni in Data Science whose complementary backgrounds span mathematics, biomedical research, omics, software engineering, machine learning, and reproducible analytics. Both completed the ALM in Data Science through Harvard University Extension School."
         />
         <div className="founder-grid">
-          {siteConfig.founders.map((founder) => <FounderCard key={founder.name} founder={founder} />)}
+          {siteConfig.founders.map((founder, index) => <FounderCard key={founder.name} founder={founder} index={index} />)}
         </div>
         <p className="credential-line reveal">HARVARD DATA SCIENCE <i /> MATHEMATICS <i /> BIOLOGY <i /> BIOMEDICAL INFORMATICS <i /> SOFTWARE ENGINEERING</p>
       </div>
@@ -605,6 +688,17 @@ function About() {
           </ul>
           <p>Our role is to make that evidence visible.</p>
         </div>
+        <figure className="about-manifesto reveal">
+          {/* eslint-disable-next-line @next/next/no-img-element */}
+          <img src="evidence-dossier-v1.webp" alt="A structured biomedical evidence dossier with statistical and provenance layers." loading="lazy" decoding="async" />
+          <span className="about-manifesto-shade" aria-hidden="true" />
+          <figcaption>
+            <span><i>01</i><strong>Provenance</strong></span>
+            <span><i>02</i><strong>Validation</strong></span>
+            <span><i>03</i><strong>Reproducibility</strong></span>
+            <span><i>04</i><strong>Claim boundaries</strong></span>
+          </figcaption>
+        </figure>
         <blockquote className="about-quote reveal">
           <span>“</span>
           <p>We do not ask only whether a result is impressive.<br />We ask whether it deserves to be trusted.</p>
@@ -615,6 +709,13 @@ function About() {
 }
 
 function Contact() {
+  const inquiryOptions = [
+    { id: "study-design", label: "Study Design", email: siteConfig.founders[0].email },
+    { id: "data-analysis", label: "Data Analysis", email: siteConfig.founders[0].email },
+    { id: "validation", label: "Validation", email: siteConfig.founders[1].email },
+    { id: "evidence-audit", label: "Evidence Audit", email: siteConfig.founders[1].email },
+  ];
+  const [inquiryType, setInquiryType] = useState(inquiryOptions[0].id);
   const collaborationMailto = contactIsConfigured
     ? `mailto:${siteConfig.contactEmail}?subject=Traustia%20research%20collaboration`
     : undefined;
@@ -626,9 +727,10 @@ function Contact() {
     const message = String(form.get("message") ?? "").trim();
     if (!message) return;
 
-    const subject = encodeURIComponent("Traustia website inquiry");
-    const body = encodeURIComponent(message);
-    window.location.href = `mailto:${siteConfig.contactEmail}?subject=${subject}&body=${body}`;
+    const selectedInquiry = inquiryOptions.find((option) => option.id === inquiryType) ?? inquiryOptions[0];
+    const subject = encodeURIComponent(`Traustia ${selectedInquiry.label} inquiry`);
+    const body = encodeURIComponent(`Area of interest: ${selectedInquiry.label}\n\n${message}`);
+    window.location.href = `mailto:${selectedInquiry.email}?subject=${subject}&body=${body}`;
   };
 
   return (
@@ -645,6 +747,21 @@ function Contact() {
                 <span>CONTACT US</span>
                 <strong>Tell us what you’re working on.</strong>
               </label>
+              <fieldset className="inquiry-selector">
+                <legend>Choose an area of interest</legend>
+                {inquiryOptions.map((option) => (
+                  <label className={inquiryType === option.id ? "is-selected" : ""} key={option.id}>
+                    <input
+                      checked={inquiryType === option.id}
+                      name="inquiry-type"
+                      onChange={() => setInquiryType(option.id)}
+                      type="radio"
+                      value={option.id}
+                    />
+                    <span>{option.label}</span><i aria-hidden="true" />
+                  </label>
+                ))}
+              </fieldset>
               <textarea
                 id="contact-message"
                 name="message"
@@ -656,7 +773,7 @@ function Contact() {
               <div className="contact-message-footer">
                 <small>Your message is not stored. This opens your email application.</small>
                 <button className="button button-filled" type="submit">
-                  Compose Email <span aria-hidden="true">↗</span>
+                  Compose Inquiry <span aria-hidden="true">↗</span>
                 </button>
               </div>
             </form>
