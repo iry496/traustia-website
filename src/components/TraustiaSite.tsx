@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useRef, useState, type FormEvent } from "react";
+import { useEffect, useRef, useState, type CSSProperties, type FormEvent } from "react";
 import {
   contactIsConfigured,
   siteConfig,
@@ -93,6 +93,14 @@ const scrollPhases = [
   { label: "Decision", href: "#contact" },
 ];
 
+const phaseDescriptions = [
+  "Observe the signal",
+  "Design the test",
+  "Stress-test the claim",
+  "Resolve the evidence",
+  "Support the decision",
+];
+
 function ScrollEvidenceRail() {
   const railRef = useRef<HTMLElement>(null);
   const [activeIndex, setActiveIndex] = useState(0);
@@ -143,16 +151,29 @@ function ScrollEvidenceRail() {
   }, []);
 
   return (
-    <aside className="scroll-evidence-rail" aria-label="Evidence journey" ref={railRef}>
+    <aside
+      className="scroll-evidence-rail"
+      aria-label="Evidence journey"
+      data-phase={activeIndex}
+      ref={railRef}
+    >
       <span className="scroll-rail-cap">EVIDENCE TRACE</span>
       <span className="scroll-rail-track" aria-hidden="true">
         <span className="scroll-rail-fill" />
         <span className="scroll-object">
-          <span className="scroll-object-orbit" />
+          <span className="scroll-object-halo" />
+          <span className="scroll-object-orbit orbit-primary" />
+          <span className="scroll-object-orbit orbit-secondary" />
           <span className="scroll-object-core" />
           <span className="scroll-object-satellite satellite-one" />
           <span className="scroll-object-satellite satellite-two" />
           <span className="scroll-object-satellite satellite-three" />
+          <span className="scroll-object-satellite satellite-four" />
+          <span className="scroll-phase-readout">
+            <span>{String(activeIndex + 1).padStart(2, "0")}</span>
+            <strong>{scrollPhases[activeIndex].label}</strong>
+            <small>{phaseDescriptions[activeIndex]}</small>
+          </span>
         </span>
       </span>
       <ol>
@@ -185,9 +206,14 @@ function Hero() {
               alt="Traustia — Evidence you can defend, visualized as a scientific evidence network."
             />
             <span className="banner-scan" aria-hidden="true" />
+            <span className="banner-depth-grid" aria-hidden="true" />
             <span className="banner-coordinate coordinate-left">TRS / EVIDENCE SYSTEM / 01</span>
             <span className="banner-coordinate coordinate-right">SCIENTIFIC INTEGRITY · ACTIVE</span>
+            <span className="banner-index" aria-hidden="true">01 / TRAUSTWORTHY EVIDENCE</span>
           </div>
+          <a className="hero-scroll-cue" href="#confidence-gap">
+            <span>Explore the evidence journey</span><i aria-hidden="true" />
+          </a>
         </div>
         <div className="hero-brief container">
           <div className="hero-brief-heading">
@@ -243,7 +269,7 @@ function ProblemSection() {
   ];
 
   return (
-    <section className="problem section-light" aria-labelledby="problem-title">
+    <section className="problem section-light" id="confidence-gap" aria-labelledby="problem-title">
       <div className="container problem-grid">
         <div className="problem-statement reveal">
           <p className="section-label"><span />THE CONFIDENCE GAP</p>
@@ -253,6 +279,22 @@ function ProblemSection() {
           <p className="lede-light">Modern biomedical research generates more data, more models, and more computational results than ever before. But performance alone does not establish credibility.</p>
           <p>These failures can change the scientific conclusion. Traustia helps research teams identify those risks before they become decisions.</p>
         </div>
+        <figure className="problem-visual reveal">
+          {/* Bespoke Traustia panorama: observation → analysis → defensible evidence. */}
+          {/* eslint-disable-next-line @next/next/no-img-element */}
+          <img
+            src="evidence-panorama-v1.webp"
+            alt="Biomedical observations becoming structured computational evidence."
+            decoding="async"
+          />
+          <span className="problem-visual-shade" aria-hidden="true" />
+          <figcaption>
+            <span><i>01</i><strong>Observe</strong><small>Raw biological signal</small></span>
+            <span><i>02</i><strong>Interrogate</strong><small>Methods and stress tests</small></span>
+            <span><i>03</i><strong>Defend</strong><small>Decision-ready evidence</small></span>
+          </figcaption>
+          <span className="problem-visual-note" aria-hidden="true">EVIDENCE FIELD / CONTINUOUS TRACE</span>
+        </figure>
         <div className="risk-console reveal">
           <div className="console-header">
             <span>ANALYTICAL RISK SIGNALS</span>
@@ -288,6 +330,12 @@ function CapabilityCard({ capability }: { capability: Capability }) {
 }
 
 function Capabilities() {
+  const atlasViews = [
+    { number: "01", title: "Study architecture", detail: "Question → design", focus: "12%" },
+    { number: "02", title: "Computational analysis", detail: "Data → method", focus: "50%" },
+    { number: "03", title: "Independent validation", detail: "Evidence → decision", focus: "88%" },
+  ];
+
   return (
     <section className="capabilities section-light" id="capabilities">
       <div className="container">
@@ -296,6 +344,20 @@ function Capabilities() {
           title="Rigorous quantitative support across the biomedical research lifecycle."
           description="From study architecture to independent validation, we help make analytical decisions traceable, reproducible, and scientifically defensible."
         />
+        <div className="capability-atlas reveal" aria-label="Traustia evidence lifecycle">
+          {atlasViews.map((view) => (
+            <figure key={view.number} style={{ "--atlas-focus": view.focus } as CSSProperties}>
+              {/* eslint-disable-next-line @next/next/no-img-element */}
+              <img src="evidence-panorama-v1.webp" alt="" loading="lazy" decoding="async" />
+              <span className="atlas-shade" aria-hidden="true" />
+              <figcaption>
+                <span>{view.number}</span>
+                <strong>{view.title}</strong>
+                <small>{view.detail}</small>
+              </figcaption>
+            </figure>
+          ))}
+        </div>
         <div className="capability-grid">
           {siteConfig.capabilities.map((capability) => (
             <CapabilityCard key={capability.number} capability={capability} />
