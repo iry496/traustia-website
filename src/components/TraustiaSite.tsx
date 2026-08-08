@@ -799,22 +799,24 @@ function About() {
   return (
     <section className="about section-white" id="about">
       <div className="container about-grid">
-        <div className="about-heading reveal">
-          <p className="section-label"><span />ABOUT TRAUSTIA</p>
-          <h2>Trust is a scientific requirement.</h2>
-        </div>
-        <div className="about-copy reveal delay-one">
-          <p>Traustia is an independent biomedical evidence-validation company. We reconstruct published prediction claims and test whether their analytical result actually holds.</p>
-          <p>A high-performing model or statistically significant result is a starting point—not proof that the claim is reliable.</p>
-          <ul>
-            <li>Where did the data come from?</li>
-            <li>How was the analysis performed?</li>
-            <li>Was validation independent?</li>
-            <li>Is the result reproducible?</li>
-            <li>Where does uncertainty remain?</li>
-            <li>How far can the conclusion legitimately travel?</li>
-          </ul>
-          <p>Our role is to make that evidence visible.</p>
+        <div className="about-intro">
+          <div className="about-heading reveal">
+            <p className="section-label"><span />ABOUT TRAUSTIA</p>
+            <h2>Trust is a scientific requirement.</h2>
+          </div>
+          <div className="about-copy reveal delay-one">
+            <p>Traustia is an independent biomedical evidence-validation company. We reconstruct published prediction claims and test whether their analytical result actually holds.</p>
+            <p>A high-performing model or statistically significant result is a starting point—not proof that the claim is reliable.</p>
+            <ul>
+              <li>Where did the data come from?</li>
+              <li>How was the analysis performed?</li>
+              <li>Was validation independent?</li>
+              <li>Is the result reproducible?</li>
+              <li>Where does uncertainty remain?</li>
+              <li>How far can the conclusion legitimately travel?</li>
+            </ul>
+            <p>Our role is to make that evidence visible.</p>
+          </div>
         </div>
         <figure className="about-manifesto reveal">
           {/* eslint-disable-next-line @next/next/no-img-element */}

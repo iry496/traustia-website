@@ -2975,8 +2975,15 @@ em {
 
 .about-grid {
   display: grid;
+  grid-template-columns: 1fr;
+  gap: 70px;
+}
+
+.about-intro {
+  display: grid;
   grid-template-columns: .8fr 1.2fr;
-  gap: 70px 120px;
+  gap: 120px;
+  align-items: start;
 }
 
 .about-heading {
@@ -3564,7 +3571,8 @@ em {
   .evidence-architecture li:nth-child(5) { border-right: 0; }
   .evidence-architecture li:nth-child(n+6) { border-bottom: 0; }
   .evidence-architecture li::after { display: none; }
-  .about-grid { gap: 60px; }
+  .about-grid,
+  .about-intro { gap: 60px; }
 }
 
 @media (max-width: 900px) {
@@ -3626,7 +3634,7 @@ em {
   .founder-grid { grid-template-columns: 1fr; }
   .founder-card { display: grid; grid-template-columns: 260px 1fr; }
   .founder-portrait { height: 100%; min-height: 370px; border-right: 1px solid var(--border-light); border-bottom: 0; }
-  .about-grid { grid-template-columns: 1fr; }
+  .about-intro { grid-template-columns: 1fr; gap: 24px; }
   .about-heading { position: static; }
   .about-manifesto figcaption { grid-template-columns: repeat(2, 1fr); }
   .about-manifesto figcaption > span:nth-child(2) { border-right: 0; }
