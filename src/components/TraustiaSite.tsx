@@ -818,17 +818,87 @@ function About() {
             <p>Our role is to make that evidence visible.</p>
           </div>
         </div>
-        <figure className="about-manifesto reveal">
-          {/* eslint-disable-next-line @next/next/no-img-element */}
-          <img src="evidence-dossier-v1.webp" alt="A structured biomedical evidence dossier with statistical and provenance layers." loading="lazy" decoding="async" />
-          <span className="about-manifesto-shade" aria-hidden="true" />
-          <figcaption>
-            <span><i>01</i><strong>Provenance</strong></span>
-            <span><i>02</i><strong>Validation</strong></span>
-            <span><i>03</i><strong>Reproducibility</strong></span>
-            <span><i>04</i><strong>Claim boundaries</strong></span>
-          </figcaption>
-        </figure>
+        <div className="about-pillars" aria-label="Five dimensions of trustworthy evidence">
+          <article className="about-pillar reveal">
+            <div className="about-pillar-visual" aria-hidden="true">
+              <svg viewBox="0 0 180 110">
+                <path className="pillar-faint" d="M18 78 C47 24 90 22 159 62" />
+                <path d="M20 78 L57 43 L96 57 L130 27 L160 62" />
+                <circle cx="20" cy="78" r="5" /><circle cx="57" cy="43" r="5" />
+                <circle cx="96" cy="57" r="5" /><circle cx="130" cy="27" r="5" /><circle cx="160" cy="62" r="5" />
+              </svg>
+            </div>
+            <div className="about-pillar-body">
+              <div className="about-pillar-index"><span>01</span><i>Source</i></div>
+              <h3>Provenance</h3>
+              <p>Trace data origin, eligibility, transformations, and custody.</p>
+            </div>
+          </article>
+
+          <article className="about-pillar reveal">
+            <div className="about-pillar-visual" aria-hidden="true">
+              <svg viewBox="0 0 180 110">
+                <rect className="pillar-faint" x="17" y="24" width="48" height="62" />
+                <rect x="115" y="24" width="48" height="62" />
+                <path d="M73 55 H106 M98 47 L106 55 L98 63" />
+                <path className="pillar-check" d="M127 56 L136 65 L153 43" />
+                <path className="pillar-faint" d="M29 39 H53 M29 51 H53 M29 63 H47" />
+              </svg>
+            </div>
+            <div className="about-pillar-body">
+              <div className="about-pillar-index"><span>02</span><i>Test</i></div>
+              <h3>Validation</h3>
+              <p>Rebuild splits, preprocessing, tuning, and independent testing.</p>
+            </div>
+          </article>
+
+          <article className="about-pillar reveal">
+            <div className="about-pillar-visual" aria-hidden="true">
+              <svg viewBox="0 0 180 110">
+                <path className="pillar-faint" d="M18 42 C36 21 53 65 71 42 S106 21 124 42 S159 65 166 42" />
+                <path d="M18 68 C36 47 53 91 71 68 S106 47 124 68 S159 91 166 68" />
+                <path d="M145 24 A28 28 0 0 1 164 43 M164 43 L154 39 M164 43 L161 33" />
+              </svg>
+            </div>
+            <div className="about-pillar-body">
+              <div className="about-pillar-index"><span>03</span><i>Repeat</i></div>
+              <h3>Reproducibility</h3>
+              <p>Re-run the analytical workflow and compare every material result.</p>
+            </div>
+          </article>
+
+          <article className="about-pillar reveal">
+            <div className="about-pillar-visual" aria-hidden="true">
+              <svg viewBox="0 0 180 110">
+                <path className="pillar-area" d="M16 86 C42 84 50 75 62 53 C74 31 81 20 90 20 C99 20 106 31 118 53 C130 75 138 84 164 86 Z" />
+                <path d="M16 86 C42 84 50 75 62 53 C74 31 81 20 90 20 C99 20 106 31 118 53 C130 75 138 84 164 86" />
+                <path className="pillar-bound" d="M61 18 V91 M119 18 V91" />
+                <circle cx="90" cy="20" r="4" />
+              </svg>
+            </div>
+            <div className="about-pillar-body">
+              <div className="about-pillar-index"><span>04</span><i>Range</i></div>
+              <h3>Uncertainty</h3>
+              <p>Measure calibration, sensitivity, confidence, and remaining ambiguity.</p>
+            </div>
+          </article>
+
+          <article className="about-pillar reveal">
+            <div className="about-pillar-visual" aria-hidden="true">
+              <svg viewBox="0 0 180 110">
+                <rect className="pillar-boundary" x="32" y="18" width="100" height="74" />
+                <path d="M18 73 H151 M132 18 V92" />
+                <circle cx="57" cy="48" r="6" /><circle cx="92" cy="68" r="6" />
+                <circle className="pillar-outside" cx="151" cy="43" r="6" />
+              </svg>
+            </div>
+            <div className="about-pillar-body">
+              <div className="about-pillar-index"><span>05</span><i>Limit</i></div>
+              <h3>Claim boundaries</h3>
+              <p>Define where the conclusion applies—and where it must stop.</p>
+            </div>
+          </article>
+        </div>
         <blockquote className="about-quote reveal">
           <span>“</span>
           <p>We do not ask only whether a result is impressive.<br />We ask whether it deserves to be trusted.</p>
