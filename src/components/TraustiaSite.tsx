@@ -59,7 +59,7 @@ function Header() {
             </a>
           ))}
           <a className="button button-small button-filled" href="#contact" onClick={() => setMenuOpen(false)}>
-            Start a Collaboration
+            Request Review
           </a>
         </nav>
       </div>
@@ -218,22 +218,22 @@ function Hero() {
         <div className="hero-brief container">
           <div className="hero-brief-heading">
             <p className="eyebrow">BIOMEDICAL RESEARCH <i /> DATA SCIENCE <i /> EVIDENCE VALIDATION</p>
-            <h1>From research question to <em>trustworthy evidence.</em></h1>
+            <h1>A published result is not the same as <em>a reliable one.</em></h1>
           </div>
           <div className="hero-brief-copy">
             <p className="hero-lede">
-              Traustia helps biomedical researchers and life-science teams design rigorous studies, analyze complex data, validate computational results, and turn scientific evidence into defensible decisions.
+              Traustia independently reconstructs and re-runs published biomedical prediction claims under leakage-aware, provenance-controlled conditions. Every conclusion we issue traces back to the exact data, code, and analytical step behind it.
             </p>
             <p className="hero-support">
-              Collaborative biostatistics. Biomedical data science. Omics. Reproducibility. Evidence validation.
+              Independent validation · Leakage detection · Data provenance · Evidence dossiers
             </p>
             <div className="hero-actions">
-              <a className="button button-filled" href="#capabilities">Explore Our Capabilities <span aria-hidden="true">↗</span></a>
-              <a className="button button-ghost" href="#contact">Start a Research Collaboration</a>
+              <a className="button button-filled" href="#contact">Request an Evidence Review <span aria-hidden="true">↗</span></a>
+              <a className="button button-ghost" href="#evidence-intelligence">See How Validation Works</a>
             </div>
             <ul className="trust-principles" aria-label="Our operating principles">
-              <li><span>01</span> Research-first</li>
-              <li><span>02</span> Validation-driven</li>
+              <li><span>01</span> Independent</li>
+              <li><span>02</span> Reproducible</li>
               <li><span>03</span> Human-reviewed</li>
             </ul>
           </div>
@@ -245,6 +245,7 @@ function Hero() {
         </div>
       </section>
       <ProblemSection />
+      <IndependenceFirewall />
       <Capabilities />
       <EvidenceIntelligence />
       <ResearchProgram />
@@ -316,6 +317,28 @@ function ProblemSection() {
   );
 }
 
+function IndependenceFirewall() {
+  return (
+    <section className="independence-firewall section-dark" id="independence" aria-labelledby="independence-title">
+      <div className="container firewall-grid">
+        <div className="firewall-heading reveal">
+          <p className="section-label"><span />THE FIREWALL</p>
+          <h2 id="independence-title">Independence is <em>the product.</em></h2>
+        </div>
+        <div className="firewall-copy reveal delay-one">
+          <p>An assessment is worth exactly what its independence is worth. We keep a hard separation between work we help create and work we validate: <strong>we do not validate analyses we designed.</strong></p>
+          <p>Where a client engages us for study design or analysis, that work is excluded from independent review—by us and by anyone who touched it. Every Evidence Dossier records who performed each step, what they had access to, and what they did not.</p>
+        </div>
+        <div className="firewall-register reveal" aria-label="Traustia independence controls">
+          <span><i>01</i><strong>Separate teams</strong><small>Creation and review do not cross</small></span>
+          <span><i>02</i><strong>Recorded access</strong><small>People, inputs, and permissions traced</small></span>
+          <span><i>03</i><strong>Explicit exclusions</strong><small>Conflicted work is ineligible</small></span>
+        </div>
+      </div>
+    </section>
+  );
+}
+
 function CapabilityCard({ capability }: { capability: Capability }) {
   return (
     <article className="capability-card reveal">
@@ -331,18 +354,20 @@ function CapabilityCard({ capability }: { capability: Capability }) {
 
 function Capabilities() {
   const atlasViews = [
-    { number: "01", title: "Study architecture", detail: "Question → design", focus: "12%" },
-    { number: "02", title: "Computational analysis", detail: "Data → method", focus: "50%" },
-    { number: "03", title: "Independent validation", detail: "Evidence → decision", focus: "88%" },
+    { number: "01", title: "Independent validation", detail: "Claim → evidence", focus: "88%" },
+    { number: "02", title: "Analytical reconstruction", detail: "Code → result", focus: "50%" },
+    { number: "03", title: "Research collaboration", detail: "Question → analysis", focus: "12%" },
   ];
+  const validationCapabilities = siteConfig.capabilities.filter((capability) => capability.category === "validation");
+  const collaborationCapabilities = siteConfig.capabilities.filter((capability) => capability.category === "collaboration");
 
   return (
     <section className="capabilities section-light" id="capabilities">
       <div className="container">
         <SectionHeading
-          label="WHAT WE DO"
-          title="Rigorous quantitative support across the biomedical research lifecycle."
-          description="From study architecture to independent validation, we help make analytical decisions traceable, reproducible, and scientifically defensible."
+          label="WORKING WITH US TODAY"
+          title="Two ways to engage."
+          description="Independent validation is our lead product. Project-based quantitative collaboration remains available under a strict firewall that keeps creation and review separate."
         />
         <div className="capability-atlas reveal" aria-label="Traustia evidence lifecycle">
           {atlasViews.map((view) => (
@@ -358,15 +383,36 @@ function Capabilities() {
             </figure>
           ))}
         </div>
-        <div className="capability-grid">
-          {siteConfig.capabilities.map((capability) => (
-            <CapabilityCard key={capability.number} capability={capability} />
-          ))}
+        <div className="engagement-stack">
+          <section className="engagement-block engagement-validation" aria-labelledby="validation-engagement-title">
+            <header className="engagement-header reveal">
+              <div><span>01 / LEAD ENGAGEMENT</span><h3 id="validation-engagement-title">Independent Validation</h3></div>
+              <div>
+                <p>We assess a claim we had no part in producing: reconstruction of the published analysis, machine-checkable tests for data leakage, external-cohort evaluation, feature-stability measurement, and a traceable Evidence Dossier.</p>
+                <p className="engagement-for"><span>FOR</span> Investors performing scientific diligence · teams deciding whether to advance a model · journals and technology-transfer offices seeking a neutral assessment.</p>
+              </div>
+            </header>
+            <div className="capability-grid">
+              {validationCapabilities.map((capability) => <CapabilityCard key={capability.number} capability={capability} />)}
+            </div>
+          </section>
+          <section className="engagement-block engagement-collaboration" aria-labelledby="collaboration-engagement-title">
+            <header className="engagement-header reveal">
+              <div><span>02 / PROJECT ENGAGEMENT</span><h3 id="collaboration-engagement-title">Research Collaboration</h3></div>
+              <div>
+                <p>Project-based quantitative work: study design, statistical analysis plans, endpoint definition, reproducible pipelines, and omics analysis.</p>
+                <p className="engagement-for"><span>FIREWALL</span> Collaboration engagements are not eligible for independent review by Traustia.</p>
+              </div>
+            </header>
+            <div className="capability-grid">
+              {collaborationCapabilities.map((capability) => <CapabilityCard key={capability.number} capability={capability} />)}
+            </div>
+          </section>
         </div>
         <div className="capability-callout reveal">
-          <div><span>NEED SOMETHING MORE SPECIFIC?</span><h3>A quantitative collaboration shaped around the scientific question.</h3></div>
-          <p>Traustia can work as a project-based quantitative collaborator, independent validation team, or embedded scientific data partner.</p>
-          <a className="text-link" href="#contact">Discuss your research <span aria-hidden="true">→</span></a>
+          <div><span>THE INDEPENDENCE RULE</span><h3>Work we help create is not eligible for independent review by Traustia.</h3></div>
+          <p>The firewall protects the credibility of the assessment and is documented in every Evidence Dossier.</p>
+          <a className="text-link" href="#independence">Review the firewall <span aria-hidden="true">→</span></a>
         </div>
       </div>
     </section>
@@ -639,17 +685,17 @@ function ResearchDetailPage({ project }: { project: ResearchProject }) {
 }
 
 const workStages = [
-  { number: "01", title: "Define", copy: "Clarify the scientific question, decision, endpoint, data, and claim boundary." },
-  { number: "02", title: "Design", copy: "Pre-specify the study design, analytical strategy, validation architecture, and evidence requirements." },
-  { number: "03", title: "Analyze & stress-test", copy: "Perform reproducible analysis, robustness assessment, leakage checks, sensitivity analysis, and independent validation." },
-  { number: "04", title: "Document", copy: "Produce transparent methods, traceable outputs, limitations, and decision-ready scientific evidence." },
+  { number: "01", title: "Scope", copy: "Define the published claim, intended decision, analytical boundary, source data, and evidence required." },
+  { number: "02", title: "Reconstruct", copy: "Rebuild the analytical path from the registered data, code, transformations, and model decisions." },
+  { number: "03", title: "Stress-test", copy: "Test for leakage, unstable features, weak validation, pipeline drift, and failures of transportability." },
+  { number: "04", title: "Issue", copy: "Deliver a traceable Evidence Dossier with the evidence state, limitations, exclusions, and defensible conclusion." },
 ];
 
 function HowWeWork() {
   return (
     <section className="how-we-work section-white" id="how-we-work">
       <div className="container">
-        <SectionHeading label="HOW WE WORK" title="Scientific collaboration, with validation built in." />
+        <SectionHeading label="HOW VALIDATION WORKS" title="Reconstructed step by step. Defended line by line." />
         <ol className="process-grid">
           {workStages.map((stage) => (
             <li className="process-step reveal" key={stage.number}>
@@ -666,13 +712,13 @@ function HowWeWork() {
 }
 
 const audiences = [
+  "Scientific Diligence Teams",
+  "Investors & Funders",
+  "Biomedical Product Teams",
+  "Journals & Editors",
+  "Technology-transfer Offices",
   "Biomedical Scientists",
   "Academic Research Labs",
-  "Clinician-Scientists",
-  "Biotech Startups",
-  "Life-Science Research Teams",
-  "Biomedical AI Developers",
-  "Translational Research Programs",
 ];
 
 function AudienceBand() {
@@ -682,7 +728,7 @@ function AudienceBand() {
         <div className="reveal">
           <p className="section-label"><span />WHO WE WORK WITH</p>
           <h2 id="audience-title">For teams where the evidence matters.</h2>
-          <p>Engagements can range from academic research collaboration to project-based analysis, independent scientific validation, and embedded quantitative support.</p>
+          <p>For organizations deciding whether a biomedical prediction claim is credible enough to publish, fund, license, reproduce, or advance.</p>
         </div>
         <ul className="audience-list reveal delay-one">
           {audiences.map((audience, index) => (
@@ -735,14 +781,15 @@ function Team() {
     <section className="team section-light" id="team">
       <div className="container">
         <SectionHeading
-          label="LEADERSHIP"
-          title="Built across disciplines."
-          description="Traustia was founded by two Harvard University alumni in Data Science whose complementary backgrounds span mathematics, biomedical research, omics, software engineering, machine learning, and reproducible analytics. Both completed the ALM in Data Science through Harvard University Extension School."
+          label="WHO WE ARE"
+          title="The people behind the assessment."
+          description="Traustia is led by established careers spanning quantitative risk, mathematics, NIH biomedical research, omics, production software, and reproducible model evaluation."
         />
         <div className="founder-grid">
           {siteConfig.founders.map((founder, index) => <FounderCard key={founder.name} founder={founder} index={index} />)}
         </div>
-        <p className="credential-line reveal">HARVARD DATA SCIENCE <i /> MATHEMATICS <i /> BIOLOGY <i /> BIOMEDICAL INFORMATICS <i /> SOFTWARE ENGINEERING</p>
+        <p className="team-closing reveal">The founders met in Harvard&apos;s Data Science program, where they spent two years working through the same material on reproducible analysis and model evaluation before deciding to build something with it.</p>
+        <p className="credential-line reveal">QUANTITATIVE RISK <i /> NIH BIOMEDICAL RESEARCH <i /> MATHEMATICS <i /> OMICS <i /> RESEARCH SOFTWARE</p>
       </div>
     </section>
   );
@@ -757,8 +804,8 @@ function About() {
           <h2>Trust is a scientific requirement.</h2>
         </div>
         <div className="about-copy reveal delay-one">
-          <p>Traustia is a biomedical research and evidence-validation company working at the intersection of quantitative methodology, data science, omics, reproducible computing, and translational evidence.</p>
-          <p>We believe strong biomedical research requires more than a high-performing model or statistically significant result.</p>
+          <p>Traustia is an independent biomedical evidence-validation company. We reconstruct published prediction claims and test whether their analytical result actually holds.</p>
+          <p>A high-performing model or statistically significant result is a starting point—not proof that the claim is reliable.</p>
           <ul>
             <li>Where did the data come from?</li>
             <li>How was the analysis performed?</li>
@@ -791,17 +838,17 @@ function About() {
 
 function Contact() {
   const inquiryOptions = [
-    { id: "study-design", label: "Study Design", email: siteConfig.founders[0].email },
-    { id: "data-analysis", label: "Data Analysis", email: siteConfig.founders[0].email },
-    { id: "validation", label: "Validation", email: siteConfig.founders[1].email },
-    { id: "evidence-audit", label: "Evidence Audit", email: siteConfig.founders[1].email },
+    { id: "evidence-review", label: "Evidence Review", email: siteConfig.founders[1].email },
+    { id: "scientific-diligence", label: "Scientific Diligence", email: siteConfig.founders[0].email },
+    { id: "research-collaboration", label: "Research Collaboration", email: siteConfig.founders[0].email },
+    { id: "other", label: "Other Inquiry", email: siteConfig.founders[1].email },
   ];
   const [inquiryType, setInquiryType] = useState(inquiryOptions[0].id);
   const [contactStatus, setContactStatus] = useState<"idle" | "ready">("idle");
   const collaborationMailto = contactIsConfigured
     ? `mailto:${siteConfig.contactEmail}?subject=Traustia%20research%20collaboration`
     : undefined;
-  const validationMailto = `mailto:${siteConfig.founders[1].email}?subject=Traustia%20validation%20project`;
+  const validationMailto = `mailto:${siteConfig.founders[1].email}?subject=Traustia%20independent%20evidence%20review`;
 
   const composeContactEmail = (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault();
@@ -833,8 +880,8 @@ function Contact() {
       <div className="contact-grid-bg" aria-hidden="true" />
       <div className="container contact-inner reveal">
         <p className="section-label"><span />START A CONVERSATION</p>
-        <h2>Let’s build<br /><em>stronger evidence.</em></h2>
-        <p>We welcome conversations with biomedical scientists, clinician-researchers, academic laboratories, biotech teams, and organizations seeking rigorous quantitative collaboration or independent scientific validation.</p>
+        <h2>Put the claim<br /><em>to the test.</em></h2>
+        <p>Bring us a biomedical prediction claim we had no part in producing. We will reconstruct the analysis, test the evidence, and show exactly how much confidence the result deserves.</p>
         {contactIsConfigured ? (
           <>
             <form className="contact-message" onSubmit={composeContactEmail}>
@@ -894,8 +941,8 @@ function Contact() {
               ))}
             </div>
             <div className="contact-actions">
-              <a className="button button-filled" href={collaborationMailto}>Start a Collaboration <span aria-hidden="true">↗</span></a>
-              <a className="button button-ghost" href={validationMailto}>Discuss a Validation Project</a>
+              <a className="button button-filled" href={validationMailto}>Request an Evidence Review <span aria-hidden="true">↗</span></a>
+              <a className="button button-ghost" href={collaborationMailto}>Discuss Research Collaboration</a>
             </div>
           </>
         ) : (
@@ -913,7 +960,10 @@ function Footer() {
         <div className="footer-top">
           <div>
             <a className="wordmark" href="#top" aria-label="Traustia home"><BrandMark /><span>TRAUSTIA</span></a>
-            <p>From research question to trustworthy evidence.</p>
+            <p>Evidence you can defend.</p>
+            <div className="footer-contacts" aria-label="Traustia email contacts">
+              {siteConfig.founders.map((founder) => <a href={`mailto:${founder.email}`} key={founder.email}>{founder.email}</a>)}
+            </div>
           </div>
           <nav aria-label="Footer navigation">
             {siteConfig.navigation.map((item) => <a key={item.href} href={item.href}>{item.label}</a>)}

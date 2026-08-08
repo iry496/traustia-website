@@ -1194,6 +1194,7 @@ em {
 }
 
 .problem,
+.independence-firewall,
 .capabilities,
 .research,
 .how-we-work,
@@ -1216,6 +1217,83 @@ em {
   height: 1px;
   background: linear-gradient(90deg, transparent, var(--border-light), transparent);
 }
+
+.independence-firewall {
+  position: relative;
+  overflow: hidden;
+  isolation: isolate;
+}
+
+.independence-firewall::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  background:
+    radial-gradient(circle at 86% 22%, rgba(53,197,180,.12), transparent 28%),
+    linear-gradient(rgba(126,157,171,.045) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(126,157,171,.045) 1px, transparent 1px);
+  background-size: auto, 64px 64px, 64px 64px;
+}
+
+.firewall-grid {
+  display: grid;
+  grid-template-columns: minmax(0, .78fr) minmax(0, 1.22fr);
+  gap: 56px 100px;
+  align-items: start;
+}
+
+.firewall-heading h2 {
+  margin: 0;
+  color: var(--white);
+  font-size: clamp(46px, 5.2vw, 72px);
+  font-weight: 460;
+  letter-spacing: -.045em;
+}
+
+.firewall-heading h2 em { color: var(--teal); }
+
+.firewall-copy {
+  padding-top: 38px;
+  color: rgba(246,248,245,.62);
+  font-size: 17px;
+  line-height: 1.78;
+}
+
+.firewall-copy p:first-child {
+  color: rgba(246,248,245,.84);
+  font-size: 20px;
+}
+
+.firewall-copy strong { color: var(--white); font-weight: 650; }
+
+.firewall-register {
+  grid-column: 1 / -1;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  border-top: 1px solid var(--border-dark);
+  border-left: 1px solid var(--border-dark);
+}
+
+.firewall-register > span {
+  min-height: 126px;
+  display: grid;
+  grid-template-columns: auto 1fr;
+  gap: 5px 16px;
+  align-content: center;
+  padding: 24px 28px;
+  border-right: 1px solid var(--border-dark);
+  border-bottom: 1px solid var(--border-dark);
+}
+
+.firewall-register i {
+  grid-row: 1 / 3;
+  color: var(--teal);
+  font: normal 8px/1 var(--font-mono);
+}
+
+.firewall-register strong { color: var(--white); font-size: 16px; font-weight: 600; }
+.firewall-register small { color: rgba(246,248,245,.38); font: 7px/1.5 var(--font-mono); letter-spacing: .07em; text-transform: uppercase; }
 
 .problem-grid {
   display: grid;
@@ -1417,7 +1495,7 @@ em {
 }
 
 .capabilities {
-  padding-top: 0;
+  padding-top: var(--section-space);
 }
 
 .section-heading {
@@ -1447,6 +1525,62 @@ em {
   border-top: 1px solid var(--border-light);
   border-left: 1px solid var(--border-light);
 }
+
+.engagement-stack {
+  display: grid;
+  gap: 54px;
+}
+
+.engagement-block {
+  border: 1px solid var(--border-light);
+  background: rgba(255,255,255,.25);
+}
+
+.engagement-header {
+  display: grid;
+  grid-template-columns: minmax(260px, .72fr) minmax(0, 1.28fr);
+  gap: 34px 72px;
+  align-items: start;
+  padding: 38px 40px;
+  border-bottom: 1px solid var(--border-light);
+}
+
+.engagement-header > div:first-child > span,
+.engagement-for > span {
+  color: #268f82;
+  font-family: var(--font-mono);
+  font-size: 8px;
+  letter-spacing: .1em;
+  text-transform: uppercase;
+}
+
+.engagement-header h3 {
+  max-width: 500px;
+  margin: 10px 0 0;
+  font-size: clamp(31px, 3.5vw, 48px);
+  letter-spacing: -.04em;
+}
+
+.engagement-header > div:last-child > p:first-child {
+  margin: 0;
+  color: var(--ink);
+  font-size: 16px;
+  line-height: 1.72;
+}
+
+.engagement-for {
+  margin: 18px 0 0;
+  padding-top: 16px;
+  border-top: 1px solid var(--border-light);
+  color: var(--slate-dark);
+  font-size: 12px;
+  line-height: 1.7;
+}
+
+.engagement-for > span { margin-right: 8px; }
+.engagement-block .capability-grid { border-top: 0; border-left: 0; }
+.engagement-validation { border-top: 2px solid var(--teal); }
+.engagement-collaboration { border-top: 2px solid #7c8d98; }
 
 .capability-atlas {
   display: grid;
@@ -2823,6 +2957,15 @@ em {
   letter-spacing: .09em;
 }
 
+.team-closing {
+  max-width: 860px;
+  margin: 42px auto 0;
+  color: var(--slate-dark);
+  font-size: 16px;
+  line-height: 1.75;
+  text-align: center;
+}
+
 .credential-line i {
   width: 3px;
   height: 3px;
@@ -3317,6 +3460,23 @@ em {
   font-size: 14px;
 }
 
+.footer-contacts {
+  display: grid;
+  gap: 7px;
+  margin-top: 22px;
+}
+
+.footer-contacts a {
+  width: fit-content;
+  color: rgba(246,248,245,.68);
+  font-family: var(--font-mono);
+  font-size: 8px;
+  letter-spacing: .04em;
+  transition: color 180ms ease;
+}
+
+.footer-contacts a:hover { color: var(--teal); }
+
 .footer-top nav {
   display: grid;
   grid-template-columns: repeat(3, auto);
@@ -3422,6 +3582,8 @@ em {
   .problem-grid { grid-template-columns: 1fr; gap: 34px; }
   .problem-copy { max-width: 650px; }
   .problem-visual { height: 520px; }
+  .firewall-grid { grid-template-columns: 1fr; gap: 34px; }
+  .firewall-copy { max-width: 760px; padding-top: 0; }
   .risk-list { grid-template-columns: repeat(2, 1fr); }
   .risk-item:nth-child(4n) { border-right: 1px solid var(--border-light); }
   .risk-item:nth-child(2n) { border-right: 0; }
@@ -3434,6 +3596,7 @@ em {
   .capability-atlas,
   .capability-atlas figure { min-height: 330px; }
   .capability-atlas figcaption { padding: 22px 18px; }
+  .engagement-header { grid-template-columns: 1fr; gap: 24px; }
   .capability-grid { grid-template-columns: repeat(2, 1fr); }
   .capability-card { min-height: 500px; }
   .concept-grid { grid-template-columns: 1fr; }
@@ -3539,6 +3702,10 @@ em {
   .audience h2 { font-size: clamp(38px, 12vw, 54px); }
   .problem-grid { gap: 28px; }
   .problem-statement h2 br { display: none; }
+  .firewall-heading h2 { font-size: clamp(42px, 13vw, 60px); }
+  .firewall-copy p:first-child { font-size: 18px; }
+  .firewall-register { grid-template-columns: 1fr; }
+  .firewall-register > span { min-height: 96px; }
   .problem-visual { height: 600px; margin-top: 4px; }
   .problem-visual > img { object-position: 44% center; }
   .problem-visual figcaption { grid-template-columns: 1fr; }
@@ -3564,6 +3731,8 @@ em {
     border-bottom: 1px solid rgba(196, 216, 224, 0.18);
   }
   .capability-atlas figure:last-child { border-bottom: 0; }
+  .engagement-stack { gap: 36px; }
+  .engagement-header { padding: 28px 24px; }
   .capability-grid { grid-template-columns: 1fr; }
   .capability-card { min-height: auto; padding: 28px 25px 34px; }
   .card-number { margin-bottom: 42px; }

@@ -1,5 +1,6 @@
 export type Capability = {
   number: string;
+  category: "validation" | "collaboration";
   title: string;
   description: string;
   examples: string[];
@@ -48,7 +49,7 @@ export const siteConfig = {
     github: "",
   },
   navigation: [
-    { label: "Capabilities", href: "#capabilities" },
+    { label: "Work With Us", href: "#capabilities" },
     { label: "Evidence Intelligence", href: "#evidence-intelligence" },
     { label: "Research", href: "#research" },
     { label: "About", href: "#about" },
@@ -58,63 +59,40 @@ export const siteConfig = {
   capabilities: [
     {
       number: "01",
-      title: "Collaborative Biostatistics & Study Design",
-      description:
-        "Research questions, study design, statistical analysis plans, endpoint definition, power and precision, statistical modeling, sensitivity analysis, and publication-ready inference.",
-      examples: [
-        "Study Design",
-        "Statistical Analysis Plans",
-        "Power & Precision",
-        "Longitudinal / Regression Methods",
-        "Uncertainty & Sensitivity Analysis",
-      ],
-    },
-    {
-      number: "02",
-      title: "Biomedical Data Science & Omics",
-      description:
-        "Reproducible analysis of complex biomedical and molecular datasets using modern statistics, machine learning, and omics workflows.",
-      examples: [
-        "Biomedical Machine Learning",
-        "Microarray",
-        "Bulk RNA-seq",
-        "Pathway Analysis",
-        "Cross-cohort Validation",
-      ],
-    },
-    {
-      number: "03",
+      category: "validation",
       title: "Reproducibility & Validation",
       description:
-        "Independent assessment of whether computational results remain credible under rigorous validation, repeated analysis, and external testing.",
+        "Independent reconstruction and stress-testing of biomedical prediction claims under leakage-aware, provenance-controlled conditions.",
       examples: [
         "Data Leakage Audits",
         "Nested Validation",
         "Feature Stability",
-        "External Validation",
+        "External-cohort Evaluation",
         "Permutation Controls",
         "Reproducibility Audits",
       ],
     },
     {
-      number: "04",
-      title: "Scientific Software & Research Pipelines",
+      number: "02",
+      category: "validation",
+      title: "Scientific Evidence Audits",
       description:
-        "Research-grade computational workflows designed for traceability, reproducibility, automation, and reliable scientific execution.",
+        "Neutral assessment of biomedical models, biomarkers, gene signatures, computational claims, and the evidence used to support them.",
       examples: [
-        "Reproducible Pipelines",
-        "Cloud Research Workflows",
-        "Research Software",
-        "ML Infrastructure",
+        "Dataset Integrity",
+        "Analytical Integrity",
         "Data Provenance",
-        "Pipeline Migration Validation",
+        "Claim Boundaries",
+        "Evidence Gaps",
+        "Decision-ready Reporting",
       ],
     },
     {
-      number: "05",
+      number: "03",
+      category: "validation",
       title: "Translational Evidence Analysis",
       description:
-        "Structured analysis of whether findings can legitimately translate across datasets, platforms, experimental conditions, species, and biological contexts.",
+        "Structured testing of whether findings can legitimately travel across datasets, platforms, experimental conditions, species, and biological contexts.",
       examples: [
         "Evidence Synthesis",
         "Cross-species Translation",
@@ -124,17 +102,45 @@ export const siteConfig = {
       ],
     },
     {
-      number: "06",
-      title: "Scientific Evidence Audits",
+      number: "04",
+      category: "collaboration",
+      title: "Biostatistics & Study Design",
       description:
-        "Independent evaluation of biomedical models, biomarkers, gene signatures, computational claims, and research evidence.",
+        "Project-based support for research questions, study design, statistical analysis plans, endpoint definition, and publication-ready inference.",
       examples: [
-        "Dataset Integrity",
-        "Analytical Integrity",
-        "Reproducibility",
-        "Transportability",
-        "Evidence Gaps",
-        "Decision-ready Reporting",
+        "Study Design",
+        "Statistical Analysis Plans",
+        "Power & Precision",
+        "Endpoint Definition",
+        "Uncertainty & Sensitivity Analysis",
+      ],
+    },
+    {
+      number: "05",
+      category: "collaboration",
+      title: "Biomedical Data Science & Omics",
+      description:
+        "Reproducible analysis of complex biomedical and molecular datasets using modern statistics, machine learning, and omics workflows.",
+      examples: [
+        "Biomedical Machine Learning",
+        "Microarray",
+        "Bulk RNA-seq",
+        "Pathway Analysis",
+        "Cross-cohort Analysis",
+      ],
+    },
+    {
+      number: "06",
+      category: "collaboration",
+      title: "Scientific Software & Research Pipelines",
+      description:
+        "Research-grade computational workflows designed for traceability, reproducibility, automation, and reliable scientific execution.",
+      examples: [
+        "Reproducible Pipelines",
+        "Cloud Research Workflows",
+        "Research Software",
+        "ML Infrastructure",
+        "Pipeline Provenance",
       ],
     },
   ] satisfies Capability[],
@@ -196,40 +202,42 @@ export const siteConfig = {
       name: "Iris Yang",
       displayName: "Iris Y.",
       email: contactEmails.iris,
-      role: "Co-Founder",
-      discipline: "Quantitative Methodology & Biomedical Data Science",
+      role: "Founder & Chief Executive Officer",
+      discipline: "Quantitative Risk, Model Evaluation & Trustworthy AI",
       bio: [
-        "Iris Yang is an adjunct faculty member in Mathematics and Information Systems at California State University, Los Angeles. She earned an ALM in Data Science from Harvard University Extension School and is pursuing doctoral study in the Doctor of Technology program at Purdue University.",
-        "Her work focuses on quantitative methodology, trustworthy machine learning, reproducible biomedical data science, evidence validation, and interdisciplinary research collaboration. She is also involved in the Taiwan Ministry of Education-supported 2026 UCLA Taiwan Quantum program and serves as a Vice President / Southern California Coordinator of TAITA.",
+        "Iris works on a single question: how much confidence a number actually deserves. Her research background is in quantitative finance and risk—volatility and tail-risk forecasting, uncertainty quantification, and model evaluation.",
+        "The methods she works in—walk-forward validation, strict timing rules, and out-of-sample discipline—exist because it is remarkably easy to build a model that predicts the past. Biomedicine is confronting the same failure under a different name: data leakage.",
+        "She has taught mathematics and statistics at California State University, Los Angeles since 2012, currently alongside courses in computer forensics and network defense, and is a co-author on peer-reviewed research in risk perception and decision-making. She holds an M.S. in Mathematics and an M.A. in Mathematics Education from Cal State LA, an ALM in Data Science from Harvard, and is pursuing a Doctor of Technology at Purdue focused on data science, cybersecurity, and trustworthy AI.",
       ],
       areas: [
-        "Biostatistics",
-        "Trustworthy ML",
-        "Research Methodology",
-        "Biomedical Evidence Validation",
-        "Scientific Writing",
+        "Model Evaluation",
+        "Uncertainty Quantification",
+        "Data Leakage",
+        "Trustworthy AI",
+        "Quantitative Risk",
         "Reproducibility",
       ],
       photo: "",
     },
     {
       initials: "PT",
-      name: "Paul Tan",
+      name: "Paul K. Tan",
       displayName: "Paul T.",
       email: contactEmails.paul,
-      role: "Co-Founder",
-      discipline: "Data Science, Research Software & Biomedical Informatics",
+      role: "Co-Founder & Chief Technology Officer",
+      discipline: "Biomedical Measurement, Research Software & Data Systems",
       bio: [
-        "Paul Tan is a Harvard University alumnus with an ALM in Data Science from Harvard Extension School and a Bachelor of Science in Economics and Biology from MIT.",
-        "His experience spans biomedical informatics, microarray research, machine learning, research software, laboratory data systems, cloud infrastructure, and production software engineering. His biomedical experience includes research at the NIH NIDDK Microarray Core Facility and work involving genomics and research-data systems.",
+        "Paul has spent two decades on the boundary between biological measurement and the software that interprets it.",
+        "As a research fellow at the NIH’s National Institute of Diabetes and Digestive and Kidney Diseases, he was first author of an early cross-platform assessment of commercial microarray reproducibility. The study found that identical RNA preparations produced substantially different measurements across platforms and concluded that the technology required further independent and thorough validation. It has since been cited in more than 650 publications. Traustia is the company that conclusion implies.",
+        "He has since built production systems where computational correctness carries consequences: backend microservices for a machine-learning clinical genomics laboratory at Quantgene, laboratory information management infrastructure handling millions of sample records at Regeneron, and machine-learning platforms across AWS and GCP. He holds a B.S. in Economics and Biology from MIT and an ALM in Data Science from Harvard.",
       ],
       areas: [
+        "Microarray Reproducibility",
         "Research Software",
         "Biomedical Informatics",
-        "Omics",
-        "Machine Learning Engineering",
-        "Cloud & Data Infrastructure",
-        "Reproducible Pipelines",
+        "Laboratory Data Systems",
+        "Machine Learning Platforms",
+        "Cloud Infrastructure",
       ],
       photo: "",
     },

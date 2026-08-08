@@ -2,9 +2,9 @@ import type { Metadata } from "next";
 import "../src/styles.css";
 
 export const metadata: Metadata = {
-  title: "Traustia | Biomedical Data Science, Reproducibility & Evidence Validation",
+  title: "Traustia | Independent Validation of Biomedical Prediction Claims",
   description:
-    "Traustia provides collaborative biostatistics, biomedical data science, omics analysis, reproducibility auditing, independent evidence validation, and translational research support.",
+    "Traustia independently validates biomedical prediction claims—reconstructing and re-running the analysis to test whether the result actually holds.",
   icons: {
     icon: "/favicon.svg",
     shortcut: "/favicon.svg",
@@ -12,14 +12,14 @@ export const metadata: Metadata = {
   openGraph: {
     title: "Evidence you can defend. | Traustia",
     description:
-      "Biomedical data science, reproducibility, and evidence validation for research teams.",
+      "Independent validation of biomedical prediction claims through analytical reconstruction, leakage detection, provenance control, and evidence dossiers.",
     type: "website",
   },
   twitter: {
     card: "summary_large_image",
     title: "Evidence you can defend. | Traustia",
     description:
-      "Biomedical data science, reproducibility, and evidence validation for research teams.",
+      "Independent validation of biomedical prediction claims through analytical reconstruction, leakage detection, provenance control, and evidence dossiers.",
   },
 };
 
