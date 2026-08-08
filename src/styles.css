@@ -3044,53 +3044,122 @@ em {
   color: var(--white);
 }
 
-.about-manifesto {
-  position: relative;
+.about-pillars {
   grid-column: 1 / -1;
-  height: clamp(520px, 62vw, 730px);
-  margin: 6px 0 0;
-  overflow: hidden;
-  background: var(--navy);
-  box-shadow: 0 30px 80px rgba(7,19,31,.13);
-}
-
-.about-manifesto > img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  object-position: center 59%;
-  filter: saturate(.78) contrast(1.04);
-}
-
-.about-manifesto-shade {
-  position: absolute;
-  inset: 0;
-  background: linear-gradient(180deg, rgba(7,19,31,.04), transparent 48%, rgba(7,19,31,.9));
-}
-
-.about-manifesto figcaption {
-  position: absolute;
-  inset: auto 0 0;
   display: grid;
-  grid-template-columns: repeat(4, 1fr);
+  grid-template-columns: repeat(5, minmax(0, 1fr));
+  overflow: hidden;
   border-top: 1px solid rgba(196,216,224,.18);
-  background: rgba(7,19,31,.72);
-  backdrop-filter: blur(14px);
+  border-left: 1px solid rgba(196,216,224,.18);
+  background: var(--navy);
+  box-shadow: 0 30px 80px rgba(7,19,31,.14);
 }
 
-.about-manifesto figcaption > span {
-  min-height: 82px;
-  display: flex;
-  align-items: center;
-  gap: 14px;
-  padding: 18px 22px;
+.about-pillar {
+  position: relative;
+  min-width: 0;
+  min-height: 380px;
+  display: grid;
+  grid-template-rows: 168px 1fr;
+  overflow: hidden;
   border-right: 1px solid rgba(196,216,224,.15);
+  border-bottom: 1px solid rgba(196,216,224,.15);
+  background: linear-gradient(155deg, #0b1a2a 0%, #07131f 74%);
   color: var(--white);
 }
 
-.about-manifesto figcaption > span:last-child { border-right: 0; }
-.about-manifesto figcaption i { color: var(--teal); font-family: var(--font-mono); font-size: 7px; font-style: normal; }
-.about-manifesto figcaption strong { font-size: 13px; font-weight: 580; }
+.about-pillar::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(circle at 50% 14%, rgba(53,197,180,.15), transparent 42%);
+  opacity: .24;
+  transition: opacity 450ms ease;
+}
+
+.about-pillar:hover::before { opacity: .8; }
+
+.about-pillar-visual {
+  position: relative;
+  z-index: 1;
+  display: grid;
+  place-items: center;
+  border-bottom: 1px solid rgba(196,216,224,.12);
+  color: var(--teal);
+}
+
+.about-pillar-visual::after {
+  content: "";
+  position: absolute;
+  inset: 20px;
+  background-image:
+    linear-gradient(rgba(126,157,171,.055) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(126,157,171,.055) 1px, transparent 1px);
+  background-size: 22px 22px;
+  mask-image: radial-gradient(circle, black, transparent 78%);
+}
+
+.about-pillar-visual svg {
+  position: relative;
+  z-index: 1;
+  width: min(78%, 180px);
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 1.35;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  transition: transform 550ms cubic-bezier(.22,.8,.25,1);
+}
+
+.about-pillar:hover .about-pillar-visual svg { transform: translateY(-4px) scale(1.025); }
+.about-pillar-visual circle { fill: #091725; stroke-width: 1.5; }
+.about-pillar-visual .pillar-faint { opacity: .3; }
+.about-pillar-visual .pillar-check { stroke-width: 2.2; }
+.about-pillar-visual .pillar-area { fill: rgba(53,197,180,.08); stroke: none; }
+.about-pillar-visual .pillar-bound,
+.about-pillar-visual .pillar-boundary { stroke-dasharray: 4 5; opacity: .48; }
+.about-pillar-visual .pillar-outside { fill: var(--teal); }
+
+.about-pillar-body {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  flex-direction: column;
+  padding: 24px 21px 27px;
+}
+
+.about-pillar-index {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 31px;
+  color: var(--teal);
+  font-family: var(--font-mono);
+  font-size: 7px;
+  letter-spacing: .09em;
+  text-transform: uppercase;
+}
+
+.about-pillar-index i {
+  color: rgba(246,248,245,.36);
+  font-style: normal;
+}
+
+.about-pillar h3 {
+  margin: 0 0 12px;
+  color: var(--white);
+  font-size: clamp(16px, 1.35vw, 19px);
+  font-weight: 590;
+  line-height: 1.2;
+  letter-spacing: -.02em;
+}
+
+.about-pillar p {
+  margin: 0;
+  color: rgba(246,248,245,.53);
+  font-size: 12px;
+  line-height: 1.62;
+}
 
 .about-quote > span {
   color: var(--teal);
@@ -3573,6 +3642,9 @@ em {
   .evidence-architecture li::after { display: none; }
   .about-grid,
   .about-intro { gap: 60px; }
+  .about-pillars { grid-template-columns: repeat(6, minmax(0, 1fr)); }
+  .about-pillar { grid-column: span 2; min-height: 350px; }
+  .about-pillar:nth-child(n+4) { grid-column: span 3; }
 }
 
 @media (max-width: 900px) {
@@ -3636,9 +3708,6 @@ em {
   .founder-portrait { height: 100%; min-height: 370px; border-right: 1px solid var(--border-light); border-bottom: 0; }
   .about-intro { grid-template-columns: 1fr; gap: 24px; }
   .about-heading { position: static; }
-  .about-manifesto figcaption { grid-template-columns: repeat(2, 1fr); }
-  .about-manifesto figcaption > span:nth-child(2) { border-right: 0; }
-  .about-manifesto figcaption > span:nth-child(-n+2) { border-bottom: 1px solid rgba(196,216,224,.15); }
   .about-quote { margin-top: 0; }
 }
 
@@ -3799,10 +3868,26 @@ em {
   .founder-discipline { min-height: 0; }
   .credential-line { justify-content: flex-start; line-height: 1.8; }
   .about-copy { font-size: 16px; }
-  .about-manifesto { height: 680px; }
-  .about-manifesto > img { object-position: center 62%; }
-  .about-manifesto figcaption > span { min-height: 70px; padding: 14px 12px; }
-  .about-manifesto figcaption strong { font-size: 11px; }
+  .about-pillars {
+    grid-template-columns: none;
+    grid-auto-flow: column;
+    grid-auto-columns: min(82vw, 310px);
+    gap: 0;
+    overflow-x: auto;
+    scroll-snap-type: x mandatory;
+    overscroll-behavior-inline: contain;
+    scrollbar-width: thin;
+    scrollbar-color: rgba(53,197,180,.42) rgba(7,19,31,.92);
+    -webkit-overflow-scrolling: touch;
+  }
+  .about-pillar,
+  .about-pillar:nth-child(n+4) {
+    grid-column: auto;
+    min-height: 350px;
+    scroll-snap-align: start;
+  }
+  .about-pillar-visual { min-height: 154px; }
+  .about-pillar h3 { font-size: 19px; }
   .about-quote { grid-template-columns: 1fr; gap: 10px; padding: 38px 28px; }
   .contact h2 { font-size: clamp(50px, 15vw, 70px); }
   .contact-inner > p:not(.section-label) { font-size: 16px; }
