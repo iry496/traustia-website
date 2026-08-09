@@ -280,22 +280,61 @@ function ProblemSection() {
           <p className="lede-light">Modern biomedical research generates more data, more models, and more computational results than ever before. But performance alone does not establish credibility.</p>
           <p>These failures can change the scientific conclusion. Traustia helps research teams identify those risks before they become decisions.</p>
         </div>
-        <figure className="problem-visual reveal">
-          {/* Bespoke Traustia panorama: observation → analysis → defensible evidence. */}
-          {/* eslint-disable-next-line @next/next/no-img-element */}
-          <img
-            src="evidence-panorama-v1.webp"
-            alt="Biomedical observations becoming structured computational evidence."
-            decoding="async"
-          />
-          <span className="problem-visual-shade" aria-hidden="true" />
-          <figcaption>
-            <span><i>01</i><strong>Observe</strong><small>Raw biological signal</small></span>
-            <span><i>02</i><strong>Interrogate</strong><small>Methods and stress tests</small></span>
-            <span><i>03</i><strong>Defend</strong><small>Decision-ready evidence</small></span>
-          </figcaption>
-          <span className="problem-visual-note" aria-hidden="true">EVIDENCE FIELD / CONTINUOUS TRACE</span>
-        </figure>
+        <div className="problem-panels" aria-label="From biological signal to defensible evidence">
+          <article className="problem-panel reveal">
+            <div className="problem-panel-visual" aria-hidden="true">
+              <svg viewBox="0 0 240 150">
+                <path className="problem-panel-faint" d="M18 84 C41 38 62 121 87 73 S133 24 158 78 S202 118 222 55" />
+                <path d="M18 92 C41 46 62 129 87 81 S133 32 158 86 S202 126 222 63" />
+                <circle cx="18" cy="92" r="5" /><circle cx="87" cy="81" r="5" />
+                <circle cx="158" cy="86" r="5" /><circle cx="222" cy="63" r="5" />
+                <path className="problem-panel-pulse" d="M32 124 H73 L82 109 L94 133 L105 119 H142" />
+              </svg>
+            </div>
+            <div className="problem-panel-body">
+              <div className="problem-panel-meta"><span>01</span><i>Signal intake</i></div>
+              <h3>Observe</h3>
+              <strong>Raw biological signal</strong>
+              <p>Capture the source data, biological context, and conditions that produced the result.</p>
+            </div>
+          </article>
+
+          <article className="problem-panel reveal delay-one">
+            <div className="problem-panel-visual" aria-hidden="true">
+              <svg viewBox="0 0 240 150">
+                <rect className="problem-panel-faint" x="20" y="35" width="54" height="76" />
+                <rect x="94" y="35" width="54" height="76" />
+                <rect className="problem-panel-bound" x="168" y="35" width="54" height="76" />
+                <path d="M75 73 H91 M149 73 H165 M84 66 L91 73 L84 80 M158 66 L165 73 L158 80" />
+                <path className="problem-panel-faint" d="M33 52 H61 M33 65 H61 M107 52 H135 M107 65 H129" />
+                <path className="problem-panel-check" d="M181 75 L190 84 L209 60" />
+              </svg>
+            </div>
+            <div className="problem-panel-body">
+              <div className="problem-panel-meta"><span>02</span><i>Method test</i></div>
+              <h3>Interrogate</h3>
+              <strong>Methods and stress tests</strong>
+              <p>Reconstruct the analysis, test for leakage, and challenge every material decision.</p>
+            </div>
+          </article>
+
+          <article className="problem-panel reveal delay-two">
+            <div className="problem-panel-visual" aria-hidden="true">
+              <svg viewBox="0 0 240 150">
+                <path className="problem-panel-document" d="M62 23 H152 L181 52 V127 H62 Z" />
+                <path className="problem-panel-faint" d="M152 23 V52 H181 M81 65 H148 M81 80 H139 M81 95 H127" />
+                <circle className="problem-panel-seal" cx="162" cy="97" r="29" />
+                <path className="problem-panel-check" d="M144 99 L156 111 L180 82" />
+              </svg>
+            </div>
+            <div className="problem-panel-body">
+              <div className="problem-panel-meta"><span>03</span><i>Evidence state</i></div>
+              <h3>Defend</h3>
+              <strong>Decision-ready evidence</strong>
+              <p>Resolve the findings into a traceable conclusion with uncertainty and limits made explicit.</p>
+            </div>
+          </article>
+        </div>
         <div className="risk-console reveal">
           <div className="console-header">
             <span>ANALYTICAL RISK SIGNALS</span>
