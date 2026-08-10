@@ -220,11 +220,6 @@ function Hero() {
               src="og.png"
               alt="Traustia — Evidence you can defend, visualized as a scientific evidence network."
             />
-            <span className="banner-scan" aria-hidden="true" />
-            <span className="banner-depth-grid" aria-hidden="true" />
-            <span className="banner-coordinate coordinate-left">TRS / EVIDENCE SYSTEM / 01</span>
-            <span className="banner-coordinate coordinate-right">SCIENTIFIC INTEGRITY · ACTIVE</span>
-            <span className="banner-index" aria-hidden="true">01 / TRAUSTWORTHY EVIDENCE</span>
           </div>
           <a className="hero-scroll-cue" href="#confidence-gap">
             <span>Explore the evidence journey</span><i aria-hidden="true" />

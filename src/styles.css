@@ -402,14 +402,16 @@ em {
 .hero-banner-shell {
   position: relative;
   z-index: 2;
-  width: min(1520px, calc(100vw - 32px));
-  padding-top: 98px;
+  width: min(1200px, calc(100vw - 32px));
+  padding-top: 94px;
+  margin-bottom: 38px;
 }
 
 .hero-banner-frame {
   position: relative;
   width: 100%;
-  height: clamp(540px, 68vh, 720px);
+  height: auto;
+  aspect-ratio: 1200 / 630;
   overflow: hidden;
   border: 1px solid rgba(144, 180, 194, 0.2);
   border-radius: 20px;
@@ -428,23 +430,14 @@ em {
 }
 
 .hero-banner-frame::after {
-  content: "";
-  position: absolute;
-  inset: 0;
-  z-index: 1;
-  pointer-events: none;
-  background:
-    linear-gradient(180deg, rgba(7, 19, 31, 0.02), transparent 48%, rgba(7, 19, 31, 0.32)),
-    linear-gradient(90deg, rgba(7, 19, 31, 0.2), transparent 32%, transparent 76%, rgba(7, 19, 31, 0.16)),
-    radial-gradient(circle at 76% 49%, rgba(53, 197, 180, 0.08), transparent 24%);
+  content: none;
 }
 
 .hero-banner-image {
   width: 100%;
   height: 100%;
-  object-fit: cover;
-  transform: translate3d(0, calc(var(--hero-shift, 0) * 28px), 0) scale(1.055);
-  will-change: transform;
+  object-fit: contain;
+  transform: none;
 }
 
 .banner-depth-grid {
@@ -476,7 +469,7 @@ em {
   position: absolute;
   z-index: 6;
   right: 28px;
-  bottom: 22px;
+  bottom: -32px;
   display: flex;
   align-items: center;
   gap: 14px;
@@ -3662,8 +3655,7 @@ em {
   :root { --section-space: 100px; }
 
   .hero { min-height: auto; }
-  .hero-banner-shell { padding-top: 102px; }
-  .hero-banner-frame { height: clamp(500px, 68vh, 640px); }
+  .hero-banner-shell { padding-top: 94px; }
   .hero-brief { grid-template-columns: 1fr; gap: 20px; padding-block: 64px; }
   .hero-brief-copy { max-width: 680px; padding-top: 0; }
   .hero-grid { grid-template-columns: 1fr; padding-top: 150px; padding-bottom: 130px; }
@@ -3761,10 +3753,10 @@ em {
   .hero-grid { padding-top: 122px; padding-bottom: 82px; }
   .hero-banner-shell { width: calc(100% - 20px); padding-top: 82px; }
   .hero-banner-frame { height: auto; aspect-ratio: 1200 / 630; border-radius: 14px; }
-  .hero-banner-image { transform: translate3d(0, calc(var(--hero-shift, 0) * 10px), 0) scale(1.045); }
+  .hero-banner-image { transform: none; }
   .banner-coordinate,
   .banner-index { display: none; }
-  .hero-scroll-cue { right: 16px; bottom: 12px; }
+  .hero-scroll-cue { right: 16px; bottom: -28px; }
   .hero-scroll-cue span { display: none; }
   .hero-brief { padding-block: 52px 58px; }
   .hero-brief h1 { font-size: clamp(42px, 13vw, 58px); }
