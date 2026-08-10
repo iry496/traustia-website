@@ -71,6 +71,45 @@ em { color: var(--teal); font-style: normal; }
 
 .skip-link:focus { transform: translateY(0); }
 
+.scroll-brand-rail {
+  --rail-y: 0px;
+  position: fixed;
+  z-index: 920;
+  top: 106px;
+  right: clamp(14px, 1.8vw, 30px);
+  bottom: 34px;
+  width: 48px;
+  pointer-events: none;
+}
+
+.scroll-brand-rail::before {
+  content: "";
+  position: absolute;
+  top: 24px;
+  bottom: 24px;
+  left: 50%;
+  width: 1px;
+  background: linear-gradient(transparent, rgba(53, 197, 180, .38) 12%, rgba(53, 197, 180, .38) 88%, transparent);
+}
+
+.scroll-brand-traveler {
+  position: absolute;
+  inset: 0 auto auto 0;
+  width: 48px;
+  height: 48px;
+  display: grid;
+  place-items: center;
+  color: var(--white);
+  background: rgba(7, 19, 31, .94);
+  border: 1px solid rgba(53, 197, 180, .48);
+  border-radius: 50%;
+  box-shadow: 0 12px 34px rgba(0, 0, 0, .24), 0 0 0 6px rgba(53, 197, 180, .06);
+  transform: translateY(var(--rail-y));
+  will-change: transform;
+}
+
+.scroll-brand-traveler .brand-mark { width: 32px; height: 32px; }
+
 .site-header {
   position: fixed;
   z-index: 1000;
@@ -377,6 +416,7 @@ em { color: var(--teal); font-style: normal; }
 
 @media (max-width: 1040px) {
   :root { --container: min(100% - 52px, 1180px); }
+  .scroll-brand-rail { display: none; }
   .menu-toggle { display: block; }
   .primary-nav {
     position: absolute;
