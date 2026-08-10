@@ -114,26 +114,17 @@ function ScrollBrandRail() {
 }
 
 function SiteBackground() {
-  return (
-    <div className="site-background" aria-hidden="true">
-      {/* eslint-disable-next-line @next/next/no-img-element */}
-      <img src="traustia-evidence-system.webp" alt="" />
-    </div>
-  );
-}
-
-function HeroVisual() {
-  const visualRef = useRef<HTMLElement>(null);
+  const backgroundRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     let frame = 0;
 
     const update = () => {
-      const visual = visualRef.current;
-      if (!visual) return;
-      const progress = Math.min(Math.max(window.scrollY / (window.innerHeight * 1.15), 0), 1);
-      visual.style.setProperty("--hero-image-y", `${Math.round(progress * 72)}px`);
-      visual.style.setProperty("--hero-image-scale", `${(1.07 - progress * .035).toFixed(3)}`);
+      const background = backgroundRef.current;
+      if (!background) return;
+      const progress = Math.min(Math.max(window.scrollY / (window.innerHeight * 1.4), 0), 1);
+      background.style.setProperty("--background-y", `${Math.round(progress * 76)}px`);
+      background.style.setProperty("--background-scale", `${(1.07 - progress * .025).toFixed(3)}`);
       frame = 0;
     };
 
@@ -153,16 +144,10 @@ function HeroVisual() {
   }, []);
 
   return (
-    <figure className="hero-visual" ref={visualRef}>
-      <div className="hero-image-window">
-        {/* eslint-disable-next-line @next/next/no-img-element */}
-        <img src="traustia-evidence-system.webp" alt="A connected biomedical evidence system linking data, analysis, validation, and decision readiness." />
-      </div>
-      <figcaption>
-        <span>EVIDENCE SYSTEM / 01</span>
-        <strong>From outsourced execution to defensible judgment.</strong>
-      </figcaption>
-    </figure>
+    <div className="site-background" ref={backgroundRef} aria-hidden="true">
+      {/* eslint-disable-next-line @next/next/no-img-element */}
+      <img src="traustia-evidence-system.webp" alt="" />
+    </div>
   );
 }
 
@@ -172,18 +157,20 @@ function Hero() {
       <section className="hero" id="top">
         <div className="container hero-stage" id="why">
           <div className="hero-story">
-            <div className="hero-brand-lockup"><BrandMark /><span>TRAUSTIA</span></div>
+            <div className="hero-brand-block">
+              <div className="hero-brand-lockup"><BrandMark /><span>TRAUSTIA</span></div>
+              <p>Evidence you can defend.</p>
+            </div>
             <p className="eyebrow">SPONSOR-SIDE BIOMEDICAL EVIDENCE VALIDATION</p>
-            <h1>Execution is outsourced.<br /><em>Judgment cannot be.</em></h1>
-            <p className="hero-lede">CRO and laboratory reports are outputs—not yet decision-ready evidence.</p>
-            <p className="hero-support">Traustia is the sponsor-side layer that prepares the work, tests what comes back, and carries the evidence into the next expensive decision.</p>
+            <p className="hero-opening">A biotech sponsor asks whether an asset is ready to advance. The work moves outward—to a CRO, a laboratory, an analysis team—and eventually a report comes back.</p>
+            <h1>The work was delivered.<br /><em>The decision is still yours.</em></h1>
+            <p className="hero-support">A report cannot tell you whether to fund, partner, license, or proceed. Traustia reconstructs the evidence between the outsourced work and that decision—before uncertainty becomes an expensive commitment.</p>
             <div className="hero-actions">
               <a className="button button-filled" href="#services">Follow the evidence journey</a>
               <a className="text-link" href="#contact">Discuss a review <span aria-hidden="true">↗</span></a>
             </div>
-            <p className="hero-route"><span>CRO specification</span><i>→</i><span>Vendor output</span><i>→</i><span>Defensible decision</span></p>
+            <p className="hero-route"><span>Scientific question</span><i>→</i><span>Outsourced execution</span><i>→</i><span>Defensible judgment</span></p>
           </div>
-          <HeroVisual />
         </div>
         <p className="container hero-boundary">Validation services—not clinical operations. Independent only when Traustia did not create the original model.</p>
       </section>
