@@ -113,38 +113,79 @@ function ScrollBrandRail() {
   );
 }
 
+function SiteBackground() {
+  return (
+    <div className="site-background" aria-hidden="true">
+      {/* eslint-disable-next-line @next/next/no-img-element */}
+      <img src="traustia-evidence-system.webp" alt="" />
+    </div>
+  );
+}
+
+function HeroVisual() {
+  const visualRef = useRef<HTMLElement>(null);
+
+  useEffect(() => {
+    let frame = 0;
+
+    const update = () => {
+      const visual = visualRef.current;
+      if (!visual) return;
+      const progress = Math.min(Math.max(window.scrollY / (window.innerHeight * 1.15), 0), 1);
+      visual.style.setProperty("--hero-image-y", `${Math.round(progress * 72)}px`);
+      visual.style.setProperty("--hero-image-scale", `${(1.07 - progress * .035).toFixed(3)}`);
+      frame = 0;
+    };
+
+    const requestUpdate = () => {
+      if (!frame) frame = window.requestAnimationFrame(update);
+    };
+
+    update();
+    window.addEventListener("scroll", requestUpdate, { passive: true });
+    window.addEventListener("resize", requestUpdate);
+
+    return () => {
+      window.removeEventListener("scroll", requestUpdate);
+      window.removeEventListener("resize", requestUpdate);
+      if (frame) window.cancelAnimationFrame(frame);
+    };
+  }, []);
+
+  return (
+    <figure className="hero-visual" ref={visualRef}>
+      <div className="hero-image-window">
+        {/* eslint-disable-next-line @next/next/no-img-element */}
+        <img src="traustia-evidence-system.webp" alt="A connected biomedical evidence system linking data, analysis, validation, and decision readiness." />
+      </div>
+      <figcaption>
+        <span>EVIDENCE SYSTEM / 01</span>
+        <strong>From outsourced execution to defensible judgment.</strong>
+      </figcaption>
+    </figure>
+  );
+}
+
 function Hero() {
   return (
     <main id="main-content">
       <section className="hero" id="top">
-        <div className="brand-card-shell">
-          {/* eslint-disable-next-line @next/next/no-img-element */}
-          <img className="brand-card" src="og.png" alt="Traustia — Evidence you can defend." />
-        </div>
-        <div className="container hero-message" id="why">
-          <div>
+        <div className="container hero-stage" id="why">
+          <div className="hero-story">
+            <div className="hero-brand-lockup"><BrandMark /><span>TRAUSTIA</span></div>
             <p className="eyebrow">SPONSOR-SIDE BIOMEDICAL EVIDENCE VALIDATION</p>
             <h1>Execution is outsourced.<br /><em>Judgment cannot be.</em></h1>
-          </div>
-          <div className="hero-copy">
-            <p>CRO and laboratory reports are outputs—not yet decision-ready evidence.</p>
-            <p>Traustia helps biotech sponsors define rigorous work, review what comes back, and independently validate the claim before the next expensive decision.</p>
+            <p className="hero-lede">CRO and laboratory reports are outputs—not yet decision-ready evidence.</p>
+            <p className="hero-support">Traustia is the sponsor-side layer that prepares the work, tests what comes back, and carries the evidence into the next expensive decision.</p>
             <div className="hero-actions">
-              <a className="button button-filled" href="#services">View the four services</a>
+              <a className="button button-filled" href="#services">Follow the evidence journey</a>
               <a className="text-link" href="#contact">Discuss a review <span aria-hidden="true">↗</span></a>
             </div>
+            <p className="hero-route"><span>CRO specification</span><i>→</i><span>Vendor output</span><i>→</i><span>Defensible decision</span></p>
           </div>
+          <HeroVisual />
         </div>
-        <div className="container evidence-path" aria-label="From outsourced execution to a defensible decision">
-          <div><span>01</span><strong>Biotech sponsor</strong><small>Owns the asset and decision</small></div>
-          <i aria-hidden="true">→</i>
-          <div><span>02</span><strong>CRO / laboratory output</strong><small>Data and report return</small></div>
-          <i aria-hidden="true">→</i>
-          <div className="is-traustia"><span>03</span><strong>Traustia review</strong><small>Specification, integrity, validation</small></div>
-          <i aria-hidden="true">→</i>
-          <div><span>04</span><strong>Board / partner decision</strong><small>Fund, partner, license, advance</small></div>
-        </div>
-        <p className="container hero-boundary">We do not run clinical operations. We make the sponsor-side specification and evidence defensible.</p>
+        <p className="container hero-boundary">Validation services—not clinical operations. Independent only when Traustia did not create the original model.</p>
       </section>
       <Services />
       <EngagementModels />
@@ -155,31 +196,29 @@ function Hero() {
 
 function Services() {
   return (
-    <section className="services" id="services" aria-labelledby="services-title">
+    <section className="evidence-story" id="services" aria-labelledby="services-title">
       <div className="container">
-        <div className="section-heading">
-          <div>
-            <p className="section-label">FOUR SERVICES</p>
-            <h2 id="services-title">One evidence layer.<br />Four clear engagements.</h2>
+        <div className="story-layout">
+          <header className="story-heading">
+            <p className="section-label">THE EVIDENCE JOURNEY</p>
+            <h2 id="services-title">The evidence changes state.<br /><em>The responsibility does not.</em></h2>
+            <p>One scientific claim moves through four moments. Traustia enters where the evidence needs to become more defensible.</p>
+            <div className="story-progress" aria-hidden="true">
+              {siteConfig.services.map((service) => <span key={service.number}>{service.number}</span>)}
+            </div>
+          </header>
+          <div className="story-chapters">
+            {siteConfig.services.map((service) => (
+              <article className="story-chapter" key={service.number}>
+                <p className="story-meta"><span>{service.number}</span>{service.timing}</p>
+                <h3>{service.storyTitle}</h3>
+                <p className="story-service">{service.title}</p>
+                <p className="story-copy">{service.story}</p>
+                <p className="story-trace">{service.trace}</p>
+                <p className="story-output"><span>THE RECORD</span>{service.deliverable}</p>
+              </article>
+            ))}
           </div>
-          <p>Start with the decision you need to make. We will identify the narrowest review that can make the evidence more defensible.</p>
-        </div>
-        <div className="service-list">
-          {siteConfig.services.map((service) => (
-            <article className="service-row" key={service.number}>
-              <div className="service-number">{service.number}</div>
-              <div className="service-main">
-                <p>{service.timing}</p>
-                <h3>{service.title}</h3>
-                <strong>{service.promise}</strong>
-              </div>
-              <div className="service-detail">
-                <span>REVIEW FOCUS</span>
-                <ul>{service.focus.map((item) => <li key={item}>{item}</li>)}</ul>
-                <p><span>DELIVERABLE</span><strong>{service.deliverable}</strong></p>
-              </div>
-            </article>
-          ))}
         </div>
       </div>
     </section>
@@ -306,6 +345,7 @@ function Footer() {
 export function TraustiaSite() {
   return (
     <>
+      <SiteBackground />
       <a className="skip-link" href="#main-content">Skip to main content</a>
       <Header />
       <ScrollBrandRail />

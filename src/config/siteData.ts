@@ -2,8 +2,9 @@ export type Service = {
   number: string;
   timing: string;
   title: string;
-  promise: string;
-  focus: string[];
+  storyTitle: string;
+  story: string;
+  trace: string;
   deliverable: string;
 };
 
@@ -30,48 +31,36 @@ export const siteConfig = {
       number: "01",
       timing: "Before CRO work begins",
       title: "CRO Data & Analysis Readiness Review",
-      promise: "Make sure the work specification is rigorous before execution starts.",
-      focus: [
-        "Research question, protocol, endpoint, and Statistical Analysis Plan",
-        "Biomarker or omics plan, data specification, samples, and metadata",
-        "Validation design and explicit success or failure criteria",
-      ],
+      storyTitle: "Begin before the work begins.",
+      story: "A CRO can only execute the question it receives. We turn the sponsor's scientific intent into a specification rigorous enough to survive execution.",
+      trace: "Question → protocol → endpoint → SAP → biomarker plan → success criteria",
       deliverable: "CRO Readiness Review Memo",
     },
     {
       number: "02",
       timing: "When CRO or laboratory outputs return",
       title: "CRO Output Integrity Review",
-      promise: "Determine whether the returned data and report match the protocol and can support the claim.",
-      focus: [
-        "Sample flow, inclusion and exclusion, missingness, and protocol deviations",
-        "Data completeness, provenance, batch effects, and analysis consistency",
-        "Planned versus reported analyses and protocol-to-report discrepancies",
-      ],
+      storyTitle: "Interrogate what comes back.",
+      story: "A vendor report is an output, not a verdict. We follow the samples, data, deviations, and analysis decisions back to the agreed protocol.",
+      trace: "Sample flow → missingness → provenance → batch effects → protocol-to-report match",
       deliverable: "CRO Data Integrity Review Memo",
     },
     {
       number: "03",
       timing: "Before a high-stakes asset decision",
       title: "Independent Biomarker / Model Validation",
-      promise: "Re-run and stress-test the claim under a frozen, independent validation protocol.",
-      focus: [
-        "Leakage, train/test contamination, feature stability, and repeated-seed robustness",
-        "Calibration, sensitivity analysis, and external-cohort validation",
-        "Cross-platform transportability, reproducibility, and claim boundaries",
-      ],
+      storyTitle: "Ask whether the claim survives.",
+      story: "Under a frozen protocol, we re-run and stress-test the biomarker or model without participating in its original development.",
+      trace: "Leakage → stability → calibration → external cohort → transportability → claim boundary",
       deliverable: "Independent Validation Report",
     },
     {
       number: "04",
       timing: "Before financing, partnering, or licensing",
       title: "Financing / Partnering Evidence Dossier",
-      promise: "Create the traceable evidence layer beneath the science claims in a financing or partnering process.",
-      focus: [
-        "Asset and claim definition, study provenance, and methods integrity",
-        "Validation, reproducibility, external evidence, and contradictory evidence",
-        "Supported versus unsupported claims, unresolved risk, and the next milestone",
-      ],
+      storyTitle: "Carry the evidence into the decision.",
+      story: "We connect the asset claim to its underlying studies, validation status, contradictions, and remaining risk—so the next decision rests on evidence, not narrative alone.",
+      trace: "Claim → provenance → validation → contradictions → unresolved risk → next milestone",
       deliverable: "Traustia Evidence Dossier",
     },
   ] satisfies Service[],
