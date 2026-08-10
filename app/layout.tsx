@@ -2,25 +2,25 @@ import type { Metadata } from "next";
 import "../src/styles.css";
 
 export const metadata: Metadata = {
-  title: "Traustia | Independent Validation of Biomedical Prediction Claims",
+  title: "Traustia | Sponsor-Side Biomedical Evidence Validation",
   description:
-    "Traustia independently validates biomedical prediction claims—reconstructing and re-running the analysis to test whether the result actually holds.",
+    "Traustia helps biotech sponsors prepare CRO work, review vendor outputs, independently validate biomarkers and models, and build decision-ready evidence dossiers.",
   icons: {
     icon: "/favicon.svg",
     shortcut: "/favicon.svg",
     apple: "/favicon.svg",
   },
   openGraph: {
-    title: "Evidence you can defend. | Traustia",
+    title: "Sponsor-Side Biomedical Evidence Validation | Traustia",
     description:
-      "Independent validation of biomedical prediction claims through analytical reconstruction, leakage detection, provenance control, and evidence dossiers.",
+      "Four focused services for CRO readiness, output integrity, independent validation, and financing or partnering evidence.",
     type: "website",
   },
   twitter: {
     card: "summary_large_image",
-    title: "Evidence you can defend. | Traustia",
+    title: "Sponsor-Side Biomedical Evidence Validation | Traustia",
     description:
-      "Independent validation of biomedical prediction claims through analytical reconstruction, leakage detection, provenance control, and evidence dossiers.",
+      "Four focused services for CRO readiness, output integrity, independent validation, and financing or partnering evidence.",
   },
 };
 

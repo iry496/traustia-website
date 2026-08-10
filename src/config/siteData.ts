@@ -1,247 +1,104 @@
-export type Capability = {
+export type Service = {
   number: string;
-  category: "validation" | "collaboration";
+  timing: string;
   title: string;
-  description: string;
-  examples: string[];
+  promise: string;
+  focus: string[];
+  deliverable: string;
 };
 
-export type ResearchProject = {
-  number: string;
-  slug: string;
-  integrity: string;
+export type EngagementModel = {
+  label: string;
   title: string;
-  focus: string;
-  question: string;
-  status: string;
-  methods: string[];
-  evidenceState: string;
-  output: string;
-  failureModes: string[];
-  validationPlan: string[];
-  limitations: string[];
-};
-
-export type Founder = {
-  initials: string;
-  name: string;
-  displayName: string;
-  email: string;
   role: string;
-  discipline: string;
-  bio: string[];
-  areas: string[];
-  photo?: string;
+  independence: string;
+  workspace: string;
+  responsibilities: string[];
 };
-
-export const contactEmails = {
-  iris: "irisyang@traustia.com",
-  paul: "paultan@traustia.com",
-} as const;
 
 export const siteConfig = {
   companyName: "Traustia",
-  legalName: "Traustia",
-  contactEmail: contactEmails.iris,
-  futureDomain: "",
-  socialLinks: {
-    linkedin: "",
-    github: "",
-  },
+  contactEmail: "irisyang@traustia.com",
   navigation: [
-    { label: "Work With Us", href: "#capabilities" },
-    { label: "Evidence Intelligence", href: "#evidence-intelligence" },
-    { label: "Research", href: "#research" },
-    { label: "About", href: "#about" },
-    { label: "Team", href: "#team" },
+    { label: "Why Traustia", href: "#why" },
+    { label: "Services", href: "#services" },
+    { label: "Independence", href: "#independence" },
     { label: "Contact", href: "#contact" },
   ],
-  capabilities: [
+  services: [
     {
       number: "01",
-      category: "validation",
-      title: "Reproducibility & Validation",
-      description:
-        "Independent reconstruction and stress-testing of biomedical prediction claims under leakage-aware, provenance-controlled conditions.",
-      examples: [
-        "Data Leakage Audits",
-        "Nested Validation",
-        "Feature Stability",
-        "External-cohort Evaluation",
-        "Permutation Controls",
-        "Reproducibility Audits",
+      timing: "Before CRO work begins",
+      title: "CRO Data & Analysis Readiness Review",
+      promise: "Make sure the work specification is rigorous before execution starts.",
+      focus: [
+        "Research question, protocol, endpoint, and Statistical Analysis Plan",
+        "Biomarker or omics plan, data specification, samples, and metadata",
+        "Validation design and explicit success or failure criteria",
       ],
+      deliverable: "CRO Readiness Review Memo",
     },
     {
       number: "02",
-      category: "validation",
-      title: "Scientific Evidence Audits",
-      description:
-        "Neutral assessment of biomedical models, biomarkers, gene signatures, computational claims, and the evidence used to support them.",
-      examples: [
-        "Dataset Integrity",
-        "Analytical Integrity",
-        "Data Provenance",
-        "Claim Boundaries",
-        "Evidence Gaps",
-        "Decision-ready Reporting",
+      timing: "When CRO or laboratory outputs return",
+      title: "CRO Output Integrity Review",
+      promise: "Determine whether the returned data and report match the protocol and can support the claim.",
+      focus: [
+        "Sample flow, inclusion and exclusion, missingness, and protocol deviations",
+        "Data completeness, provenance, batch effects, and analysis consistency",
+        "Planned versus reported analyses and protocol-to-report discrepancies",
       ],
+      deliverable: "CRO Data Integrity Review Memo",
     },
     {
       number: "03",
-      category: "validation",
-      title: "Translational Evidence Analysis",
-      description:
-        "Structured testing of whether findings can legitimately travel across datasets, platforms, experimental conditions, species, and biological contexts.",
-      examples: [
-        "Evidence Synthesis",
-        "Cross-species Translation",
-        "Context & Transportability",
-        "Systematic Evidence Review",
-        "Mechanistic Claim Boundaries",
+      timing: "Before a high-stakes asset decision",
+      title: "Independent Biomarker / Model Validation",
+      promise: "Re-run and stress-test the claim under a frozen, independent validation protocol.",
+      focus: [
+        "Leakage, train/test contamination, feature stability, and repeated-seed robustness",
+        "Calibration, sensitivity analysis, and external-cohort validation",
+        "Cross-platform transportability, reproducibility, and claim boundaries",
       ],
+      deliverable: "Independent Validation Report",
     },
     {
       number: "04",
-      category: "collaboration",
-      title: "Biostatistics & Study Design",
-      description:
-        "Project-based support for research questions, study design, statistical analysis plans, endpoint definition, and publication-ready inference.",
-      examples: [
-        "Study Design",
-        "Statistical Analysis Plans",
-        "Power & Precision",
-        "Endpoint Definition",
-        "Uncertainty & Sensitivity Analysis",
+      timing: "Before financing, partnering, or licensing",
+      title: "Financing / Partnering Evidence Dossier",
+      promise: "Create the traceable evidence layer beneath the science claims in a financing or partnering process.",
+      focus: [
+        "Asset and claim definition, study provenance, and methods integrity",
+        "Validation, reproducibility, external evidence, and contradictory evidence",
+        "Supported versus unsupported claims, unresolved risk, and the next milestone",
+      ],
+      deliverable: "Traustia Evidence Dossier",
+    },
+  ] satisfies Service[],
+  engagementModels: [
+    {
+      label: "MODE 01",
+      title: "Embedded Quantitative Partner",
+      role: "Traustia helps shape or execute the work.",
+      independence: "Not represented as independent validation",
+      workspace: "Development Workspace",
+      responsibilities: [
+        "Protocol and endpoint development",
+        "Analysis design, execution, and interpretation",
+        "Readiness work before CRO handoff",
       ],
     },
     {
-      number: "05",
-      category: "collaboration",
-      title: "Biomedical Data Science & Omics",
-      description:
-        "Reproducible analysis of complex biomedical and molecular datasets using modern statistics, machine learning, and omics workflows.",
-      examples: [
-        "Biomedical Machine Learning",
-        "Microarray",
-        "Bulk RNA-seq",
-        "Pathway Analysis",
-        "Cross-cohort Analysis",
+      label: "MODE 02",
+      title: "Independent Validation Partner",
+      role: "Traustia reviews work it did not create.",
+      independence: "May be represented as independent",
+      workspace: "Independent Validation Workspace",
+      responsibilities: [
+        "No participation in original model development",
+        "Frozen protocol, reproducible rerun, and integrity review",
+        "Explicit evidence state, risks, and claim boundary",
       ],
     },
-    {
-      number: "06",
-      category: "collaboration",
-      title: "Scientific Software & Research Pipelines",
-      description:
-        "Research-grade computational workflows designed for traceability, reproducibility, automation, and reliable scientific execution.",
-      examples: [
-        "Reproducible Pipelines",
-        "Cloud Research Workflows",
-        "Research Software",
-        "ML Infrastructure",
-        "Pipeline Provenance",
-      ],
-    },
-  ] satisfies Capability[],
-  researchProjects: [
-    {
-      number: "01",
-      slug: "reproducible-omics-evidence-audit",
-      integrity: "Model Integrity",
-      title: "Reproducible Omics Evidence Audit",
-      focus:
-        "Data leakage, nested validation, feature stability, permutation controls, and external transportability in high-dimensional omics classification.",
-      question: "Can the model’s reported performance actually be trusted?",
-      status: "Research / manuscript work",
-      methods: ["Leakage audit", "Nested validation", "Feature stability", "External testing"],
-      evidenceState: "Model credibility under review",
-      output: "Reproducible evidence audit and manuscript",
-      failureModes: ["Information leakage", "Selection-induced optimism", "Feature instability", "Cohort shift"],
-      validationPlan: ["Reconstruct the full analytical path", "Separate feature selection from evaluation", "Quantify stability across resamples", "Test transportability in an independent cohort"],
-      limitations: ["Illustrative framework - no client or patient data", "Final estimands depend on the supplied study design", "External validity cannot be inferred without an independent cohort"],
-    },
-    {
-      number: "02",
-      slug: "pipeline-transition-reproducibility",
-      integrity: "Pipeline Integrity",
-      title: "Computational Pipeline Transition & Reproducibility",
-      focus:
-        "Whether changes in RNA-seq computational operators and accelerated analysis pipelines propagate into expression, prediction, calibration, feature stability, and pathway evidence.",
-      question:
-        "Does changing the computational pipeline change the scientific conclusion?",
-      status: "Research in progress",
-      methods: ["Operator comparison", "Calibration", "Pathway stability", "Pipeline provenance"],
-      evidenceState: "Pipeline sensitivity mapped",
-      output: "Transition validation framework",
-      failureModes: ["Operator-version drift", "Expression-scale disagreement", "Calibration shift", "Pathway instability"],
-      validationPlan: ["Lock source inputs and reference outputs", "Compare operators at every analytical stage", "Measure downstream prediction and calibration changes", "Document acceptable transition tolerances"],
-      limitations: ["Placeholder transition scenario", "Tolerance thresholds require scientific owner approval", "Equivalent runtime does not establish equivalent scientific output"],
-    },
-    {
-      number: "03",
-      slug: "translational-evidence-transportability",
-      integrity: "Translational Integrity",
-      title: "Cross-Species and Cell-Type-Resolved Biomedical Evidence",
-      focus:
-        "How experimental context, exposure, species, cell type, pathway evidence, and human data constrain translational claims.",
-      question:
-        "When can biological evidence legitimately be transported from one context to another?",
-      status: "Research in progress",
-      methods: ["Context mapping", "Cell-type resolution", "Cross-species review", "Claim boundaries"],
-      evidenceState: "Transportability limits defined",
-      output: "Structured translational evidence dossier",
-      failureModes: ["Species-context mismatch", "Exposure incompatibility", "Cell-type composition", "Mechanistic overreach"],
-      validationPlan: ["Map every claim to its experimental context", "Resolve evidence by species and cell type", "Compare pathway direction and exposure conditions", "Define the strongest defensible human-relevance statement"],
-      limitations: ["Illustrative evidence map", "Cross-species agreement does not establish clinical efficacy", "Unmeasured context can narrow transportability"],
-    },
-  ] satisfies ResearchProject[],
-  founders: [
-    {
-      initials: "IY",
-      name: "Iris Yang",
-      displayName: "Iris Y.",
-      email: contactEmails.iris,
-      role: "Founder & Chief Executive Officer",
-      discipline: "Quantitative Risk, Model Evaluation & Trustworthy AI",
-      bio: [
-        "Iris works on a single question: how much confidence a number actually deserves. Her research background is in quantitative finance and risk—volatility and tail-risk forecasting, uncertainty quantification, and model evaluation.",
-        "The methods she works in—walk-forward validation, strict timing rules, and out-of-sample discipline—exist because it is remarkably easy to build a model that predicts the past. Biomedicine is confronting the same failure under a different name: data leakage.",
-        "She has taught mathematics and statistics at California State University, Los Angeles since 2012, currently alongside courses in computer forensics and network defense, and is a co-author on peer-reviewed research in risk perception and decision-making. She holds an M.S. in Mathematics and an M.A. in Mathematics Education from Cal State LA, an ALM in Data Science from Harvard, and is pursuing a Doctor of Technology at Purdue focused on data science, cybersecurity, and trustworthy AI.",
-      ],
-      areas: [
-        "Model Evaluation",
-        "Uncertainty Quantification",
-        "Data Leakage",
-        "Trustworthy AI",
-        "Quantitative Risk",
-        "Reproducibility",
-      ],
-      photo: "",
-    },
-    {
-      initials: "PT",
-      name: "Paul K. Tan",
-      displayName: "Paul T.",
-      email: contactEmails.paul,
-      role: "Co-Founder & Chief Technology Officer",
-      discipline: "Biomedical Measurement, Research Software & Data Systems",
-      bio: [
-        "Paul has spent two decades on the boundary between biological measurement and the software that interprets it.",
-        "As a research fellow at the NIH’s National Institute of Diabetes and Digestive and Kidney Diseases, he was first author of an early cross-platform assessment of commercial microarray reproducibility. The study found that identical RNA preparations produced substantially different measurements across platforms and concluded that the technology required further independent and thorough validation. It has since been cited in more than 650 publications. Traustia is the company that conclusion implies.",
-        "He has since built production systems where computational correctness carries consequences: backend microservices for a machine-learning clinical genomics laboratory at Quantgene, laboratory information management infrastructure handling millions of sample records at Regeneron, and machine-learning platforms across AWS and GCP. He holds a B.S. in Economics and Biology from MIT and an ALM in Data Science from Harvard.",
-      ],
-      areas: [
-        "Microarray Reproducibility",
-        "Research Software",
-        "Biomedical Informatics",
-        "Laboratory Data Systems",
-        "Machine Learning Platforms",
-        "Cloud Infrastructure",
-      ],
-      photo: "",
-    },
-  ] satisfies Founder[],
+  ] satisfies EngagementModel[],
 } as const;
-
-export const contactIsConfigured = Boolean(siteConfig.contactEmail);
