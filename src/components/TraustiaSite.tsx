@@ -67,7 +67,7 @@ function Header() {
           {siteConfig.navigation.map((item) => (
             <a key={item.href} href={item.href} onClick={() => setMenuOpen(false)}>{item.label}</a>
           ))}
-          <a className="button button-small" href="#contact" onClick={() => setMenuOpen(false)}>Discuss a Review</a>
+          <a className="button button-small" href="#contact" onClick={() => setMenuOpen(false)}>Book a Scoping Call</a>
         </nav>
       </div>
     </header>
@@ -153,66 +153,127 @@ function SiteBackground() {
 
 function Hero() {
   return (
-    <main id="main-content">
-      <section className="hero" id="top">
-        <div className="container hero-stage" id="why">
-          <div className="hero-story">
-            <div className="hero-brand-block">
-              <div className="hero-brand-lockup"><BrandMark /><span>TRAUSTIA</span></div>
-              <p>Evidence you can defend.</p>
-            </div>
-            <p className="eyebrow">FOUR SPONSOR-SIDE EVIDENCE SERVICES</p>
-            <p className="hero-opening">Traustia helps biotech sponsors make outsourced CRO, laboratory, biomarker, and model work ready for high-stakes decisions.</p>
-            <h1>From outsourced work to<br /><em>evidence you can act on.</em></h1>
-            <p className="hero-support">At four decisive moments, we prepare the work before it starts, audit the outputs when they return, independently validate the biomarker or model, and assemble the evidence dossier for financing or partnering.</p>
-            <div className="hero-outcomes">
-              <p><span>ENABLE</span>Advance the right asset with clearer board, financing, and partnership decisions.</p>
-              <p><span>AVOID</span>Unclear specifications, protocol-to-report drift, leakage, unstable models, and claims that fail under diligence.</p>
-            </div>
-            <div className="hero-actions">
-              <a className="button button-filled" href="#services">Follow the evidence journey</a>
-              <a className="text-link" href="#contact">Discuss a review <span aria-hidden="true">↗</span></a>
-            </div>
+    <section className="hero" id="top">
+      <div className="container hero-stage">
+        <div className="hero-story">
+          <p className="hero-tagline">Evidence you can defend.</p>
+          <p className="eyebrow">SPONSOR-SIDE BIOMEDICAL EVIDENCE VALIDATION</p>
+          <h1><span>Your CRO delivered the report.</span><em>We verify the evidence behind it.</em></h1>
+          <p className="hero-opening">Traustia is an independent review team for biotech sponsors. Before you advance an asset, raise a round, or sign a licensing deal, we check that the outsourced science behind the decision actually holds — study design, data integrity, biomarkers, and models.</p>
+          <div className="hero-actions">
+            <a className="button button-filled" href="#contact">Book a scoping call</a>
+            <a className="text-link" href="#services">See the four services <span aria-hidden="true">↓</span></a>
+          </div>
+          <div className="hero-meta">
+            <p className="hero-audience">FOR BIOTECH FOUNDERS &amp; CSOs · FINANCING &amp; BD TEAMS · INVESTORS · ACADEMIC SPIN-OFFS</p>
             <p className="hero-route" aria-label="The four Traustia services: Prepare, Review, Validate, Defend">
               <span><b>01</b>Prepare</span><i>→</i><span><b>02</b>Review</span><i>→</i><span><b>03</b>Validate</span><i>→</i><span><b>04</b>Defend</span>
             </p>
           </div>
         </div>
-        <p className="container hero-boundary">Validation services—not clinical operations. Independent only when Traustia did not create the original model.</p>
-      </section>
-      <Services />
-      <EngagementModels />
-      <Contact />
-    </main>
+      </div>
+      <p className="container hero-boundary">Validation services—not clinical operations. Independent only when Traustia did not create the original model.</p>
+    </section>
   );
 }
 
-function Services() {
+function WhyTraustia() {
   return (
-    <section className="evidence-story" id="services" aria-labelledby="services-title">
+    <section className="why" id="why" aria-labelledby="why-title">
       <div className="container">
-        <div className="story-layout">
-          <header className="story-heading">
-            <p className="section-label">THE EVIDENCE JOURNEY</p>
-            <h2 id="services-title">The evidence changes state.<br /><em>The responsibility does not.</em></h2>
-            <p>One scientific claim moves through four moments. Traustia enters where the evidence needs to become more defensible.</p>
-            <div className="story-progress" aria-hidden="true">
-              {siteConfig.services.map((service) => <span key={service.number}>{service.number}</span>)}
-            </div>
-          </header>
-          <div className="story-chapters">
-            {siteConfig.services.map((service) => (
-              <article className="story-chapter" key={service.number}>
-                <p className="story-meta"><span>{service.number}</span>{service.timing}</p>
-                <h3>{service.storyTitle}</h3>
-                <p className="story-service">{service.title}</p>
-                <p className="story-copy">{service.story}</p>
-                <p className="story-trace">{service.trace}</p>
-                <p className="story-output"><span>THE RECORD</span>{service.deliverable}</p>
-              </article>
-            ))}
+        <div className="section-heading">
+          <div>
+            <p className="section-label">WHY TRAUSTIA</p>
+            <h2 id="why-title"><span>The report is back.</span><em>Three questions remain.</em></h2>
           </div>
+          <p>Outsourced work comes back as a polished report. Whether it can carry a decision is a different matter — three of them, in fact.</p>
         </div>
+        <div className="why-grid">
+          {siteConfig.whyQuestions.map((question) => (
+            <article className="why-card" key={question.number}>
+              <p className="why-number">{question.number}</p>
+              <h3>{question.title}</h3>
+              <p>{question.body}</p>
+            </article>
+          ))}
+        </div>
+        <p className="why-verdict"><span>CROs execute. Investors interrogate.</span><em>Traustia is the check in between — working only for you.</em></p>
+      </div>
+    </section>
+  );
+}
+
+function WhoWeServe() {
+  return (
+    <section className="audiences" id="who" aria-labelledby="who-title">
+      <div className="container">
+        <div className="section-heading">
+          <div>
+            <p className="section-label">WHO WE WORK WITH</p>
+            <h2 id="who-title"><span>Built for teams whose next decision</span><em>rests on outsourced science.</em></h2>
+          </div>
+          <p>If the next board meeting, financing round, or licensing conversation depends on work someone else performed, we work for you.</p>
+        </div>
+        <div className="tile-grid">
+          {siteConfig.audiences.map((audience) => (
+            <article className="tile" key={audience.title}>
+              <h3>{audience.title}</h3>
+              <p>{audience.body}</p>
+            </article>
+          ))}
+        </div>
+      </div>
+    </section>
+  );
+}
+
+function Outcomes() {
+  return (
+    <section className="outcomes" aria-labelledby="outcomes-title">
+      <div className="container">
+        <div className="section-heading">
+          <div>
+            <p className="section-label">WHAT CHANGES</p>
+            <h2 id="outcomes-title"><span>What you get</span><em>out of it.</em></h2>
+          </div>
+          <p>Four ways checked evidence changes the position you decide, raise, and negotiate from.</p>
+        </div>
+        <div className="tile-grid">
+          {siteConfig.outcomes.map((outcome) => (
+            <article className="tile" key={outcome.title}>
+              <h3>{outcome.title}</h3>
+              <p>{outcome.body}</p>
+            </article>
+          ))}
+        </div>
+      </div>
+    </section>
+  );
+}
+
+function Services({ onSelect }: { onSelect: (title: string) => void }) {
+  return (
+    <section className="services-block" id="services" aria-labelledby="services-title">
+      <div className="container">
+        <div className="section-heading">
+          <div>
+            <p className="section-label">FOUR SERVICES</p>
+            <h2 id="services-title"><span>One service for each moment</span><em>your evidence is at risk.</em></h2>
+          </div>
+          <p>Prepare, review, validate, defend. Pick the moment you are in — every engagement ends with a written record you can put in front of a board, an investor, or a partner.</p>
+        </div>
+        <div className="services-grid">
+          {siteConfig.services.map((service) => (
+            <a className="service-panel" key={service.number} href="#contact" onClick={() => onSelect(service.title)}>
+              <p className="service-meta"><span>{service.number}</span>{service.timing}</p>
+              <h3>{service.title}</h3>
+              <p className="service-story">{service.story}</p>
+              <p className="service-receive"><span>YOU RECEIVE</span>{service.deliverable}</p>
+              <p className="service-cta">Request this review <span aria-hidden="true">→</span></p>
+            </a>
+          ))}
+        </div>
+        <p className="services-note">Validation services — not clinical operations. Independent only when Traustia did not create the original model.</p>
       </div>
     </section>
   );
@@ -225,9 +286,9 @@ function EngagementModels() {
         <div className="section-heading section-heading-dark">
           <div>
             <p className="section-label">INDEPENDENCE BY DESIGN</p>
-            <h2 id="engagement-title">Creation and validation<br />stay separate.</h2>
+            <h2 id="engagement-title"><span>We never validate</span><em>our own work.</em></h2>
           </div>
-          <p>Traustia cannot help build a model and then call its own review independent. Every engagement begins in one of two distinct workflows.</p>
+          <p>Every engagement begins in one of two lanes, and a firewall keeps them apart. That separation is what makes a Traustia validation worth showing to your investors.</p>
         </div>
         <div className="engagement-grid">
           {siteConfig.engagementModels.map((model) => (
@@ -249,7 +310,7 @@ function EngagementModels() {
   );
 }
 
-function Contact() {
+function Contact({ selectedService, onServiceChange }: { selectedService: string; onServiceChange: (value: string) => void }) {
   const [status, setStatus] = useState<"idle" | "ready">("idle");
 
   const composeInquiry = (event: FormEvent<HTMLFormElement>) => {
@@ -282,13 +343,13 @@ function Contact() {
       <div className="container contact-grid">
         <div className="contact-heading">
           <p className="section-label">START WITH THE DECISION</p>
-          <h2 id="contact-title">What does the evidence need to support?</h2>
-          <p>Tell us where the work stands, what decision is approaching, and which evidence is still uncertain.</p>
+          <h2 id="contact-title"><span>What decision is</span><em>in front of you?</em></h2>
+          <p>A financing round. A licensing conversation. A go/no-go on the lead asset. A CRO contract about to be signed. Tell us the decision and where the evidence stands — we will tell you which review fits, what it covers, and what it would take.</p>
         </div>
         <form className="contact-form" onSubmit={composeInquiry}>
           <label>
             <span>Service</span>
-            <select name="service" required defaultValue="">
+            <select name="service" required value={selectedService} onChange={(event) => onServiceChange(event.target.value)}>
               <option value="" disabled>Select a review</option>
               {siteConfig.services.map((service) => <option key={service.number} value={service.title}>{service.title}</option>)}
               <option value="Not sure yet">Not sure yet</option>
@@ -306,7 +367,7 @@ function Contact() {
           <label className="honeypot" aria-hidden="true">Website<input name="website" tabIndex={-1} autoComplete="off" /></label>
           <div className="form-footer">
             <small>This prepares an email in your email application. Nothing is stored on this website.</small>
-            <button className="button button-filled" type="submit">Compose inquiry <span aria-hidden="true">↗</span></button>
+            <button className="button button-filled" type="submit">Start the conversation <span aria-hidden="true">↗</span></button>
           </div>
           {status === "ready" ? <p className="form-status" role="status">Your inquiry has been prepared.</p> : null}
         </form>
@@ -336,13 +397,23 @@ function Footer() {
 }
 
 export function TraustiaSite() {
+  const [selectedService, setSelectedService] = useState("");
+
   return (
     <>
       <SiteBackground />
       <a className="skip-link" href="#main-content">Skip to main content</a>
       <Header />
       <ScrollBrandRail />
-      <Hero />
+      <main id="main-content">
+        <Hero />
+        <WhyTraustia />
+        <WhoWeServe />
+        <Services onSelect={setSelectedService} />
+        <Outcomes />
+        <EngagementModels />
+        <Contact selectedService={selectedService} onServiceChange={setSelectedService} />
+      </main>
       <Footer />
     </>
   );
