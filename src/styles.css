@@ -177,49 +177,70 @@ em {
 
 .brand-mark {
   position: relative;
-  width: 24px;
-  height: 24px;
-  display: inline-block;
-  border: 1px solid rgba(53, 197, 180, 0.44);
-  border-radius: 50%;
+  width: 32px;
+  height: 32px;
+  display: inline-grid;
+  place-items: center;
   flex: 0 0 auto;
+  color: inherit;
 }
 
-.brand-mark::before,
-.brand-mark::after {
-  content: "";
-  position: absolute;
-  background: rgba(53, 197, 180, 0.72);
-  transform-origin: left center;
+.brand-disc {
+  width: 100%;
+  height: 100%;
+  display: block;
+  overflow: visible;
 }
 
-.brand-mark::before {
-  width: 9px;
-  height: 1px;
-  top: 7px;
-  left: 7px;
-  transform: rotate(90deg);
+.brand-disc-ring {
+  transform-origin: 128px 128px;
+  transition: transform 600ms cubic-bezier(.22, .8, .25, 1), opacity 300ms ease;
 }
 
-.brand-mark::after {
-  width: 11px;
-  height: 1px;
-  top: 12px;
-  left: 7px;
+.brand-disc-ring-outer {
+  animation: evidence-disc-orbit 9s ease-in-out infinite alternate;
 }
 
-.brand-mark-node {
-  position: absolute;
-  width: 4px;
-  height: 4px;
-  border-radius: 50%;
-  background: var(--teal);
-  box-shadow: 0 0 9px rgba(53, 197, 180, 0.7);
+.brand-disc-ring-inner { opacity: .78; }
+
+.brand-disc-owl,
+.brand-disc-eyes {
+  transition: transform 500ms cubic-bezier(.22, .8, .25, 1), opacity 300ms ease;
+  transform-origin: 128px 132px;
 }
 
-.node-top { top: 4px; left: 10px; }
-.node-left { top: 10px; left: 5px; }
-.node-right { top: 10px; right: 5px; }
+.brand-disc-node {
+  fill: var(--teal);
+  filter: drop-shadow(0 0 10px rgba(53, 197, 180, .7));
+  transform-origin: 205px 57px;
+  animation: evidence-node-resolve 3.2s ease-in-out infinite;
+}
+
+.wordmark:hover .brand-disc-ring-outer {
+  animation: none;
+  transform: rotate(9deg);
+}
+
+.wordmark:hover .brand-disc-ring-inner { transform: rotate(-5deg); }
+.wordmark:hover .brand-disc-owl,
+.wordmark:hover .brand-disc-eyes { transform: translateY(-2px); }
+
+.site-header.is-scrolled .brand-disc-ring-outer {
+  animation: none;
+  transform: rotate(5deg);
+}
+
+.site-header.is-scrolled .wordmark:hover .brand-disc-ring-outer { transform: rotate(12deg); }
+
+@keyframes evidence-disc-orbit {
+  0% { transform: rotate(-1.25deg); }
+  100% { transform: rotate(1.75deg); }
+}
+
+@keyframes evidence-node-resolve {
+  0%, 72%, 100% { opacity: .82; transform: scale(.92); }
+  82% { opacity: 1; transform: scale(1.18); }
+}
 
 .primary-nav {
   display: flex;
@@ -3968,4 +3989,6 @@ em {
   .banner-depth-grid { transform: none; }
   .banner-scan,
   .risk-console::after { display: none; }
+  .brand-disc-ring-outer,
+  .brand-disc-node { animation: none !important; }
 }

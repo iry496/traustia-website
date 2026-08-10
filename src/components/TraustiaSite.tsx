@@ -12,9 +12,28 @@ import {
 function BrandMark() {
   return (
     <span className="brand-mark" aria-hidden="true">
-      <span className="brand-mark-node node-top" />
-      <span className="brand-mark-node node-left" />
-      <span className="brand-mark-node node-right" />
+      <svg className="brand-disc" viewBox="0 0 256 256" focusable="false">
+        <g className="brand-disc-ring brand-disc-ring-outer" fill="none" stroke="currentColor" strokeWidth="12" strokeLinecap="butt" strokeLinejoin="round">
+          <path d="M26 112A103 103 0 0 1 196 49" />
+          <path d="M216 68A103 103 0 0 1 230 112" />
+          <path d="M230 136A103 103 0 0 1 140 231" />
+          <path d="M116 231A103 103 0 0 1 26 136" />
+        </g>
+        <g className="brand-disc-ring brand-disc-ring-inner" fill="none" stroke="currentColor" strokeWidth="10" strokeLinecap="butt" strokeLinejoin="round">
+          <path d="M55 102A78 78 0 0 1 186 70" />
+          <path d="M201 91A78 78 0 0 1 140 207" />
+          <path d="M116 207A78 78 0 0 1 55 126" />
+        </g>
+        <g className="brand-disc-owl" fill="none" stroke="currentColor" strokeWidth="12" strokeLinecap="square" strokeLinejoin="round">
+          <path d="M62 101h37c11 0 19 8 19 19v28l10 11" />
+          <path d="M194 101h-37c-11 0-19 8-19 19v28l-10 11" />
+        </g>
+        <g className="brand-disc-eyes" fill="currentColor">
+          <path d="M75 141c10-10 26-10 36 2-13 7-27 6-36-2Z" />
+          <path d="M181 141c-10-10-26-10-36 2 13 7 27 6 36-2Z" />
+        </g>
+        <circle className="brand-disc-node" cx="205" cy="57" r="9" />
+      </svg>
     </span>
   );
 }
