@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useState, type FormEvent } from "react";
+import { useEffect, useRef, useState, type FormEvent } from "react";
 import { siteConfig } from "../config/siteData";
 
 function BrandMark() {
@@ -71,6 +71,45 @@ function Header() {
         </nav>
       </div>
     </header>
+  );
+}
+
+function ScrollBrandRail() {
+  const railRef = useRef<HTMLElement>(null);
+
+  useEffect(() => {
+    let frame = 0;
+
+    const update = () => {
+      const rail = railRef.current;
+      if (!rail) return;
+
+      const scrollable = Math.max(document.documentElement.scrollHeight - window.innerHeight, 1);
+      const progress = Math.min(Math.max(window.scrollY / scrollable, 0), 1);
+      const travel = Math.max(rail.clientHeight - 48, 0);
+      rail.style.setProperty("--rail-y", `${Math.round(progress * travel)}px`);
+      frame = 0;
+    };
+
+    const requestUpdate = () => {
+      if (!frame) frame = window.requestAnimationFrame(update);
+    };
+
+    update();
+    window.addEventListener("scroll", requestUpdate, { passive: true });
+    window.addEventListener("resize", requestUpdate);
+
+    return () => {
+      window.removeEventListener("scroll", requestUpdate);
+      window.removeEventListener("resize", requestUpdate);
+      if (frame) window.cancelAnimationFrame(frame);
+    };
+  }, []);
+
+  return (
+    <aside className="scroll-brand-rail" ref={railRef} aria-hidden="true">
+      <span className="scroll-brand-traveler"><BrandMark /></span>
+    </aside>
   );
 }
 
@@ -269,6 +308,7 @@ export function TraustiaSite() {
     <>
       <a className="skip-link" href="#main-content">Skip to main content</a>
       <Header />
+      <ScrollBrandRail />
       <Hero />
       <Footer />
     </>
