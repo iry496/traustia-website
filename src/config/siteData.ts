@@ -38,9 +38,9 @@ export const siteConfig = {
   companyName: "Traustia",
   contactEmail: "irisyang@traustia.com",
   navigation: [
-    { label: "Why Traustia", href: "#why" },
-    { label: "Who we serve", href: "#who" },
     { label: "Services", href: "#services" },
+    { label: "Who we serve", href: "#who" },
+    { label: "Why Traustia", href: "#why" },
     { label: "Independence", href: "#independence" },
     { label: "Contact", href: "#contact" },
   ],
