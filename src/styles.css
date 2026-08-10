@@ -216,6 +216,11 @@ em {
   animation: evidence-node-resolve 3.2s ease-in-out infinite;
 }
 
+.brand-disc-node-orbit {
+  transform-origin: 128px 128px;
+  animation: evidence-node-orbit 12s linear infinite;
+}
+
 .wordmark:hover .brand-disc-ring-outer {
   animation: none;
   transform: rotate(9deg);
@@ -240,6 +245,18 @@ em {
 @keyframes evidence-node-resolve {
   0%, 72%, 100% { opacity: .82; transform: scale(.92); }
   82% { opacity: 1; transform: scale(1.18); }
+}
+
+@keyframes evidence-node-orbit {
+  to { transform: rotate(360deg); }
+}
+
+@keyframes scroll-orbit {
+  to { transform: rotate(360deg); }
+}
+
+@keyframes scroll-orbit-reverse {
+  to { transform: rotate(-360deg); }
 }
 
 .primary-nav {
@@ -980,84 +997,32 @@ em {
   position: absolute;
   left: 0;
   top: calc(var(--rail-progress) * 100%);
-  width: 46px;
-  height: 46px;
+  width: 52px;
+  height: 52px;
   transform: translate(-50%, -50%);
   transition: top 80ms linear, filter 450ms ease;
 }
 
-.scroll-object-orbit {
-  position: absolute;
-  inset: 5px;
-  border: 1px solid rgba(53, 197, 180, 0.52);
-  border-radius: 50%;
-  transition: inset 500ms ease, border-radius 500ms ease, border-color 500ms ease, transform 500ms ease;
-}
-
-.scroll-object-orbit.orbit-primary {
-  animation: scroll-orbit 8s linear infinite;
-}
-
-.scroll-object-orbit.orbit-secondary {
-  inset: 11px 1px;
-  border-color: rgba(91, 124, 250, 0.4);
-  animation: scroll-orbit-reverse 11s linear infinite;
-}
-
-.scroll-object-orbit::after {
-  content: "";
-  position: absolute;
-  width: 3px;
-  height: 3px;
-  right: 1px;
-  top: 3px;
-  border-radius: 50%;
-  background: var(--blue);
-  box-shadow: 0 0 8px var(--blue);
-}
-
-@keyframes scroll-orbit {
-  to { transform: rotate(360deg); }
-}
-
-@keyframes scroll-orbit-reverse {
-  to { transform: rotate(-360deg); }
-}
-
 .scroll-object-halo {
   position: absolute;
-  inset: -10px;
+  inset: -8px;
   border-radius: 50%;
-  background: radial-gradient(circle, rgba(53, 197, 180, 0.2), transparent 66%);
+  background: radial-gradient(circle, rgba(53, 197, 180, 0.22), transparent 68%);
   filter: blur(2px);
-  transition: opacity 500ms ease, transform 500ms ease;
+  transition: opacity 500ms ease, transform 500ms ease, background 500ms ease;
 }
 
-.scroll-object-core {
+.scroll-object > .brand-mark {
   position: absolute;
-  width: 10px;
-  height: 10px;
-  left: 18px;
-  top: 18px;
-  border-radius: 50%;
-  background: var(--teal);
-  box-shadow: 0 0 0 4px rgba(53, 197, 180, 0.12), 0 0 14px rgba(53, 197, 180, 0.9);
-  transition: width 500ms ease, height 500ms ease, left 500ms ease, top 500ms ease, border-radius 500ms ease, background 500ms ease, box-shadow 500ms ease;
+  inset: 0;
+  width: 52px;
+  height: 52px;
+  color: var(--white);
+  filter: drop-shadow(0 8px 14px rgba(0, 0, 0, .38));
+  transition: color 500ms ease, filter 500ms ease, transform 500ms ease;
 }
 
-.scroll-object-satellite {
-  position: absolute;
-  width: 3px;
-  height: 3px;
-  border-radius: 50%;
-  background: var(--teal);
-  transition: inset 500ms ease, transform 500ms ease, opacity 500ms ease, background 500ms ease;
-}
-
-.satellite-one { left: -2px; top: 21px; }
-.satellite-two { right: -1px; top: 7px; background: var(--blue); }
-.satellite-three { right: 3px; bottom: 2px; }
-.satellite-four { left: 8px; top: 1px; background: var(--blue); }
+.scroll-object .brand-disc-ring-inner { opacity: .6; }
 
 .scroll-phase-readout {
   position: absolute;
@@ -1096,33 +1061,11 @@ em {
   white-space: nowrap;
 }
 
-.scroll-evidence-rail[data-phase="0"] .satellite-one { transform: translate(-7px, 2px); }
-.scroll-evidence-rail[data-phase="0"] .satellite-two { transform: translate(5px, -4px); }
-.scroll-evidence-rail[data-phase="0"] .satellite-three { transform: translate(6px, 6px); }
-.scroll-evidence-rail[data-phase="1"] .orbit-secondary { inset: 8px 0; border-radius: 38%; }
-.scroll-evidence-rail[data-phase="1"] .satellite-four { transform: translate(7px, 4px); }
-.scroll-evidence-rail[data-phase="2"] .scroll-object-core {
-  background: #f0bd70;
-  box-shadow: 0 0 0 6px rgba(240, 189, 112, 0.1), 0 0 18px rgba(240, 189, 112, 0.82);
-}
-.scroll-evidence-rail[data-phase="2"] .scroll-object-orbit { border-style: dashed; }
-.scroll-evidence-rail[data-phase="3"] .scroll-object-core {
-  width: 14px;
-  height: 14px;
-  left: 16px;
-  top: 16px;
-}
 .scroll-evidence-rail[data-phase="3"] .scroll-object-halo { transform: scale(1.35); }
-.scroll-evidence-rail[data-phase="4"] .scroll-object-core {
-  width: 16px;
-  height: 16px;
-  left: 15px;
-  top: 15px;
-  border-radius: 4px;
-  background: var(--white);
-  box-shadow: 0 0 0 5px rgba(53, 197, 180, 0.18), 0 0 22px rgba(53, 197, 180, 0.9);
+.scroll-evidence-rail[data-phase="4"] .scroll-object > .brand-mark {
+  color: var(--teal);
+  filter: drop-shadow(0 0 14px rgba(53, 197, 180, .5));
 }
-.scroll-evidence-rail[data-phase="4"] .scroll-object-orbit { border-radius: 24%; }
 
 .scroll-evidence-rail ol {
   position: absolute;
@@ -3990,5 +3933,6 @@ em {
   .banner-scan,
   .risk-console::after { display: none; }
   .brand-disc-ring-outer,
+  .brand-disc-node-orbit,
   .brand-disc-node { animation: none !important; }
 }
