@@ -161,15 +161,21 @@ function Hero() {
               <div className="hero-brand-lockup"><BrandMark /><span>TRAUSTIA</span></div>
               <p>Evidence you can defend.</p>
             </div>
-            <p className="eyebrow">SPONSOR-SIDE BIOMEDICAL EVIDENCE VALIDATION</p>
-            <p className="hero-opening">A biotech sponsor asks whether an asset is ready to advance. The work moves outward—to a CRO, a laboratory, an analysis team—and eventually a report comes back.</p>
-            <h1>The work was delivered.<br /><em>The decision is still yours.</em></h1>
-            <p className="hero-support">A report cannot tell you whether to fund, partner, license, or proceed. Traustia reconstructs the evidence between the outsourced work and that decision—before uncertainty becomes an expensive commitment.</p>
+            <p className="eyebrow">FOUR SPONSOR-SIDE EVIDENCE SERVICES</p>
+            <p className="hero-opening">Traustia helps biotech sponsors make outsourced CRO, laboratory, biomarker, and model work ready for high-stakes decisions.</p>
+            <h1>From outsourced work to<br /><em>evidence you can act on.</em></h1>
+            <p className="hero-support">At four decisive moments, we prepare the work before it starts, audit the outputs when they return, independently validate the biomarker or model, and assemble the evidence dossier for financing or partnering.</p>
+            <div className="hero-outcomes">
+              <p><span>ENABLE</span>Advance the right asset with clearer board, financing, and partnership decisions.</p>
+              <p><span>AVOID</span>Unclear specifications, protocol-to-report drift, leakage, unstable models, and claims that fail under diligence.</p>
+            </div>
             <div className="hero-actions">
               <a className="button button-filled" href="#services">Follow the evidence journey</a>
               <a className="text-link" href="#contact">Discuss a review <span aria-hidden="true">↗</span></a>
             </div>
-            <p className="hero-route"><span>Scientific question</span><i>→</i><span>Outsourced execution</span><i>→</i><span>Defensible judgment</span></p>
+            <p className="hero-route" aria-label="The four Traustia services: Prepare, Review, Validate, Defend">
+              <span><b>01</b>Prepare</span><i>→</i><span><b>02</b>Review</span><i>→</i><span><b>03</b>Validate</span><i>→</i><span><b>04</b>Defend</span>
+            </p>
           </div>
         </div>
         <p className="container hero-boundary">Validation services—not clinical operations. Independent only when Traustia did not create the original model.</p>
