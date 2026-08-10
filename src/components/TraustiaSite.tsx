@@ -32,7 +32,9 @@ function BrandMark() {
           <path d="M75 141c10-10 26-10 36 2-13 7-27 6-36-2Z" />
           <path d="M181 141c-10-10-26-10-36 2 13 7 27 6 36-2Z" />
         </g>
-        <circle className="brand-disc-node" cx="205" cy="57" r="9" />
+        <g className="brand-disc-node-orbit">
+          <circle className="brand-disc-node" cx="205" cy="57" r="9" />
+        </g>
       </svg>
     </span>
   );
@@ -181,13 +183,7 @@ function ScrollEvidenceRail() {
         <span className="scroll-rail-fill" />
         <span className="scroll-object">
           <span className="scroll-object-halo" />
-          <span className="scroll-object-orbit orbit-primary" />
-          <span className="scroll-object-orbit orbit-secondary" />
-          <span className="scroll-object-core" />
-          <span className="scroll-object-satellite satellite-one" />
-          <span className="scroll-object-satellite satellite-two" />
-          <span className="scroll-object-satellite satellite-three" />
-          <span className="scroll-object-satellite satellite-four" />
+          <BrandMark />
           <span className="scroll-phase-readout">
             <span>{String(activeIndex + 1).padStart(2, "0")}</span>
             <strong>{scrollPhases[activeIndex].label}</strong>

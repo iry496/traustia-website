@@ -26,4 +26,4 @@ The Traustia Evidence Disc is a Great Gray Owl constructed from three evidence l
 
 ## Motion rules
 
-Website motion may rotate the evidence rings by no more than 12 degrees and pulse the evidence node. The owl face and central `T` must remain stable. Motion must be disabled when `prefers-reduced-motion: reduce` is active.
+Website motion may rotate the evidence rings by no more than 12 degrees and move the evidence node slowly along the outer disc. The owl face and central `T` must remain stable. A complete node orbit should take no less than 10 seconds, and motion must be disabled when `prefers-reduced-motion: reduce` is active.
