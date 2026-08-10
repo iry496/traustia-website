@@ -1,0 +1,22 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 256" role="img" aria-labelledby="title desc">
+  <title id="title">Traustia Evidence Disc — black trademark version</title>
+  <desc id="desc">One-color black version of the Traustia Great Gray Owl evidence mark.</desc>
+  <g fill="none" stroke="#000000" stroke-width="12" stroke-linecap="butt" stroke-linejoin="round">
+    <path d="M26 112A103 103 0 0 1 196 49"/>
+    <path d="M216 68A103 103 0 0 1 230 112"/>
+    <path d="M230 136A103 103 0 0 1 140 231"/>
+    <path d="M116 231A103 103 0 0 1 26 136"/>
+  </g>
+  <g fill="none" stroke="#000000" stroke-width="10" stroke-linecap="butt" stroke-linejoin="round">
+    <path d="M55 102A78 78 0 0 1 186 70"/>
+    <path d="M201 91A78 78 0 0 1 140 207"/>
+    <path d="M116 207A78 78 0 0 1 55 126"/>
+  </g>
+  <g fill="none" stroke="#000000" stroke-width="12" stroke-linecap="square" stroke-linejoin="round">
+    <path d="M62 101h37c11 0 19 8 19 19v28l10 11"/>
+    <path d="M194 101h-37c-11 0-19 8-19 19v28l-10 11"/>
+  </g>
+  <path d="M75 141c10-10 26-10 36 2-13 7-27 6-36-2Z"/>
+  <path d="M181 141c-10-10-26-10-36 2 13 7 27 6 36-2Z"/>
+  <circle cx="205" cy="57" r="9"/>
+</svg>
