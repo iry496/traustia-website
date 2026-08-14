@@ -69,19 +69,10 @@ The repository includes the official GitHub Pages Actions workflow at `.github/w
 
 The workflow runs lint, type checks as part of the build, compiles the correct repository base path, generates canonical/Open Graph URLs, creates `robots.txt` and `sitemap.xml`, and publishes `dist/`.
 
-## Custom domain later
+## Custom domain
 
-No `CNAME` is included yet.
-
-When `traustia.com` or another domain is purchased:
-
-1. Configure the DNS records recommended by GitHub Pages for the chosen apex domain and/or `www` subdomain.
-2. Enter the domain in **GitHub → Settings → Pages → Custom domain** and enable HTTPS after GitHub provisions it.
-3. Add a `public/CNAME` file containing only the domain, for example `traustia.com`.
-4. Build with `CUSTOM_DOMAIN=true`, `VITE_BASE_PATH=/`, and `VITE_SITE_URL=https://traustia.com/`.
-5. Update `futureDomain` in `src/config/siteData.ts` for the founders’ internal reference.
-
-For GitHub Actions, the build step can then be simplified to:
+The production site uses `https://traustia.com/`. GitHub Pages receives the
+domain from `public/CNAME`, and the deployment workflow builds with:
 
 ```bash
 CUSTOM_DOMAIN=true \
@@ -90,7 +81,9 @@ VITE_SITE_URL=https://traustia.com/ \
 npm run build
 ```
 
-The design and source structure do not need to change when the custom domain is connected.
+The apex DNS records must point to GitHub Pages, and `www` should be a CNAME to
+`iry496.github.io`. HTTPS can be enforced after GitHub finishes provisioning
+the certificate.
 
 ## Brand assets and SEO
 

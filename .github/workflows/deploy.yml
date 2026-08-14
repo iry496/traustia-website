@@ -39,16 +39,10 @@ jobs:
       - name: Build for GitHub Pages
         shell: bash
         run: |
-          REPO_NAME="${GITHUB_REPOSITORY#*/}"
-          if [[ "$REPO_NAME" == "${GITHUB_REPOSITORY_OWNER}.github.io" ]]; then
-            VITE_BASE_PATH="/" \
-            VITE_SITE_URL="https://${GITHUB_REPOSITORY_OWNER}.github.io/" \
-            npm run build
-          else
-            VITE_BASE_PATH="/${REPO_NAME}/" \
-            VITE_SITE_URL="https://${GITHUB_REPOSITORY_OWNER}.github.io/${REPO_NAME}/" \
-            npm run build
-          fi
+          CUSTOM_DOMAIN=true \
+          VITE_BASE_PATH="/" \
+          VITE_SITE_URL="https://traustia.com/" \
+          npm run build
 
       - name: Upload Pages artifact
         uses: actions/upload-pages-artifact@v3
