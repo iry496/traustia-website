@@ -1,7 +1,15 @@
 "use client";
 
 import { useEffect, useRef, useState, type FormEvent } from "react";
-import { siteConfig } from "../config/siteData";
+import {
+  siteConfig,
+  siteCopy,
+  type Locale,
+  type ServiceId,
+  type SiteCopy,
+} from "../config/siteData";
+
+type ServiceSelection = ServiceId | "not-sure" | "";
 
 function BrandMark() {
   return (
@@ -34,7 +42,33 @@ function BrandMark() {
   );
 }
 
-function Header() {
+function LanguageSwitch({ locale, copy, onChange }: { locale: Locale; copy: SiteCopy; onChange: (locale: Locale) => void }) {
+  return (
+    <div className="language-switch" role="group" aria-label={copy.language.ariaLabel}>
+      <button
+        type="button"
+        className={locale === "en" ? "is-active" : ""}
+        aria-label={copy.language.english}
+        aria-pressed={locale === "en"}
+        onClick={() => onChange("en")}
+      >
+        EN
+      </button>
+      <span aria-hidden="true">/</span>
+      <button
+        type="button"
+        className={locale === "zh-TW" ? "is-active" : ""}
+        aria-label={copy.language.traditionalChinese}
+        aria-pressed={locale === "zh-TW"}
+        onClick={() => onChange("zh-TW")}
+      >
+        繁中
+      </button>
+    </div>
+  );
+}
+
+function Header({ locale, copy, onLocaleChange }: { locale: Locale; copy: SiteCopy; onLocaleChange: (locale: Locale) => void }) {
   const [menuOpen, setMenuOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
 
@@ -48,27 +82,30 @@ function Header() {
   return (
     <header className={`site-header ${scrolled ? "is-scrolled" : ""}`}>
       <div className="nav-shell">
-        <a className="wordmark" href="#top" aria-label="Traustia home">
+        <a className="wordmark" href="#top" aria-label={copy.accessibility.home}>
           <BrandMark />
           <span>TRAUSTIA</span>
         </a>
-        <button
-          className="menu-toggle"
-          type="button"
-          aria-expanded={menuOpen}
-          aria-controls="primary-navigation"
-          onClick={() => setMenuOpen((open) => !open)}
-        >
-          <span className="sr-only">Toggle navigation</span>
-          <i />
-          <i />
-        </button>
-        <nav id="primary-navigation" className={`primary-nav ${menuOpen ? "is-open" : ""}`} aria-label="Primary navigation">
-          {siteConfig.navigation.map((item) => (
-            <a key={item.href} href={item.href} onClick={() => setMenuOpen(false)}>{item.label}</a>
-          ))}
-          <a className="button button-small" href="#contact" onClick={() => setMenuOpen(false)}>Book a Scoping Call</a>
-        </nav>
+        <div className="header-controls">
+          <nav id="primary-navigation" className={`primary-nav ${menuOpen ? "is-open" : ""}`} aria-label={copy.accessibility.primaryNavigation}>
+            {copy.navigation.map((item) => (
+              <a key={item.href} href={item.href} onClick={() => setMenuOpen(false)}>{item.label}</a>
+            ))}
+            <a className="button button-small" href="#contact" onClick={() => setMenuOpen(false)}>{copy.headerCta}</a>
+          </nav>
+          <LanguageSwitch locale={locale} copy={copy} onChange={onLocaleChange} />
+          <button
+            className="menu-toggle"
+            type="button"
+            aria-expanded={menuOpen}
+            aria-controls="primary-navigation"
+            onClick={() => setMenuOpen((open) => !open)}
+          >
+            <span className="sr-only">{copy.accessibility.menu}</span>
+            <i />
+            <i />
+          </button>
+        </div>
       </div>
     </header>
   );
@@ -175,7 +212,7 @@ function SectionHead({ id, kicker, title }: { id: string; kicker: string; title:
   );
 }
 
-function Hero() {
+function Hero({ copy }: { copy: SiteCopy }) {
   return (
     <section className="hero" id="top">
       <div className="container hero-stage">
@@ -183,59 +220,64 @@ function Hero() {
           <div className="hero-brand">
             <span className="hero-brand-lockup"><BrandMark /><span>TRAUSTIA</span></span>
             <i aria-hidden="true" />
-            <p className="hero-tagline">Evidence you can defend.</p>
+            <p className="hero-tagline">{copy.hero.tagline}</p>
           </div>
-          <p className="eyebrow">SPONSOR-SIDE BIOMEDICAL EVIDENCE VALIDATION</p>
-          <h1><span>Your CRO delivered the report.</span><em>We verify the evidence behind it.</em></h1>
-          <p className="hero-opening">Traustia is an independent review team for biotech sponsors. Before you advance an asset, raise a round, or sign a licensing deal, we check that the outsourced science behind the decision actually holds — study design, data integrity, biomarkers, and models.</p>
+          <p className="eyebrow">{copy.hero.eyebrow}</p>
+          <h1><span>{copy.hero.headline[0]}</span><em>{copy.hero.headline[1]}</em></h1>
+          <p className="hero-opening">{copy.hero.opening}</p>
           <div className="hero-actions">
-            <a className="button button-filled" href="#contact">Book a scoping call</a>
-            <a className="text-link" href="#services">See the four services <span aria-hidden="true">↓</span></a>
+            <a className="button button-filled" href="#contact">{copy.hero.primaryCta}</a>
+            <a className="text-link" href="#services">{copy.hero.secondaryCta} <span aria-hidden="true">↓</span></a>
           </div>
           <div className="hero-meta">
-            <p className="hero-audience">FOR BIOTECH FOUNDERS &amp; CSOs · FINANCING &amp; BD TEAMS · INVESTORS · ACADEMIC SPIN-OFFS</p>
-            <p className="hero-route" aria-label="The four Traustia services: Prepare, Review, Validate, Defend">
-              <span><b>01</b>Prepare</span><i>→</i><span><b>02</b>Review</span><i>→</i><span><b>03</b>Validate</span><i>→</i><span><b>04</b>Defend</span>
+            <p className="hero-audience">{copy.hero.audience}</p>
+            <p className="hero-route" aria-label={copy.hero.routeAria}>
+              {copy.hero.route.map((label, index) => (
+                <span className="route-step" key={label}>
+                  <span><b>{String(index + 1).padStart(2, "0")}</b>{label}</span>
+                  {index < copy.hero.route.length - 1 ? <i aria-hidden="true">→</i> : null}
+                </span>
+              ))}
             </p>
           </div>
         </div>
       </div>
-      <p className="container hero-boundary">Validation services—not clinical operations. Independent only when Traustia did not create the original model.</p>
+      <p className="container hero-boundary">{copy.hero.boundary}</p>
     </section>
   );
 }
 
-function Services({ onSelect }: { onSelect: (title: string) => void }) {
+function Services({ copy, onSelect }: { copy: SiteCopy; onSelect: (id: ServiceId) => void }) {
   return (
     <section className="section services-block" id="services" aria-labelledby="services-title">
       <div className="container">
-        <SectionHead id="services-title" kicker="FOUR SERVICES" title="What we do" />
-        <p className="sec-lead">One review for each moment your evidence is at risk. Every engagement ends with a written record you can put in front of a board, an investor, or a partner.</p>
+        <SectionHead id="services-title" kicker={copy.servicesSection.kicker} title={copy.servicesSection.title} />
+        <p className="sec-lead">{copy.servicesSection.lead}</p>
         <div className="services-grid">
-          {siteConfig.services.map((service) => (
-            <a className="service-panel" key={service.number} href="#contact" onClick={() => onSelect(service.title)}>
+          {copy.services.map((service) => (
+            <a className="service-panel" key={service.id} href="#contact" onClick={() => onSelect(service.id)}>
               <p className="service-meta"><span>{service.number}</span>{service.timing}</p>
               <h3>{service.title}</h3>
               <p className="service-story">{service.story}</p>
-              <p className="service-receive"><span>YOU RECEIVE</span>{service.deliverable}</p>
-              <p className="service-cta">Request this review <span aria-hidden="true">→</span></p>
+              <p className="service-receive"><span>{copy.servicesSection.receive}</span>{service.deliverable}</p>
+              <p className="service-cta">{copy.servicesSection.request} <span aria-hidden="true">→</span></p>
             </a>
           ))}
         </div>
-        <p className="services-note">Validation services — not clinical operations. Independent only when Traustia did not create the original model.</p>
+        <p className="services-note">{copy.servicesSection.note}</p>
       </div>
     </section>
   );
 }
 
-function WhoWeServe() {
+function WhoWeServe({ copy }: { copy: SiteCopy }) {
   return (
     <section className="section audiences" id="who" aria-labelledby="who-title">
       <div className="container">
-        <SectionHead id="who-title" kicker="WHO WE WORK WITH" title="Who we serve" />
-        <p className="sec-lead">If the next board meeting, financing round, or licensing conversation depends on work someone else performed, we work for you.</p>
+        <SectionHead id="who-title" kicker={copy.who.kicker} title={copy.who.title} />
+        <p className="sec-lead">{copy.who.lead}</p>
         <div className="tile-grid">
-          {siteConfig.audiences.map((audience) => (
+          {copy.audiences.map((audience) => (
             <article className="tile" key={audience.title}>
               <h3>{audience.title}</h3>
               <p>{audience.body}</p>
@@ -247,18 +289,17 @@ function WhoWeServe() {
   );
 }
 
-function WhyTraustia() {
+function WhyTraustia({ copy }: { copy: SiteCopy }) {
   return (
     <section className="section why" id="why" aria-labelledby="why-title">
       <div className="container why-grid">
         <div className="why-left">
-          <SectionHead id="why-title" kicker="WHY TRAUSTIA" title="Why sponsors bring us in" />
-          <p className="why-copy">Outsourced work comes back as a polished report. Whether it can carry a high-stakes decision is a different question — and answering it is our entire job.</p>
-          <p className="why-copy">We catch problems while they are still cheap to fix, so you walk into diligence with no surprises, and your board sees go/no-go calls backed by documented, independent review — not by the vendor&rsquo;s own summary of its own work.</p>
-          <a className="button button-filled" href="#contact">Book a scoping call</a>
+          <SectionHead id="why-title" kicker={copy.why.kicker} title={copy.why.title} />
+          {copy.why.paragraphs.map((paragraph) => <p className="why-copy" key={paragraph}>{paragraph}</p>)}
+          <a className="button button-filled" href="#contact">{copy.why.cta}</a>
         </div>
         <div className="why-right">
-          {siteConfig.whyQuestions.map((question) => (
+          {copy.whyQuestions.map((question) => (
             <article className="qa-item" key={question.number}>
               <span className="qa-badge" aria-hidden="true">{question.number}</span>
               <div>
@@ -273,24 +314,26 @@ function WhyTraustia() {
   );
 }
 
-function QuoteBand() {
+function QuoteBand({ locale, copy }: { locale: Locale; copy: SiteCopy }) {
   return (
-    <section className="quote-band" aria-label="The Traustia position">
+    <section className="quote-band" aria-label={copy.quote.ariaLabel}>
       <div className="container">
-        <p className="quote-text">&ldquo;CROs execute. Investors interrogate.<br />Traustia is the check in between — working only for you.&rdquo;</p>
+        <p className="quote-text">
+          {locale === "zh-TW" ? "「" : "“"}{copy.quote.lines[0]}<br />{copy.quote.lines[1]}{locale === "zh-TW" ? "」" : "”"}
+        </p>
       </div>
     </section>
   );
 }
 
-function Outcomes() {
+function Outcomes({ copy }: { copy: SiteCopy }) {
   return (
     <section className="section outcomes" aria-labelledby="outcomes-title">
       <div className="container">
-        <SectionHead id="outcomes-title" kicker="WHAT CHANGES" title="What you get out of it" />
-        <p className="sec-lead">Four ways checked evidence changes the position you decide, raise, and negotiate from.</p>
+        <SectionHead id="outcomes-title" kicker={copy.outcomesSection.kicker} title={copy.outcomesSection.title} />
+        <p className="sec-lead">{copy.outcomesSection.lead}</p>
         <div className="tile-grid">
-          {siteConfig.outcomes.map((outcome) => (
+          {copy.outcomes.map((outcome) => (
             <article className="tile" key={outcome.title}>
               <h3>{outcome.title}</h3>
               <p>{outcome.body}</p>
@@ -302,14 +345,14 @@ function Outcomes() {
   );
 }
 
-function EngagementModels() {
+function EngagementModels({ copy }: { copy: SiteCopy }) {
   return (
     <section className="section engagements" id="independence" aria-labelledby="engagement-title">
       <div className="container">
-        <SectionHead id="engagement-title" kicker="INDEPENDENCE BY DESIGN" title="We never validate our own work" />
-        <p className="sec-lead">Every engagement begins in one of two lanes, and a firewall keeps them apart. That separation is what makes a Traustia validation worth showing to your investors.</p>
+        <SectionHead id="engagement-title" kicker={copy.independence.kicker} title={copy.independence.title} />
+        <p className="sec-lead">{copy.independence.lead}</p>
         <div className="engagement-grid">
-          {siteConfig.engagementModels.map((model) => (
+          {copy.engagementModels.map((model) => (
             <article className="engagement-model" key={model.label}>
               <p>{model.label}</p>
               <h3>{model.title}</h3>
@@ -322,25 +365,25 @@ function EngagementModels() {
             </article>
           ))}
         </div>
-        <p className="firewall-note"><span>THE FIREWALL</span> Work performed in the Development Workspace is ineligible for independent validation by the same team.</p>
+        <p className="firewall-note"><span>{copy.independence.firewallLabel}</span>{copy.independence.firewallNote}</p>
       </div>
     </section>
   );
 }
 
-function CtaBand() {
+function CtaBand({ copy }: { copy: SiteCopy }) {
   return (
-    <section className="cta-band" aria-label="Start a review">
+    <section className="cta-band" aria-label={copy.ctaBand.ariaLabel}>
       <div className="container cta-band-inner">
         <i className="cta-bar" aria-hidden="true" />
-        <p className="cta-title">What decision is in front of you?</p>
-        <a className="button button-inverse" href="#contact">Start the conversation</a>
+        <p className="cta-title">{copy.ctaBand.title}</p>
+        <a className="button button-inverse" href="#contact">{copy.ctaBand.cta}</a>
       </div>
     </section>
   );
 }
 
-function Contact({ selectedService, onServiceChange }: { selectedService: string; onServiceChange: (value: string) => void }) {
+function Contact({ copy, selectedService, onServiceChange }: { copy: SiteCopy; selectedService: ServiceSelection; onServiceChange: (value: ServiceSelection) => void }) {
   const [status, setStatus] = useState<"idle" | "ready">("idle");
 
   const composeInquiry = (event: FormEvent<HTMLFormElement>) => {
@@ -351,16 +394,19 @@ function Contact({ selectedService, onServiceChange }: { selectedService: string
     const name = String(form.get("name") ?? "").trim();
     const email = String(form.get("email") ?? "").trim();
     const organization = String(form.get("organization") ?? "").trim();
-    const service = String(form.get("service") ?? "").trim();
+    const serviceId = String(form.get("service") ?? "").trim() as ServiceSelection;
     const message = String(form.get("message") ?? "").trim();
-    if (!name || !email || !service || !message) return;
+    if (!name || !email || !serviceId || !message) return;
 
-    const subject = encodeURIComponent(`Traustia inquiry — ${service}`);
+    const service = serviceId === "not-sure"
+      ? copy.contact.notSure
+      : copy.services.find((item) => item.id === serviceId)?.title ?? serviceId;
+    const subject = encodeURIComponent(`${copy.contact.subjectPrefix} — ${service}`);
     const body = encodeURIComponent([
-      `Name: ${name}`,
-      `Email: ${email}`,
-      `Organization: ${organization || "Not provided"}`,
-      `Service: ${service}`,
+      `${copy.contact.emailLabels.name}: ${name}`,
+      `${copy.contact.emailLabels.email}: ${email}`,
+      `${copy.contact.emailLabels.organization}: ${organization || copy.contact.emailLabels.notProvided}`,
+      `${copy.contact.emailLabels.service}: ${service}`,
       "",
       message,
     ].join("\n"));
@@ -372,81 +418,126 @@ function Contact({ selectedService, onServiceChange }: { selectedService: string
     <section className="section contact" id="contact" aria-labelledby="contact-title">
       <div className="container contact-grid">
         <div className="contact-heading">
-          <SectionHead id="contact-title" kicker="START WITH THE DECISION" title="Start a review" />
-          <p>A financing round. A licensing conversation. A go/no-go on the lead asset. A CRO contract about to be signed. Tell us the decision and where the evidence stands — we will tell you which review fits, what it covers, and what it would take.</p>
+          <SectionHead id="contact-title" kicker={copy.contact.kicker} title={copy.contact.title} />
+          <p>{copy.contact.body}</p>
         </div>
         <form className="contact-form" onSubmit={composeInquiry}>
           <label>
-            <span>Service</span>
-            <select name="service" required value={selectedService} onChange={(event) => onServiceChange(event.target.value)}>
-              <option value="" disabled>Select a review</option>
-              {siteConfig.services.map((service) => <option key={service.number} value={service.title}>{service.title}</option>)}
-              <option value="Not sure yet">Not sure yet</option>
+            <span>{copy.contact.service}</span>
+            <select name="service" required value={selectedService} onChange={(event) => onServiceChange(event.target.value as ServiceSelection)}>
+              <option value="" disabled>{copy.contact.selectReview}</option>
+              {copy.services.map((service) => <option key={service.id} value={service.id}>{service.title}</option>)}
+              <option value="not-sure">{copy.contact.notSure}</option>
             </select>
           </label>
           <div className="field-pair">
-            <label><span>Name</span><input name="name" autoComplete="name" required /></label>
-            <label><span>Work email</span><input name="email" type="email" autoComplete="email" required /></label>
+            <label><span>{copy.contact.name}</span><input name="name" autoComplete="name" required /></label>
+            <label><span>{copy.contact.workEmail}</span><input name="email" type="email" autoComplete="email" required /></label>
           </div>
-          <label><span>Organization</span><input name="organization" autoComplete="organization" /></label>
+          <label><span>{copy.contact.organization}</span><input name="organization" autoComplete="organization" /></label>
           <label>
-            <span>Decision and evidence question</span>
-            <textarea name="message" rows={5} maxLength={2000} required placeholder="What decision is approaching, and what evidence needs review?" />
+            <span>{copy.contact.decisionQuestion}</span>
+            <textarea name="message" rows={5} maxLength={2000} required placeholder={copy.contact.placeholder} />
           </label>
-          <label className="honeypot" aria-hidden="true">Website<input name="website" tabIndex={-1} autoComplete="off" /></label>
+          <label className="honeypot" aria-hidden="true">{copy.contact.honeypot}<input name="website" tabIndex={-1} autoComplete="off" /></label>
           <div className="form-footer">
-            <small>This prepares an email in your email application. Nothing is stored on this website.</small>
-            <button className="button button-filled" type="submit">Start the conversation <span aria-hidden="true">↗</span></button>
+            <small>{copy.contact.disclaimer}</small>
+            <button className="button button-filled" type="submit">{copy.contact.button} <span aria-hidden="true">↗</span></button>
           </div>
-          {status === "ready" ? <p className="form-status" role="status">Your inquiry has been prepared.</p> : null}
+          {status === "ready" ? <p className="form-status" role="status">{copy.contact.status}</p> : null}
         </form>
       </div>
     </section>
   );
 }
 
-function Footer() {
+function Footer({ copy }: { copy: SiteCopy }) {
   return (
     <footer className="site-footer">
       <div className="container footer-main">
         <div>
-          <a className="wordmark" href="#top" aria-label="Traustia home"><BrandMark /><span>TRAUSTIA</span></a>
-          <p>Evidence you can defend.</p>
+          <a className="wordmark" href="#top" aria-label={copy.accessibility.home}><BrandMark /><span>TRAUSTIA</span></a>
+          <p>{copy.footer.tagline}</p>
         </div>
-        <nav aria-label="Footer navigation">
-          {siteConfig.navigation.map((item) => <a key={item.href} href={item.href}>{item.label}</a>)}
+        <nav aria-label={copy.accessibility.footerNavigation}>
+          {copy.navigation.map((item) => <a key={item.href} href={item.href}>{item.label}</a>)}
         </nav>
       </div>
       <div className="container footer-bottom">
-        <span>© 2026 Traustia. All rights reserved.</span>
-        <span>Validation services—not clinical operations, regulatory certification, or legal advice.</span>
+        <span>{copy.footer.copyright}</span>
+        <span>{copy.footer.disclaimer}</span>
       </div>
     </footer>
   );
 }
 
 export function TraustiaSite() {
-  const [selectedService, setSelectedService] = useState("");
+  const [locale, setLocale] = useState<Locale>("en");
+  const [localeReady, setLocaleReady] = useState(false);
+  const [selectedService, setSelectedService] = useState<ServiceSelection>("");
+  const copy = siteCopy[locale];
+
+  useEffect(() => {
+    const params = new URLSearchParams(window.location.search);
+    const queryLocale = params.get("lang");
+    const savedLocale = window.localStorage.getItem("traustia-locale");
+    const browserLocale = window.navigator.language.toLowerCase().startsWith("zh") ? "zh-TW" : "en";
+    const nextLocale: Locale = queryLocale === "zh-TW" || queryLocale === "zh"
+      ? "zh-TW"
+      : queryLocale === "en"
+        ? "en"
+        : savedLocale === "zh-TW" || savedLocale === "en"
+          ? savedLocale
+          : browserLocale;
+
+    const frame = window.requestAnimationFrame(() => {
+      setLocale(nextLocale);
+      setLocaleReady(true);
+    });
+
+    return () => window.cancelAnimationFrame(frame);
+  }, []);
+
+  useEffect(() => {
+    if (!localeReady) return;
+
+    document.documentElement.lang = locale === "zh-TW" ? "zh-Hant-TW" : "en";
+    document.documentElement.dataset.locale = locale;
+    document.title = locale === "zh-TW"
+      ? "Traustia｜生醫證據驗證"
+      : "Traustia | Biomedical Evidence Validation";
+
+    const description = locale === "zh-TW"
+      ? "Traustia 為生技委託方提供 CRO 就緒度審查、交付成果完整性審查、生物標誌與模型獨立驗證，以及募資／合作證據檔案。"
+      : "Traustia provides sponsor-side CRO readiness and output reviews, independent biomarker and model validation, and evidence dossiers for financing and partnering.";
+    document.querySelector('meta[name="description"]')?.setAttribute("content", description);
+
+    window.localStorage.setItem("traustia-locale", locale);
+    const url = new URL(window.location.href);
+    if (locale === "zh-TW") url.searchParams.set("lang", "zh-TW");
+    else url.searchParams.delete("lang");
+    window.history.replaceState({}, "", `${url.pathname}${url.search}${url.hash}`);
+  }, [locale, localeReady]);
 
   return (
     <>
       <SiteBackground />
       <Particles />
-      <a className="skip-link" href="#main-content">Skip to main content</a>
-      <Header />
+      <a className="skip-link" href="#main-content">{copy.accessibility.skipToMain}</a>
+      <Header locale={locale} copy={copy} onLocaleChange={setLocale} />
       <ScrollBrandRail />
       <main id="main-content">
-        <Hero />
-        <Services onSelect={setSelectedService} />
-        <WhoWeServe />
-        <WhyTraustia />
-        <QuoteBand />
-        <Outcomes />
-        <EngagementModels />
-        <CtaBand />
-        <Contact selectedService={selectedService} onServiceChange={setSelectedService} />
+        <Hero copy={copy} />
+        <Services copy={copy} onSelect={setSelectedService} />
+        <WhoWeServe copy={copy} />
+        <WhyTraustia copy={copy} />
+        <QuoteBand locale={locale} copy={copy} />
+        <Outcomes copy={copy} />
+        <EngagementModels copy={copy} />
+        <CtaBand copy={copy} />
+        <Contact copy={copy} selectedService={selectedService} onServiceChange={setSelectedService} />
       </main>
-      <Footer />
+      <Footer copy={copy} />
     </>
   );
 }
