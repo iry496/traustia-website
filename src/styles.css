@@ -486,7 +486,75 @@ main,
   align-items: center;
 }
 
-.hero-story { max-width: min(1100px, 76vw); }
+.hero-story {
+  position: relative;
+  z-index: 2;
+  max-width: min(1100px, 76vw);
+}
+
+.hero-concept-figure {
+  position: absolute;
+  z-index: 1;
+  top: 43%;
+  right: clamp(-34px, -1.5vw, -12px);
+  width: min(44vw, 660px);
+  aspect-ratio: 3 / 2;
+  margin: 0;
+  transform: translateY(-50%);
+  pointer-events: none;
+}
+
+.hero-concept-figure img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  opacity: .92;
+  mix-blend-mode: lighten;
+  filter: saturate(.86) contrast(1.05) brightness(.92);
+  -webkit-mask-image: radial-gradient(ellipse 72% 56% at 59% 49%, #000 44%, rgba(0, 0, 0, .74) 68%, transparent 100%);
+  mask-image: radial-gradient(ellipse 72% 56% at 59% 49%, #000 44%, rgba(0, 0, 0, .74) 68%, transparent 100%);
+}
+
+.hero-concept-figure figcaption {
+  position: absolute;
+  inset: auto 4% 4% 7%;
+  display: grid;
+  grid-template-columns: 1fr 1.12fr 1.15fr;
+  align-items: center;
+  padding: 9px 12px;
+  background: rgba(3, 13, 22, .7);
+  border: 1px solid rgba(174, 210, 220, .18);
+  backdrop-filter: blur(8px);
+}
+
+.hero-concept-figure figcaption span {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+  min-width: 0;
+}
+
+.hero-concept-figure figcaption b {
+  color: rgba(247, 250, 248, .72);
+  font-family: var(--font-mono);
+  font-size: clamp(8px, .63vw, 11px);
+  font-weight: 550;
+  letter-spacing: .08em;
+  line-height: 1.3;
+  text-transform: uppercase;
+}
+
+.hero-concept-figure figcaption i {
+  padding-right: 8px;
+  color: var(--teal);
+  font-style: normal;
+}
+
+html[data-locale="zh-TW"] .hero-concept-figure figcaption b {
+  letter-spacing: .12em;
+  text-transform: none;
+}
 
 .hero-brand {
   display: flex;
@@ -1051,10 +1119,12 @@ html[data-locale="zh-TW"] .hero-route { text-transform: none; }
   .signal-header { border-right: 0; border-bottom: 1px solid var(--line); }
   .contact-grid { grid-template-columns: 1fr; gap: 54px; }
   .contact-heading { max-width: 720px; }
+  .hero-concept-figure { width: min(47vw, 560px); opacity: .76; }
 }
 
 @media (max-width: 860px) {
   .hero { min-height: auto; padding-top: 104px; }
+  .hero-concept-figure { display: none; }
   .hero-review-photo {
     position: relative;
     inset: auto;

@@ -241,6 +241,18 @@ function Hero({ copy }: { copy: SiteCopy }) {
             </p>
           </div>
         </div>
+        <figure className="hero-concept-figure">
+          {/* eslint-disable-next-line @next/next/no-img-element */}
+          <img src="traustia-evidence-security-engine.webp" alt={copy.hero.conceptAria} />
+          <figcaption aria-hidden="true">
+            {copy.hero.concept.map((label, index) => (
+              <span key={label}>
+                <b>{label}</b>
+                {index < copy.hero.concept.length - 1 ? <i>→</i> : null}
+              </span>
+            ))}
+          </figcaption>
+        </figure>
       </div>
       <div className="hero-review-photo" aria-hidden="true">
         {/* eslint-disable-next-line @next/next/no-img-element */}
