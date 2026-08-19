@@ -568,15 +568,41 @@ html[data-locale="zh-TW"] .hero-concept-figure figcaption b {
 }
 
 .hero h1 {
+  display: grid;
+  gap: clamp(6px, .55vw, 10px);
   margin-bottom: clamp(20px, 1.6vw, 28px);
-  font-size: clamp(38px, 3.8vw, 66px);
-  font-weight: 640;
-  letter-spacing: -.045em;
   text-shadow: 0 3px 34px rgba(3, 11, 19, .62);
 }
 
 .hero h1 span,
 .hero h1 em { display: block; text-wrap: balance; }
+
+.hero h1 span {
+  color: rgba(247, 250, 248, .82);
+  font-size: clamp(28px, 2.55vw, 44px);
+  font-weight: 520;
+  letter-spacing: -.025em;
+  line-height: 1.08;
+}
+
+.hero h1 em {
+  max-width: 16ch;
+  font-size: clamp(48px, 4.35vw, 76px);
+  font-weight: 680;
+  letter-spacing: -.055em;
+  line-height: .98;
+}
+
+html[data-locale="zh-TW"] .hero h1 span {
+  font-size: clamp(30px, 2.6vw, 45px);
+  letter-spacing: .01em;
+}
+
+html[data-locale="zh-TW"] .hero h1 em {
+  max-width: 12em;
+  font-size: clamp(48px, 4.05vw, 70px);
+  letter-spacing: .005em;
+}
 
 .hero-opening {
   max-width: clamp(680px, 46vw, 860px);
@@ -1103,7 +1129,11 @@ html[data-locale="zh-TW"] .hero-route { text-transform: none; }
   .hero-brand > i { height: 30px; }
   .hero-tagline { font-size: 19px; }
   .eyebrow { margin-bottom: 12px; }
-  .hero h1 { margin-bottom: 16px; font-size: clamp(34px, 3.4vw, 56px); }
+  .hero h1 { gap: 6px; margin-bottom: 16px; }
+  .hero h1 span { font-size: clamp(28px, 2.35vw, 40px); }
+  .hero h1 em { font-size: clamp(42px, 3.9vw, 64px); }
+  html[data-locale="zh-TW"] .hero h1 span { font-size: clamp(28px, 2.35vw, 40px); }
+  html[data-locale="zh-TW"] .hero h1 em { font-size: clamp(42px, 3.75vw, 62px); }
   .hero-opening { margin-bottom: 22px; }
   .hero-meta { margin-top: 22px; padding-top: 12px; }
   .hero-boundary { margin-top: 12px; }
@@ -1149,7 +1179,10 @@ html[data-locale="zh-TW"] .hero-route { text-transform: none; }
   .hero-brand-lockup { font-size: 21px; gap: 12px; }
   .hero-brand-lockup .brand-mark { width: 42px; height: 42px; }
   .hero-tagline { font-size: 18px; }
-  .hero h1 { font-size: clamp(36px, 10.4vw, 48px); }
+  .hero h1 span { font-size: clamp(27px, 7.8vw, 34px); }
+  .hero h1 em { max-width: 100%; font-size: clamp(40px, 11vw, 52px); }
+  html[data-locale="zh-TW"] .hero h1 span { font-size: clamp(27px, 7.8vw, 34px); }
+  html[data-locale="zh-TW"] .hero h1 em { max-width: 100%; font-size: clamp(38px, 10.2vw, 48px); }
   .hero-actions { align-items: flex-start; flex-direction: column; gap: 18px; }
   .hero-meta { margin-top: 30px; gap: 14px; }
   .hero-route { flex-wrap: wrap; row-gap: 8px; }
