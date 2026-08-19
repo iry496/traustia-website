@@ -71,6 +71,8 @@ export type SiteCopy = {
     audience: string;
     routeAria: string;
     route: [string, string, string, string];
+    conceptAria: string;
+    concept: [string, string, string];
     boundary: string;
   };
   servicesSection: {
@@ -206,6 +208,8 @@ export const siteCopy: Record<Locale, SiteCopy> = {
       audience: "FOR BIOTECH FOUNDERS & CSOs · FINANCING & BD TEAMS · INVESTORS · ACADEMIC SPIN-OFFS",
       routeAria: "The four Traustia services: Prepare, Review, Validate, Defend",
       route: ["Prepare", "Review", "Validate", "Defend"],
+      conceptAria: "Research evidence passes through independent validation and becomes decision-grade evidence for more defensible business decisions.",
+      concept: ["Research evidence", "Independent validation", "Decision-grade evidence"],
       boundary: "Validation services—not clinical operations. Independent only when Traustia did not create the original model.",
     },
     servicesSection: {
@@ -454,6 +458,8 @@ export const siteCopy: Record<Locale, SiteCopy> = {
       audience: "服務對象：生技創辦人與 CSO · 募資與商務開發團隊 · 投資人 · 學術衍生新創",
       routeAria: "Traustia 的四項服務：準備、審查、驗證、支持主張",
       route: ["準備", "審查", "驗證", "支持主張"],
+      conceptAria: "研究證據經過獨立驗證，形成可支持穩健商業決策的決策級證據。",
+      concept: ["研究證據", "獨立驗證", "決策級證據"],
       boundary: "我們提供驗證服務，不承接臨床營運。只有在 Traustia 未參與原始模型開發時，才能稱為獨立驗證。",
     },
     servicesSection: {
