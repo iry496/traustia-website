@@ -242,6 +242,10 @@ function Hero({ copy }: { copy: SiteCopy }) {
           </div>
         </div>
       </div>
+      <div className="hero-review-photo" aria-hidden="true">
+        {/* eslint-disable-next-line @next/next/no-img-element */}
+        <img src="traustia-independent-evidence-review.webp" alt="" />
+      </div>
       <p className="container hero-boundary">{copy.hero.boundary}</p>
     </section>
   );
