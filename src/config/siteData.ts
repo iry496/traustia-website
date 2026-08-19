@@ -41,6 +41,11 @@ export type Outcome = {
   body: string;
 };
 
+export type EvidenceSource = {
+  label: string;
+  href: string;
+};
+
 export type SiteCopy = {
   language: {
     ariaLabel: string;
@@ -93,6 +98,24 @@ export type SiteCopy = {
   quote: {
     ariaLabel: string;
     lines: [string, string];
+  };
+  signals: {
+    kicker: string;
+    title: string;
+    lead: string;
+    featuredLabel: string;
+    articleTitle: string;
+    articleDek: string;
+    articleMeta: string;
+    openLabel: string;
+    closeLabel: string;
+    paragraphs: string[];
+    pullQuote: string;
+    decisionLabel: string;
+    decisionBody: string;
+    sourcesLabel: string;
+    sources: EvidenceSource[];
+    editorialNote: string;
   };
   outcomesSection: {
     kicker: string;
@@ -168,6 +191,7 @@ export const siteCopy: Record<Locale, SiteCopy> = {
       { label: "Services", href: "#services" },
       { label: "Who we serve", href: "#who" },
       { label: "Why Traustia", href: "#why" },
+      { label: "Evidence Signals", href: "#signals" },
       { label: "Independence", href: "#independence" },
       { label: "Contact", href: "#contact" },
     ],
@@ -279,6 +303,33 @@ export const siteCopy: Record<Locale, SiteCopy> = {
       ariaLabel: "The Traustia position",
       lines: ["CROs execute. Investors interrogate.", "Traustia is the check in between — working only for you."],
     },
+    signals: {
+      kicker: "EVIDENCE SIGNALS",
+      title: "What changed — and what it changes",
+      lead: "We follow scientific, regulatory, and market developments through the question that matters to a decision-maker: does this event change what the evidence can support?",
+      featuredLabel: "FEATURED EVIDENCE BRIEF · BIOLOGICS CMC",
+      articleTitle: "Passing is not sameness: what a manufacturing change reveals about evidence",
+      articleDek: "Two batches can both meet release specifications without proving that the product remained comparable. The same blind spot appears whenever a polished biomedical result is asked to carry a larger decision.",
+      articleMeta: "Traustia Evidence Brief · August 2026 · 6-minute read",
+      openLabel: "Read the full analysis",
+      closeLabel: "Close analysis",
+      paragraphs: [
+        "Consider an illustrative scenario: a monoclonal antibody moves to a new manufacturing site and part of its purification process changes. The pre-change and post-change batches both pass release: purity, potency, aggregates, host-cell proteins, and residual DNA all remain within their approved limits. On the quality table, the transfer looks successful.",
+        "But two acceptable batches do not, by themselves, demonstrate comparability. Release specifications answer whether a batch remains inside a predefined quality boundary. Comparability asks a more consequential question: after the process changed, is there sufficient evidence that any observed differences will not adversely affect quality, safety, or efficacy?",
+        "The distinction matters because a result can pass while the reasons for trusting it have shifted. An impurity profile may be moving, a glycosylation pattern may have changed, an assay may be insensitive to a meaningful functional difference, or the long-term stability trajectory may not yet be known. A specification guards an acceptance boundary. Comparability tests whether the evidence supporting continuity of trust has been preserved.",
+        "The same problem appears outside CMC. A CRO can deliver a biomarker or biomedical AI report whose AUROC clears the target and whose primary analysis is statistically significant. Yet a change in cohort, site, platform, data pipeline, or model can still alter subgroup performance, calibration, feature stability, batch sensitivity, leakage risk, or external generalizability. The metric may pass even when the evidence chain underneath it has weakened.",
+        "Traustia works at that boundary between an acceptable output and a defensible decision. We reconstruct how the result was produced, stress-test the claim, identify what remains uncertain, and state how far the reviewed evidence can responsibly travel. A completed report may begin a decision. It should not automatically end the evidence review.",
+      ],
+      pullQuote: "Passing a test is not the same as preserving trust.",
+      decisionLabel: "THE DECISION LENS",
+      decisionBody: "Before a board, financing, licensing, or go/no-go decision, ask not only whether the result passed. Ask what changed, how the team knows the relevant evidence was preserved, and which uncertainty could still change the decision.",
+      sourcesLabel: "Primary references",
+      sources: [
+        { label: "ICH Q6B — Specifications for biological products", href: "https://www.fda.gov/regulatory-information/search-fda-guidance-documents/q6b-specifications-test-procedures-and-acceptance-criteria-biotechnologicalbiological-products" },
+        { label: "ICH Q5E — Comparability after manufacturing changes", href: "https://www.fda.gov/regulatory-information/search-fda-guidance-documents/q5e-comparability-biotechnologicalbiological-products-subject-changes-their-manufacturing-process" },
+      ],
+      editorialNote: "This illustrative educational analysis is based on cited public sources. It does not assess any named product or company and is not a formal comparability assessment, regulatory determination, or clinical, investment, or legal advice.",
+    },
     outcomesSection: {
       kicker: "WHAT CHANGES",
       title: "What you get out of it",
@@ -388,6 +439,7 @@ export const siteCopy: Record<Locale, SiteCopy> = {
       { label: "服務項目", href: "#services" },
       { label: "服務對象", href: "#who" },
       { label: "為何選擇 Traustia", href: "#why" },
+      { label: "證據訊號", href: "#signals" },
       { label: "獨立性", href: "#independence" },
       { label: "聯絡我們", href: "#contact" },
     ],
@@ -498,6 +550,33 @@ export const siteCopy: Record<Locale, SiteCopy> = {
     quote: {
       ariaLabel: "Traustia 的定位",
       lines: ["CRO 負責執行，投資人負責追問。", "Traustia 是兩者之間、只為您工作的驗證關卡。"],
+    },
+    signals: {
+      kicker: "證據訊號",
+      title: "不只看見變化，更看見它改變了什麼",
+      lead: "我們追蹤科學、監管與市場事件，但不止於摘要新聞。Traustia 關心的是：這件事是否改變了現有證據能夠支持的主張與決策？",
+      featuredLabel: "本期證據解讀 · 生物製劑 CMC",
+      articleTitle: "合格，不代表相同：一個製程變更揭露的證據盲點",
+      articleDek: "兩批產品都通過放行規格，不代表製程改變後的產品已經證明具有可比較性。同一個盲點，也存在於每一份準備承擔重大決策的生醫報告裡。",
+      articleMeta: "Traustia 證據解讀 · 2026 年 8 月 · 閱讀時間約 6 分鐘",
+      openLabel: "閱讀完整分析",
+      closeLabel: "收合分析",
+      paragraphs: [
+        "想像一個示例情境：一項 monoclonal antibody 產品更換了生產廠區，也調整了部分純化流程。變更前後的批次都順利通過放行規格：純度、效價、聚集體、宿主細胞蛋白與殘留 DNA 全部落在核准範圍內。從品質報表上看，這似乎是一場成功的技術轉移。",
+        "但兩批產品都合格，並不等於製程改變後的產品已經證明具有可比較性。放行規格回答的是：這一批產品是否仍在預先設定的品質邊界內？Comparability 要回答的則是另一個更困難的問題：製程改變之後，是否有足夠證據顯示觀察到的差異不會對品質、安全性或療效造成不利影響？",
+        "這個差別之所以重要，是因為結果可以通過，支撐信任的理由卻可能已經改變。雜質分布可能正在偏移，glycosylation pattern 可能發生變化，分析方法可能無法辨識具有意義的功能差異，長期穩定性軌跡也可能尚未建立。規格守住的是最低可接受邊界；comparability 檢查的，則是改變發生後，原本值得相信的理由是否仍然成立。",
+        "同樣的問題也存在於 CMC 之外。CRO 交付的 biomarker 或 biomedical AI 報告可能達到預定的 AUROC，主要分析也具有統計顯著性；但當 cohort、site、platform、資料流程或模型發生改變時，subgroup performance、calibration、feature stability、batch sensitivity、leakage risk 與 external generalizability 都可能隨之改變。數字通過了門檻，並不代表數字背後的證據鏈仍然完整。",
+        "Traustia 工作的位置，正是在『可接受的輸出』與『經得起檢驗的決策』之間。我們重建結果產生的路徑，壓力測試主張，辨識尚未解決的不確定性，並清楚說明現有證據究竟能支持多大的決策。一份完成的報告可以是決策的起點，卻不應自動成為證據審查的終點。",
+      ],
+      pullQuote: "通過測試，不代表信任已經被保留下來。",
+      decisionLabel: "決策視角",
+      decisionBody: "在董事會、募資、授權或資產 go/no-go 之前，不要只問結果是否通過。還要問：什麼發生了改變？團隊如何知道重要證據仍被保留？哪一項尚未解決的不確定性，仍可能改變決策？",
+      sourcesLabel: "主要參考來源",
+      sources: [
+        { label: "ICH Q6B — 生物製劑規格與允收標準", href: "https://www.fda.gov/regulatory-information/search-fda-guidance-documents/q6b-specifications-test-procedures-and-acceptance-criteria-biotechnologicalbiological-products" },
+        { label: "ICH Q5E — 製程變更後的可比較性", href: "https://www.fda.gov/regulatory-information/search-fda-guidance-documents/q5e-comparability-biotechnologicalbiological-products-subject-changes-their-manufacturing-process" },
+      ],
+      editorialNote: "本文為以所列公開來源為基礎的示例性教育分析，不針對任何具名產品或公司，也不構成正式 comparability assessment、監管判定、臨床、投資或法律意見。",
     },
     outcomesSection: {
       kicker: "改變的是什麼",
