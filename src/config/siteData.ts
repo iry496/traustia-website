@@ -94,6 +94,7 @@ export type SiteCopy = {
     kicker: string;
     title: string;
     paragraphs: [string, string];
+    photoAlt: string;
     cta: string;
   };
   whyQuestions: WhyQuestion[];
@@ -284,6 +285,7 @@ export const siteCopy: Record<Locale, SiteCopy> = {
         "Outsourced work comes back as a polished report. Whether it can carry a high-stakes decision is a different question — and answering it is our entire job.",
         "We catch problems while they are still cheap to fix, so you walk into diligence with no surprises, and your board sees go/no-go calls backed by documented, independent review — not by the vendor's own summary of its own work.",
       ],
+      photoAlt: "An independent review team examining biomedical evidence together.",
       cta: "Book a scoping call",
     },
     whyQuestions: [
@@ -534,6 +536,7 @@ export const siteCopy: Record<Locale, SiteCopy> = {
         "委外工作通常以一份精美報告回到您手上。但它是否足以承擔高風險決策，是另一個問題——而回答這個問題，就是我們的工作。",
         "我們在問題仍然容易修正、成本仍低時找出風險，讓您進入盡職調查時沒有意外；董事會看到的 go/no-go 建議，來自有紀錄的獨立審查，而不是供應商對自己工作的摘要。",
       ],
+      photoAlt: "獨立審查團隊共同檢視生醫證據。",
       cta: "預約初步諮詢",
     },
     whyQuestions: [

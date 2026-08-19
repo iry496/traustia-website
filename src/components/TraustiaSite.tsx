@@ -254,10 +254,6 @@ function Hero({ copy }: { copy: SiteCopy }) {
           </figcaption>
         </figure>
       </div>
-      <div className="hero-review-photo" aria-hidden="true">
-        {/* eslint-disable-next-line @next/next/no-img-element */}
-        <img src="traustia-independent-evidence-review-b.webp" alt="" />
-      </div>
       <p className="container hero-boundary">{copy.hero.boundary}</p>
     </section>
   );
@@ -312,6 +308,10 @@ function WhyTraustia({ copy }: { copy: SiteCopy }) {
         <div className="why-left">
           <SectionHead id="why-title" kicker={copy.why.kicker} title={copy.why.title} />
           {copy.why.paragraphs.map((paragraph) => <p className="why-copy" key={paragraph}>{paragraph}</p>)}
+          <figure className="why-review-photo">
+            {/* eslint-disable-next-line @next/next/no-img-element */}
+            <img src="traustia-independent-evidence-review-b.webp" alt={copy.why.photoAlt} />
+          </figure>
           <a className="button button-filled" href="#contact">{copy.why.cta}</a>
         </div>
         <div className="why-right">
