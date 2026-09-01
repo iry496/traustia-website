@@ -1,0 +1,14 @@
+BEGIN:VCARD
+VERSION:3.0
+N:Yang;Iris;;;
+FN:Iris Yang
+ORG:Traustia
+TITLE:Founder & CEO
+ROLE:Biomedical Evidence Validation
+EMAIL;TYPE=INTERNET,WORK:irisyang@traustia.com
+URL;TYPE=WORK:https://traustia.com/
+URL;TYPE=PROFILE:https://www.linkedin.com/in/irisyyang
+URL;TYPE=HOME:https://iry496.github.io/
+NOTE:Founder & CEO of Traustia. Doctor of Technology Candidate at Purdue University. Evidence you can defend.
+REV:20260901T000000Z
+END:VCARD

@@ -46,7 +46,7 @@ function siteMetadata(): Plugin {
         this.emitFile({
           type: "asset",
           fileName: "sitemap.xml",
-          source: `<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n  <url>\n    <loc>${canonical}</loc>\n    <lastmod>2026-08-06</lastmod>\n  </url>\n</urlset>\n`,
+          source: `<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n  <url>\n    <loc>${canonical}</loc>\n    <lastmod>2026-09-01</lastmod>\n  </url>\n  <url>\n    <loc>${new URL("iris/", canonical)}</loc>\n    <lastmod>2026-09-01</lastmod>\n  </url>\n</urlset>\n`,
         });
       }
     },

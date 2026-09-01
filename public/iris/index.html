@@ -1,0 +1,395 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#06121e">
+  <title>Iris Yang | Founder &amp; CEO, Traustia</title>
+  <meta name="description" content="Connect with Iris Yang, Founder & CEO of Traustia and Doctor of Technology candidate at Purdue University.">
+  <link rel="canonical" href="https://traustia.com/iris/">
+  <link rel="icon" href="../favicon.svg" type="image/svg+xml">
+  <meta property="og:type" content="profile">
+  <meta property="og:title" content="Iris Yang | Founder & CEO, Traustia">
+  <meta property="og:description" content="Independent biomedical evidence validation. Evidence you can defend.">
+  <meta property="og:url" content="https://traustia.com/iris/">
+  <meta property="og:image" content="https://traustia.com/iris/iris-yang.jpg">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Iris Yang | Founder & CEO, Traustia">
+  <meta name="twitter:description" content="Independent biomedical evidence validation. Evidence you can defend.">
+  <meta name="twitter:image" content="https://traustia.com/iris/iris-yang.jpg">
+  <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "Person",
+      "name": "Iris Yang",
+      "jobTitle": "Founder & CEO",
+      "email": "mailto:irisyang@traustia.com",
+      "url": "https://traustia.com/iris/",
+      "image": "https://traustia.com/iris/iris-yang.jpg",
+      "worksFor": { "@type": "Organization", "name": "Traustia", "url": "https://traustia.com/" },
+      "affiliation": { "@type": "CollegeOrUniversity", "name": "Purdue University" },
+      "sameAs": [
+        "https://www.linkedin.com/in/irisyyang",
+        "https://iry496.github.io/",
+        "https://github.com/iry496"
+      ]
+    }
+  </script>
+  <style>
+    :root {
+      --navy: #06121e;
+      --navy-soft: #0b1e2e;
+      --paper: #f7faf8;
+      --muted: #a7b7bf;
+      --teal: #35c5b4;
+      --blue: #5f82ff;
+      --line: rgba(174, 210, 220, .2);
+      color-scheme: dark;
+      font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+    }
+    * { box-sizing: border-box; }
+    html { min-height: 100%; background: var(--navy); }
+    body {
+      min-height: 100vh;
+      margin: 0;
+      color: var(--paper);
+      background:
+        radial-gradient(circle at 12% 12%, rgba(53, 197, 180, .15), transparent 28rem),
+        radial-gradient(circle at 90% 82%, rgba(95, 130, 255, .12), transparent 32rem),
+        linear-gradient(150deg, #020912 0%, var(--navy) 50%, #081a28 100%);
+    }
+    body::before {
+      content: "";
+      position: fixed;
+      inset: 0;
+      pointer-events: none;
+      opacity: .3;
+      background-image:
+        linear-gradient(rgba(255,255,255,.025) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255,255,255,.025) 1px, transparent 1px);
+      background-size: 38px 38px;
+      mask-image: linear-gradient(to bottom, black, transparent 85%);
+    }
+    a, button { -webkit-tap-highlight-color: transparent; }
+    button { font: inherit; }
+    .shell {
+      position: relative;
+      width: min(100% - 28px, 1040px);
+      margin: 0 auto;
+      padding: 24px 0 42px;
+    }
+    .topbar {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 18px;
+    }
+    .brand {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      color: var(--paper);
+      text-decoration: none;
+      font-size: 14px;
+      font-weight: 750;
+      letter-spacing: .15em;
+    }
+    .brand img { width: 28px; height: 28px; }
+    .language {
+      border: 1px solid var(--line);
+      border-radius: 999px;
+      padding: 7px 12px;
+      color: var(--muted);
+      background: rgba(255,255,255,.035);
+      cursor: pointer;
+    }
+    .card {
+      overflow: hidden;
+      border: 1px solid var(--line);
+      border-radius: 30px;
+      background: linear-gradient(155deg, rgba(16, 42, 59, .92), rgba(5, 18, 30, .94));
+      box-shadow: 0 34px 90px rgba(0, 0, 0, .38);
+      backdrop-filter: blur(18px);
+    }
+    .identity {
+      display: grid;
+      grid-template-columns: minmax(0, 1.2fr) minmax(270px, .8fr);
+      gap: clamp(28px, 6vw, 78px);
+      align-items: center;
+      padding: clamp(30px, 6vw, 72px);
+    }
+    .eyebrow {
+      margin: 0 0 18px;
+      color: var(--teal);
+      font-size: 12px;
+      font-weight: 750;
+      letter-spacing: .18em;
+      text-transform: uppercase;
+    }
+    h1 {
+      margin: 0;
+      font-family: Georgia, "Times New Roman", serif;
+      font-size: clamp(48px, 8vw, 84px);
+      font-weight: 500;
+      letter-spacing: -.055em;
+      line-height: .94;
+    }
+    .title {
+      margin: 20px 0 0;
+      color: var(--paper);
+      font-size: clamp(18px, 2.4vw, 25px);
+      font-weight: 650;
+      letter-spacing: -.025em;
+    }
+    .affiliation {
+      margin: 5px 0 0;
+      color: var(--muted);
+      font-size: 15px;
+    }
+    .promise {
+      max-width: 580px;
+      margin: 25px 0 0;
+      color: #d2dddf;
+      font-size: clamp(17px, 2vw, 20px);
+      line-height: 1.6;
+    }
+    .promise strong { color: var(--teal); font-weight: 700; }
+    .portrait-wrap {
+      position: relative;
+      width: min(100%, 330px);
+      justify-self: end;
+    }
+    .portrait-wrap::before {
+      content: "";
+      position: absolute;
+      inset: -9px;
+      border: 1px solid rgba(53, 197, 180, .38);
+      border-radius: 27px;
+      transform: rotate(2.5deg);
+    }
+    .portrait {
+      position: relative;
+      width: 100%;
+      aspect-ratio: .83;
+      object-fit: cover;
+      object-position: center top;
+      border-radius: 22px;
+      box-shadow: 0 25px 70px rgba(0,0,0,.42);
+    }
+    .actions {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 11px;
+      margin-top: 30px;
+    }
+    .action {
+      min-height: 50px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 9px;
+      border: 1px solid var(--line);
+      border-radius: 13px;
+      padding: 12px 14px;
+      color: var(--paper);
+      background: rgba(255,255,255,.035);
+      text-decoration: none;
+      text-align: center;
+      font-size: 13px;
+      font-weight: 700;
+      cursor: pointer;
+      transition: transform .16s ease, border-color .16s ease, background .16s ease;
+    }
+    .action:hover, .action:focus-visible { transform: translateY(-2px); border-color: var(--teal); }
+    .action-primary {
+      grid-column: span 2;
+      color: #041217;
+      border-color: transparent;
+      background: linear-gradient(135deg, var(--teal), #70e3d4);
+    }
+    .action-primary:hover, .action-primary:focus-visible { border-color: transparent; }
+    .action svg { width: 17px; height: 17px; fill: currentColor; flex: 0 0 auto; }
+    .connect {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) auto;
+      gap: 30px;
+      align-items: center;
+      border-top: 1px solid var(--line);
+      padding: 28px clamp(30px, 6vw, 72px);
+      background: rgba(2, 10, 18, .35);
+    }
+    .connect h2 {
+      margin: 0 0 9px;
+      font-family: Georgia, "Times New Roman", serif;
+      font-size: clamp(24px, 3.3vw, 36px);
+      font-weight: 500;
+      letter-spacing: -.035em;
+    }
+    .connect p { max-width: 600px; margin: 0; color: var(--muted); line-height: 1.6; }
+    .qr {
+      width: 150px;
+      padding: 10px;
+      border-radius: 16px;
+      background: white;
+      box-shadow: 0 12px 40px rgba(0,0,0,.3);
+    }
+    .qr img { display: block; width: 100%; height: auto; }
+    .footer {
+      display: flex;
+      justify-content: space-between;
+      gap: 18px;
+      padding: 18px 4px 0;
+      color: #70838d;
+      font-size: 12px;
+    }
+    .footer a { color: inherit; }
+    .toast {
+      position: fixed;
+      left: 50%;
+      bottom: 24px;
+      z-index: 20;
+      transform: translate(-50%, 150%);
+      opacity: 0;
+      border-radius: 999px;
+      padding: 10px 17px;
+      color: var(--navy);
+      background: var(--teal);
+      font-size: 13px;
+      font-weight: 750;
+      transition: transform .2s ease, opacity .2s ease;
+    }
+    .toast.show { transform: translate(-50%, 0); opacity: 1; }
+    :focus-visible { outline: 2px solid var(--teal); outline-offset: 3px; }
+    @media (max-width: 760px) {
+      .shell { width: min(100% - 20px, 560px); padding-top: 14px; }
+      .card { border-radius: 24px; }
+      .identity { grid-template-columns: 1fr; padding: 28px 22px 26px; }
+      .portrait-wrap { width: min(62vw, 270px); justify-self: center; grid-row: 1; }
+      .copy { grid-row: 2; text-align: center; }
+      h1 { font-size: clamp(50px, 15vw, 72px); }
+      .promise { margin-inline: auto; }
+      .actions { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+      .action-primary { grid-column: span 2; }
+      .connect { grid-template-columns: 1fr; justify-items: center; text-align: center; padding: 26px 22px 30px; }
+      .qr { width: 178px; }
+      .footer { flex-direction: column; align-items: center; text-align: center; }
+    }
+    @media (max-width: 390px) {
+      .actions { grid-template-columns: 1fr; }
+      .action-primary { grid-column: span 1; }
+    }
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after { scroll-behavior: auto !important; transition: none !important; }
+    }
+  </style>
+</head>
+<body>
+  <main class="shell">
+    <div class="topbar">
+      <a class="brand" href="../" aria-label="Traustia home">
+        <img src="../brand/traustia-evidence-disc.svg" alt="">
+        <span>TRAUSTIA</span>
+      </a>
+      <button class="language" id="language" type="button" aria-label="Switch language">繁中</button>
+    </div>
+
+    <article class="card">
+      <section class="identity">
+        <div class="copy">
+          <p class="eyebrow" data-en="Biomedical evidence validation" data-zh="生醫證據驗證">Biomedical evidence validation</p>
+          <h1>Iris Yang</h1>
+          <p class="title" data-en="Founder &amp; CEO, Traustia" data-zh="Traustia 創辦人暨執行長">Founder &amp; CEO, Traustia</p>
+          <p class="affiliation" data-en="Doctor of Technology Candidate · Purdue University" data-zh="普渡大學科技博士候選人">Doctor of Technology Candidate · Purdue University</p>
+          <p class="promise" data-en="Independent review for biotech decisions — from study design and data integrity to biomarkers and models. <strong>Evidence you can defend.</strong>" data-zh="為生技決策提供獨立審查，涵蓋研究設計、資料完整性、生物標記與模型。<strong>讓證據經得起檢驗。</strong>">Independent review for biotech decisions — from study design and data integrity to biomarkers and models. <strong>Evidence you can defend.</strong></p>
+
+          <div class="actions" aria-label="Contact and profile links">
+            <a class="action action-primary" href="iris-yang.vcf" download>
+              <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2a5 5 0 1 1 0 10 5 5 0 0 1 0-10Zm-8 19a8 8 0 0 1 16 0v1H4v-1Zm15-12V6h2v3h3v2h-3v3h-2v-3h-3V9h3Z"/></svg>
+              <span data-en="Save my contact" data-zh="加入聯絡人">Save my contact</span>
+            </a>
+            <button class="action" id="share" type="button">
+              <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M18 16a3 3 0 0 0-2.2.96l-7.1-4.14a3.1 3.1 0 0 0 0-1.64l7.1-4.14A3 3 0 1 0 15 5c0 .28.04.54.1.8L8 9.94a3 3 0 1 0 0 4.12l7.1 4.14A3 3 0 1 0 18 16Z"/></svg>
+              <span data-en="Share" data-zh="分享">Share</span>
+            </button>
+            <a class="action" href="mailto:irisyang@traustia.com">
+              <span data-en="Email" data-zh="電子郵件">Email</span>
+            </a>
+            <a class="action" href="https://www.linkedin.com/in/irisyyang" target="_blank" rel="noopener">
+              <span>LinkedIn</span>
+            </a>
+            <a class="action" href="../">
+              <span data-en="Traustia" data-zh="Traustia 官網">Traustia</span>
+            </a>
+            <a class="action" href="https://iry496.github.io/" target="_blank" rel="noopener">
+              <span data-en="Full profile" data-zh="完整個人網站">Full profile</span>
+            </a>
+          </div>
+        </div>
+
+        <div class="portrait-wrap">
+          <img class="portrait" src="iris-yang.jpg" alt="Portrait of Iris Yang" width="760" height="915">
+        </div>
+      </section>
+
+      <section class="connect">
+        <div>
+          <h2 data-en="Let’s stay connected." data-zh="保持聯繫。">Let’s stay connected.</h2>
+          <p data-en="Scan this permanent QR code to reopen the card, save my contact details, or share it with a colleague." data-zh="掃描這個永久 QR code，即可再次開啟名片、儲存聯絡資料，或分享給同事。">Scan this permanent QR code to reopen the card, save my contact details, or share it with a colleague.</p>
+        </div>
+        <a class="qr" href="https://traustia.com/iris/" aria-label="Open Iris Yang digital card">
+          <img src="iris-yang-qr.png" alt="QR code for https://traustia.com/iris/" width="512" height="512">
+        </a>
+      </section>
+    </article>
+
+    <footer class="footer">
+      <span>© 2026 Traustia</span>
+      <a href="mailto:irisyang@traustia.com">irisyang@traustia.com</a>
+    </footer>
+  </main>
+
+  <div class="toast" id="toast" role="status" aria-live="polite">Link copied</div>
+  <script>
+    const languageButton = document.getElementById("language");
+    const shareButton = document.getElementById("share");
+    const toast = document.getElementById("toast");
+    const localizable = document.querySelectorAll("[data-en][data-zh]");
+    let locale = navigator.language.toLowerCase().startsWith("zh") ? "zh" : "en";
+
+    function applyLocale() {
+      document.documentElement.lang = locale === "zh" ? "zh-Hant" : "en";
+      localizable.forEach((element) => {
+        element.innerHTML = element.dataset[locale];
+      });
+      languageButton.textContent = locale === "zh" ? "EN" : "繁中";
+    }
+
+    function showToast(message) {
+      toast.textContent = message;
+      toast.classList.add("show");
+      window.setTimeout(() => toast.classList.remove("show"), 1800);
+    }
+
+    languageButton.addEventListener("click", () => {
+      locale = locale === "zh" ? "en" : "zh";
+      applyLocale();
+    });
+
+    shareButton.addEventListener("click", async () => {
+      const shareData = {
+        title: "Iris Yang | Traustia",
+        text: locale === "zh" ? "Iris Yang 的電子名片" : "Iris Yang’s digital business card",
+        url: "https://traustia.com/iris/"
+      };
+      if (navigator.share) {
+        try { await navigator.share(shareData); } catch (error) { /* The visitor may cancel. */ }
+      } else {
+        await navigator.clipboard.writeText(shareData.url);
+        showToast(locale === "zh" ? "連結已複製" : "Link copied");
+      }
+    });
+
+    applyLocale();
+  </script>
+</body>
+</html>

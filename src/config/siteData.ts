@@ -166,6 +166,7 @@ export type SiteCopy = {
   };
   footer: {
     tagline: string;
+    profileLabel: string;
     copyright: string;
     disclaimer: string;
   };
@@ -424,6 +425,7 @@ export const siteCopy: Record<Locale, SiteCopy> = {
     },
     footer: {
       tagline: "Evidence you can defend.",
+      profileLabel: "Founder profile",
       copyright: "© 2026 Traustia. All rights reserved.",
       disclaimer: "Validation services—not clinical operations, regulatory certification, or legal advice.",
     },
@@ -675,6 +677,7 @@ export const siteCopy: Record<Locale, SiteCopy> = {
     },
     footer: {
       tagline: "經得起檢驗的證據。",
+      profileLabel: "創辦人名片",
       copyright: "© 2026 Traustia。保留所有權利。",
       disclaimer: "本公司提供驗證服務，不提供臨床營運、監管認證或法律意見。",
     },
