@@ -522,6 +522,7 @@ function Footer({ copy }: { copy: SiteCopy }) {
         </div>
         <nav aria-label={copy.accessibility.footerNavigation}>
           {copy.navigation.map((item) => <a key={item.href} href={item.href}>{item.label}</a>)}
+          <a href="/iris/">{copy.footer.profileLabel}</a>
         </nav>
       </div>
       <div className="container footer-bottom">
