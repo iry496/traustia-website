@@ -28,6 +28,7 @@
       "image": "https://traustia.com/iris/iris-yang.jpg",
       "worksFor": { "@type": "Organization", "name": "Traustia", "url": "https://traustia.com/" },
       "affiliation": { "@type": "CollegeOrUniversity", "name": "Purdue University" },
+      "alumniOf": { "@type": "CollegeOrUniversity", "name": "Harvard University" },
       "sameAs": [
         "https://www.linkedin.com/in/irisyyang",
         "https://iry496.github.io/",
@@ -145,7 +146,9 @@
       margin: 5px 0 0;
       color: var(--muted);
       font-size: 15px;
+      line-height: 1.55;
     }
+    .affiliation span { display: block; }
     .promise {
       max-width: 580px;
       margin: 25px 0 0;
@@ -162,13 +165,15 @@
     .portrait-wrap::before {
       content: "";
       position: absolute;
-      inset: -9px;
+      inset: -8px;
       border: 1px solid rgba(53, 197, 180, .38);
-      border-radius: 27px;
-      transform: rotate(2.5deg);
+      border-radius: 30px;
+      box-sizing: border-box;
+      pointer-events: none;
     }
     .portrait {
       position: relative;
+      display: block;
       width: 100%;
       aspect-ratio: .83;
       object-fit: cover;
@@ -299,7 +304,7 @@
           <p class="eyebrow" data-en="Biomedical evidence validation" data-zh="生醫證據驗證">Biomedical evidence validation</p>
           <h1>Iris Yang</h1>
           <p class="title" data-en="Founder &amp; CEO, Traustia" data-zh="Traustia 創辦人暨執行長">Founder &amp; CEO, Traustia</p>
-          <p class="affiliation" data-en="Doctor of Technology Candidate · Purdue University" data-zh="普渡大學科技博士候選人">Doctor of Technology Candidate · Purdue University</p>
+          <p class="affiliation" data-en="<span>Doctor of Technology Candidate · Purdue University</span><span>ALM, Data Science · Harvard University</span><span>Adjunct Professor, Math &amp; IS · Cal State LA</span>" data-zh="<span>普渡大學科技博士候選人</span><span>哈佛大學資料科學 ALM</span><span>Cal State LA 數學與資訊系統兼任教授</span>"><span>Doctor of Technology Candidate · Purdue University</span><span>ALM, Data Science · Harvard University</span><span>Adjunct Professor, Math &amp; IS · Cal State LA</span></p>
           <p class="promise" data-en="Independent review for biotech decisions — from study design and data integrity to biomarkers and models. <strong>Evidence you can defend.</strong>" data-zh="為生技決策提供獨立審查，涵蓋研究設計、資料完整性、生物標記與模型。<strong>讓證據經得起檢驗。</strong>">Independent review for biotech decisions — from study design and data integrity to biomarkers and models. <strong>Evidence you can defend.</strong></p>
 
           <div class="actions" aria-label="Contact and profile links">
