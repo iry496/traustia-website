@@ -160,6 +160,7 @@
     .portrait-wrap {
       position: relative;
       width: min(100%, 310px);
+      aspect-ratio: 1.08;
       justify-self: end;
     }
     .portrait-wrap::before {
@@ -175,9 +176,9 @@
       position: relative;
       display: block;
       width: 100%;
-      aspect-ratio: 1;
+      height: 100%;
       object-fit: cover;
-      object-position: center 12%;
+      object-position: center top;
       border-radius: 22px;
       box-shadow: 0 25px 70px rgba(0,0,0,.42);
     }
