@@ -9,7 +9,9 @@
 - **Screen performed by:** Codex, using the Traustia internal checklist
 - **Decision owner:** Iris
 - **Iris final approval:** Explicitly approved for publication in this task on 2026-09-07
-- **Publication state:** Approved; deployment record to be completed after release
+- **Publication state:** Published publicly on `traustia.com` and the Traustia Sites mirror on 2026-09-07
+- **Canonical production URL:** https://traustia.com/?lang=zh-TW#signals
+- **Sites mirror:** https://traustia-evidence.irisyang886.chatgpt.site/?lang=zh-TW#signals
 - **Screen result:** **Green — internally screened; not legal advice or a guarantee of zero risk**
 
 ## Source and claim map
@@ -38,3 +40,8 @@ The article explicitly characterizes this as a transparency signal rather than g
 
 This result applies only to the reviewed text and no-asset presentation. It must be re-screened if a named device or company is evaluated, a third-party asset or quotation is added, FDA's update is described as guidance or a requirement, or a performance, approval, health, financial, or legal claim is introduced.
 
+## Release record
+
+- Released after successful type checking, production builds, lint, and live-title verification.
+- GitHub publication: PR #26, merged 2026-09-07.
+- Sites publication: version 28, deployed 2026-09-07.
