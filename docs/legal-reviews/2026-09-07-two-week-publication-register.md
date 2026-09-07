@@ -24,5 +24,12 @@
 - No named product evaluation, treatment advice, investment recommendation, legal conclusion, regulator endorsement, or promise of Traustia results.
 - Article-level scope limitations appear beside each Brief; the footer is not relied upon to cure a claim.
 - Links, dates, data counts, bilingual equivalence, and accessibility of the disclosure copy are included in prepublication QA.
-- Iris explicitly directed publication in this task. Final deployment details are to be appended after release.
+- Iris explicitly directed publication in this task.
 
+## Release record
+
+- **Published:** 2026-09-07
+- **Canonical production:** https://traustia.com/?lang=zh-TW#signals
+- **Sites mirror:** https://traustia-evidence.irisyang886.chatgpt.site/?lang=zh-TW#signals
+- **GitHub:** PR #26 merged; the production Pages workflow completed successfully.
+- **Sites:** version 28 deployed successfully.
