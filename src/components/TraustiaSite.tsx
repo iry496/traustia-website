@@ -343,45 +343,65 @@ function QuoteBand({ locale, copy }: { locale: Locale; copy: SiteCopy }) {
 }
 
 function EvidenceSignals({ copy }: { copy: SiteCopy }) {
+  const briefs = [
+    ...copy.signals.briefs,
+    {
+      id: "cmc-comparability",
+      featuredLabel: copy.signals.featuredLabel,
+      articleTitle: copy.signals.articleTitle,
+      articleDek: copy.signals.articleDek,
+      articleMeta: copy.signals.articleMeta,
+      paragraphs: copy.signals.paragraphs,
+      pullQuote: copy.signals.pullQuote,
+      decisionBody: copy.signals.decisionBody,
+      sources: copy.signals.sources,
+      editorialNote: copy.signals.editorialNote,
+    },
+  ];
+
   return (
     <section className="section evidence-signals" id="signals" aria-labelledby="signals-title">
       <div className="container">
         <SectionHead id="signals-title" kicker={copy.signals.kicker} title={copy.signals.title} />
         <p className="sec-lead">{copy.signals.lead}</p>
-        <article className="signal-feature">
-          <header className="signal-header">
-            <p className="signal-label">{copy.signals.featuredLabel}</p>
-            <h3>{copy.signals.articleTitle}</h3>
-            <p className="signal-dek">{copy.signals.articleDek}</p>
-            <p className="signal-meta">{copy.signals.articleMeta}</p>
-          </header>
-          <details className="signal-details">
-            <summary>
-              <span className="signal-open-label">{copy.signals.openLabel}</span>
-              <span className="signal-close-label">{copy.signals.closeLabel}</span>
-              <i aria-hidden="true">↓</i>
-            </summary>
-            <div className="signal-article-body">
-              {copy.signals.paragraphs.map((paragraph) => <p key={paragraph}>{paragraph}</p>)}
-              <blockquote>{copy.signals.pullQuote}</blockquote>
-              <aside className="signal-decision">
-                <span>{copy.signals.decisionLabel}</span>
-                <p>{copy.signals.decisionBody}</p>
-              </aside>
-              <div className="signal-sources">
-                <p>{copy.signals.sourcesLabel}</p>
-                <ul>
-                  {copy.signals.sources.map((source) => (
-                    <li key={source.href}>
-                      <a href={source.href} target="_blank" rel="noreferrer">{source.label} <span aria-hidden="true">↗</span></a>
-                    </li>
-                  ))}
-                </ul>
-              </div>
-            </div>
-          </details>
-          <p className="signal-editorial-note">{copy.signals.editorialNote}</p>
-        </article>
+        <div className="signal-list">
+          {briefs.map((brief) => (
+            <article className="signal-feature" key={brief.id}>
+              <header className="signal-header">
+                <p className="signal-label">{brief.featuredLabel}</p>
+                <h3>{brief.articleTitle}</h3>
+                <p className="signal-dek">{brief.articleDek}</p>
+                <p className="signal-meta">{brief.articleMeta}</p>
+              </header>
+              <details className="signal-details">
+                <summary>
+                  <span className="signal-open-label">{copy.signals.openLabel}</span>
+                  <span className="signal-close-label">{copy.signals.closeLabel}</span>
+                  <i aria-hidden="true">↓</i>
+                </summary>
+                <div className="signal-article-body">
+                  {brief.paragraphs.map((paragraph) => <p key={paragraph}>{paragraph}</p>)}
+                  <blockquote>{brief.pullQuote}</blockquote>
+                  <aside className="signal-decision">
+                    <span>{copy.signals.decisionLabel}</span>
+                    <p>{brief.decisionBody}</p>
+                  </aside>
+                  <div className="signal-sources">
+                    <p>{copy.signals.sourcesLabel}</p>
+                    <ul>
+                      {brief.sources.map((source) => (
+                        <li key={source.href}>
+                          <a href={source.href} target="_blank" rel="noreferrer">{source.label} <span aria-hidden="true">↗</span></a>
+                        </li>
+                      ))}
+                    </ul>
+                  </div>
+                </div>
+              </details>
+              <p className="signal-editorial-note">{brief.editorialNote}</p>
+            </article>
+          ))}
+        </div>
       </div>
     </section>
   );

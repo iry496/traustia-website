@@ -46,6 +46,19 @@ export type EvidenceSource = {
   href: string;
 };
 
+export type EvidenceBrief = {
+  id: string;
+  featuredLabel: string;
+  articleTitle: string;
+  articleDek: string;
+  articleMeta: string;
+  paragraphs: string[];
+  pullQuote: string;
+  decisionBody: string;
+  sources: EvidenceSource[];
+  editorialNote: string;
+};
+
 export type SiteCopy = {
   language: {
     ariaLabel: string;
@@ -106,6 +119,7 @@ export type SiteCopy = {
     kicker: string;
     title: string;
     lead: string;
+    briefs: EvidenceBrief[];
     featuredLabel: string;
     articleTitle: string;
     articleDek: string;
@@ -314,6 +328,50 @@ export const siteCopy: Record<Locale, SiteCopy> = {
       kicker: "EVIDENCE SIGNALS",
       title: "What changed — and what it changes",
       lead: "We follow scientific, regulatory, and market developments through the question that matters to a decision-maker: does this event change what the evidence can support?",
+      briefs: [
+        {
+          id: "foundation-model-traceability",
+          featuredLabel: "NEW EVIDENCE BRIEF · AI TRACEABILITY",
+          articleTitle: "If the foundation model changes, what exactly has been validated?",
+          articleDek: "A September 4 FDA page update points to a basic transparency problem: before evidence can support an AI-enabled medical device, the evaluated system must be identifiable.",
+          articleMeta: "Traustia Evidence Brief · September 2026 · 5-minute read",
+          paragraphs: [
+            "On September 4, 2026, the FDA listed an update to its AI-Enabled Medical Devices page. The page says the agency will explore methods to identify and tag devices that incorporate foundation models, from large language models to multimodal architectures, and encourages sponsors to include suitable information in public summaries. This is a transparency signal, not a new guidance or a new regulatory requirement.",
+            "The practical issue reaches beyond a database label. A foundation-model system is not one stable object. Its behaviour can depend on the model provider and version, fine-tuning, system instructions, retrieval sources, guardrails, interfaces, and local configuration. A product name can remain unchanged while the evidence-relevant system underneath it changes.",
+            "That creates a difficult gap between validation and deployment. A study may be methodologically sound for the version that was tested, yet become a weak basis for the version now in use. Without a traceable model identity and change history, teams cannot tell whether an earlier result still applies, which change triggered new uncertainty, or when revalidation became necessary.",
+            "A defensible evidence record therefore needs more than an accuracy result. It should connect the exact model and build to the intended use, data provenance, independent evaluation set, failure modes, subgroup and site performance, change log, and predefined revalidation triggers. The goal is not paperwork for its own sake; it is continuity between the claim, the evaluated object, and the deployed object.",
+            "For a sponsor, investor, or licensing team, the diligence question becomes concrete: which exact system produced the reported performance, under which conditions, and what subsequent change could invalidate the claim? If the evaluated object cannot be reconstructed, the evidence may be impressive but difficult to defend.",
+          ],
+          pullQuote: "A model cannot be validated if the evaluated object cannot be identified.",
+          decisionBody: "Before adopting, financing, or licensing an AI-enabled product, require a versioned evidence lineage: model identity, configuration, data and evaluation provenance, change history, and explicit revalidation triggers.",
+          sources: [
+            { label: "FDA — Artificial Intelligence-Enabled Medical Devices", href: "https://www.fda.gov/medical-devices/software-medical-device-samd/artificial-intelligence-enabled-medical-devices" },
+            { label: "FDA CDRH New — September 4, 2026 update record", href: "https://www.fda.gov/medical-devices/medical-devices-news-and-events/cdrh-new-news-and-updates" },
+          ],
+          editorialNote: "This original educational analysis is based on the cited public FDA pages. It does not characterize the page update as guidance or a binding requirement, assess any named device or company, or provide medical, regulatory, investment, or legal advice.",
+        },
+        {
+          id: "catalina-independent-validation",
+          featuredLabel: "NEW EVIDENCE BRIEF · AI BIOMARKER VALIDATION",
+          articleTitle: "Locked models, independent data—and the harder question: did the AI add value?",
+          articleDek: "The CATALINA study shows why replication and decision value must be judged separately: an AI-derived biomarker can carry prognostic signal without improving an already stronger evidence model.",
+          articleMeta: "Traustia Evidence Brief · September 2026 · 6-minute read",
+          paragraphs: [
+            "The CATALINA study, published in the September 2026 issue of The Lancet Oncology, tested two previously validated computational tumour-infiltrating lymphocyte pipelines through masked, independent deployment of locked models. It pooled prospectively collected outcomes from seven randomised trials: data were collated for 1,759 patients, with 1,356 having the complete information needed for the main prognostic analyses.",
+            "The AI-derived scores and pathologist-scored stromal TILs each added prognostic information beyond clinicopathological variables alone. But when the AI score was added to a model that already included clinicopathological variables and the pathologist score, it did not provide a statistically significant further improvement. That is not well described by a simple label of success or failure.",
+            "Instead, the result separates three questions that are often collapsed into one. First, can a locked model reproduce a useful signal on independent, multisite data? Second, is that signal associated with an outcome after appropriate adjustment? Third, does it add enough information beyond the current comparator to change a real decision? CATALINA supplies strong evidence for the first two while narrowing the claim that can be made about the third.",
+            "This distinction matters in diligence. Locked models, independent deployment, long-term outcomes, and data pooled from randomised trials strengthen the credibility of a validation. They do not remove the need to examine intended use, cohort representativeness, missingness, calibration, operating thresholds, site effects, workflow integration, and clinical utility.",
+            "The comparator also defines the claim. Using computational scoring where consistent pathologist assessment is unavailable is a different proposition from claiming that AI improves a decision already informed by pathology. A defensible dossier should state which proposition was actually tested—and resist allowing a positive association to travel farther than the study supports.",
+          ],
+          pullQuote: "A replicated signal is not automatically an added decision.",
+          decisionBody: "When reviewing an AI biomarker, ask three separate questions: does it reproduce on independent data, does it add information beyond the current standard, and would that added information change the intended decision?",
+          sources: [
+            { label: "PubMed — CATALINA independent external validation study", href: "https://pubmed.ncbi.nlm.nih.gov/42636839/" },
+            { label: "The Lancet Oncology — DOI 10.1016/S1470-2045(26)00339-6", href: "https://doi.org/10.1016/S1470-2045(26)00339-6" },
+          ],
+          editorialNote: "This original educational summary paraphrases the cited publication and uses no third-party figures, screenshots, or article text. It does not evaluate a commercial product or vendor and is not diagnostic, treatment, investment, regulatory, or legal advice.",
+        },
+      ],
       featuredLabel: "FEATURED EVIDENCE BRIEF · BIOLOGICS CMC",
       articleTitle: "Passing is not sameness: what a manufacturing change reveals about evidence",
       articleDek: "Two batches can both meet release specifications without proving that the product remained comparable. The same blind spot appears whenever a polished biomedical result is asked to carry a larger decision.",
@@ -566,6 +624,50 @@ export const siteCopy: Record<Locale, SiteCopy> = {
       kicker: "證據訊號",
       title: "不只看見變化，更看見它改變了什麼",
       lead: "我們追蹤科學、監管與市場事件，但不止於摘要新聞。Traustia 關心的是：這件事是否改變了現有證據能夠支持的主張與決策？",
+      briefs: [
+        {
+          id: "foundation-model-traceability",
+          featuredLabel: "最新證據解讀 · AI 可追溯性",
+          articleTitle: "如果 foundation model 改變了，究竟是哪一個版本被驗證過？",
+          articleDek: "FDA 於 9 月 4 日更新的頁面，指向一個最基本的透明度問題：AI 醫療器材的證據要能成立，首先必須能辨識當時實際被評估的是哪一套系統。",
+          articleMeta: "Traustia 證據解讀 · 2026 年 9 月 · 閱讀時間約 5 分鐘",
+          paragraphs: [
+            "2026 年 9 月 4 日，FDA 在 CDRH 更新紀錄中列出 AI-Enabled Medical Devices 頁面的更新。頁面表示，FDA 將探索如何辨識與標記納入 foundation model 的醫療器材，範圍包括大型語言模型與多模態架構，並鼓勵申請人在公開摘要中提供適當資訊。這是一項透明度訊號，不是新的 guidance，也不是新增的強制要求。",
+            "真正的問題並不只是一個資料庫標籤。Foundation-model system 並非固定不變的單一物件；它的行為可能受到模型供應商與版本、微調方式、system instructions、檢索來源、guardrails、介面與在地設定影響。產品名稱可以不變，支撐證據的底層系統卻可能已經不同。",
+            "因此，驗證與部署之間可能出現斷點。一項研究也許對當時測試的版本設計得很嚴謹，卻未必足以支持現在實際使用的版本。若缺少可追溯的模型身分與變更紀錄，團隊就無法判斷過去的結果是否仍適用、哪一項變更帶來新的不確定性，以及何時應該重新驗證。",
+            "可辯護的證據紀錄不能只有一個 accuracy 數字。它應把明確的模型與 build 連結到 intended use、資料來源、獨立評估資料集、failure modes、不同 subgroup 與 site 的表現、變更紀錄，以及預先定義的再驗證觸發條件。目的不是增加文件，而是讓主張、被評估的物件與實際部署的物件保持連續。",
+            "對委託方、投資人或授權團隊而言，盡職調查問題因此變得非常具體：報告中的表現是由哪一個確切系統、在什麼條件下產生？後續哪一項變更可能使原有主張失效？如果無法重建被評估的物件，證據即使看起來亮眼，也很難真正經得起檢驗。",
+          ],
+          pullQuote: "若無法辨識被評估的物件，就無法真正驗證一個模型。",
+          decisionBody: "在導入、投資或授權 AI 醫療產品之前，應要求具版本紀錄的 evidence lineage：模型身分與設定、資料及評估來源、變更歷史，以及明確的再驗證觸發條件。",
+          sources: [
+            { label: "FDA — Artificial Intelligence-Enabled Medical Devices", href: "https://www.fda.gov/medical-devices/software-medical-device-samd/artificial-intelligence-enabled-medical-devices" },
+            { label: "FDA CDRH New — 2026 年 9 月 4 日更新紀錄", href: "https://www.fda.gov/medical-devices/medical-devices-news-and-events/cdrh-new-news-and-updates" },
+          ],
+          editorialNote: "本文為根據所列 FDA 公開頁面撰寫的原創教育分析；不將此次頁面更新描述為 guidance 或具拘束力的要求，不評估任何具名器材或公司，也不構成醫療、監管、投資或法律意見。",
+        },
+        {
+          id: "catalina-independent-validation",
+          featuredLabel: "最新證據解讀 · AI 生物標誌驗證",
+          articleTitle: "模型凍結、資料獨立，然後呢？AI 是否真的增加了決策價值？",
+          articleDek: "CATALINA 研究說明，重現結果與增加決策價值必須分開判斷：AI 衍生生物標誌可以帶有預後訊號，卻不一定改善一個已經包含更強資訊的模型。",
+          articleMeta: "Traustia 證據解讀 · 2026 年 9 月 · 閱讀時間約 6 分鐘",
+          paragraphs: [
+            "刊登於 2026 年 9 月《The Lancet Oncology》的 CATALINA 研究，以 blinded、獨立部署的方式，評估兩套先前已驗證且完全凍結的 computational tumour-infiltrating lymphocyte pipelines。研究整合七項隨機試驗中前瞻性收集的結果資料，共彙整 1,759 位病人，其中 1,356 位具有主要預後分析所需的完整資料。",
+            "AI 衍生分數與病理醫師評估的 stromal TIL 分數，分別都能在只含 clinicopathological variables 的模型之外提供預後資訊；但當模型已經納入臨床病理變項與病理醫師分數後，再加入 AI 分數並未帶來統計上顯著的進一步改善。把這項結果簡化為成功或失敗，都不夠精確。",
+            "這項研究真正切開了三個經常被混為一談的問題。第一，凍結模型能否在獨立、多中心資料上重現有用訊號？第二，經過適當調整後，該訊號是否仍與結果相關？第三，它是否能在現行 comparator 之外增加足以改變真實決策的資訊？CATALINA 對前兩項提供了有力證據，同時縮小了第三項可被支持的主張範圍。",
+            "這個差異在盡職調查中很重要。凍結模型、獨立部署、長期追蹤結果，以及來自隨機試驗的彙整資料，都提高了驗證可信度；但仍不能取代對 intended use、cohort representativeness、missingness、calibration、operating threshold、site effects、工作流程整合與實際效用的檢查。",
+            "Comparator 也決定了主張邊界。在無法普遍取得一致病理評估的情境下使用 computational scoring，與宣稱 AI 能改善已經有病理結果支持的決策，是兩個不同命題。可辯護的 evidence dossier 必須說清楚實際測試的是哪一個命題，也不能讓正向關聯走得比研究證據更遠。",
+          ],
+          pullQuote: "能夠重現的訊號，不會自動成為能夠增加價值的決策。",
+          decisionBody: "審查 AI 生物標誌時，請分別回答三個問題：它能否在獨立資料中重現？能否在現行標準之外增加資訊？新增的資訊是否真的會改變預定決策？",
+          sources: [
+            { label: "PubMed — CATALINA 獨立外部驗證研究", href: "https://pubmed.ncbi.nlm.nih.gov/42636839/" },
+            { label: "The Lancet Oncology — DOI 10.1016/S1470-2045(26)00339-6", href: "https://doi.org/10.1016/S1470-2045(26)00339-6" },
+          ],
+          editorialNote: "本文以原創文字摘要所列研究，未使用第三方圖表、截圖或文章段落；不評估任何商業產品或供應商，也不構成診斷、治療、投資、監管或法律意見。",
+        },
+      ],
       featuredLabel: "本期證據解讀 · 生物製劑 CMC",
       articleTitle: "合格，不代表相同：一個製程變更揭露的證據盲點",
       articleDek: "兩批產品都通過放行規格，不代表製程改變後的產品已經證明具有可比較性。同一個盲點，也存在於每一份準備承擔重大決策的生醫報告裡。",
