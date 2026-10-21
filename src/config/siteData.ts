@@ -181,6 +181,8 @@ export type SiteCopy = {
   footer: {
     tagline: string;
     profileLabel: string;
+    founderRole: string;
+    personalProfileLabel: string;
     copyright: string;
     disclaimer: string;
   };
@@ -189,6 +191,7 @@ export type SiteCopy = {
 export const siteConfig = {
   companyName: "Traustia",
   contactEmail: "irisyang@traustia.com",
+  personalProfileUrl: "https://iry496.github.io/",
 } as const;
 
 export const siteCopy: Record<Locale, SiteCopy> = {
@@ -483,7 +486,9 @@ export const siteCopy: Record<Locale, SiteCopy> = {
     },
     footer: {
       tagline: "Evidence you can defend.",
-      profileLabel: "Founder profile",
+      profileLabel: "Digital business card",
+      founderRole: "Founder & CEO",
+      personalProfileLabel: "Personal website · Research, teaching & mentorship",
       copyright: "© 2026 Traustia. All rights reserved.",
       disclaimer: "Validation services—not clinical operations, regulatory certification, or legal advice.",
     },
@@ -780,6 +785,8 @@ export const siteCopy: Record<Locale, SiteCopy> = {
     footer: {
       tagline: "經得起檢驗的證據。",
       profileLabel: "創辦人名片",
+      founderRole: "創辦人暨執行長",
+      personalProfileLabel: "個人網站 · 研究、教學與科研指導",
       copyright: "© 2026 Traustia。保留所有權利。",
       disclaimer: "本公司提供驗證服務，不提供臨床營運、監管認證或法律意見。",
     },
