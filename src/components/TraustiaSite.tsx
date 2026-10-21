@@ -539,6 +539,11 @@ function Footer({ copy }: { copy: SiteCopy }) {
         <div>
           <a className="wordmark" href="#top" aria-label={copy.accessibility.home}><BrandMark /><span>TRAUSTIA</span></a>
           <p>{copy.footer.tagline}</p>
+          <a className="footer-profile" href={siteConfig.personalProfileUrl}>
+            <span className="footer-profile-name">Iris Yang <span aria-hidden="true">↗</span></span>
+            <span className="footer-profile-role">{copy.footer.founderRole}</span>
+            <span className="footer-profile-label">{copy.footer.personalProfileLabel}</span>
+          </a>
         </div>
         <nav aria-label={copy.accessibility.footerNavigation}>
           {copy.navigation.map((item) => <a key={item.href} href={item.href}>{item.label}</a>)}
